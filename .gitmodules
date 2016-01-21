@@ -1,0 +1,42 @@
+[submodule "github.com/powerline/fonts"]
+	path = github.com/powerline/fonts
+	url = https://github.com/powerline/fonts.git
+[submodule "github.com/fentie/netbeans-colors-solarized"]
+	path = github.com/fentie/netbeans-colors-solarized
+	url = https://github.com/fentie/netbeans-colors-solarized.git
+[submodule "github.com/sgerrand/xfce4-terminal-colors-solarized"]
+	path = github.com/sgerrand/xfce4-terminal-colors-solarized
+	url = https://github.com/sgerrand/xfce4-terminal-colors-solarized.git
+[submodule "github.com/cmus/cmus"]
+	path = github.com/cmus/cmus
+	url = https://github.com/cmus/cmus.git
+[submodule "github.com/tpope/vim-pathogen"]
+	path = github.com/tpope/vim-pathogen
+	url = https://github.com/tpope/vim-pathogen.git
+[submodule "github.com/phpenv/phpenv"]
+	path = github.com/phpenv/phpenv
+	url = https://github.com/phpenv/phpenv.git
+[submodule "github.com/fxbois/web-mode"]
+	path = github.com/fxbois/web-mode
+	url = https://github.com/fxbois/web-mode.git
+[submodule "github.com/nonpop/xkblayout-state"]
+	path = github.com/nonpop/xkblayout-state
+	url = https://github.com/nonpop/xkblayout-state.git
+[submodule "github.com/walshc/i3"]
+	path = github.com/walshc/i3
+	url = https://github.com/walshc/i3.git
+[submodule "github.com/acleverpun/i3-blocks-contrib"]
+	path = github.com/acleverpun/i3-blocks-contrib
+	url = https://github.com/acleverpun/i3-blocks-contrib.git
+[submodule "github.com/vivien/i3blocks"]
+	path = github.com/vivien/i3blocks
+	url = https://github.com/vivien/i3blocks.git
+[submodule "github.com/i3/i3status"]
+	path = github.com/i3/i3status
+	url = https://github.com/i3/i3status.git
+[submodule "github.com/wcgallego/pecl-gearman"]
+	path = github.com/wcgallego/pecl-gearman
+	url = https://github.com/wcgallego/pecl-gearman.git
+[submodule "github.com/altercation/vim-colors-solarized"]
+	path = github.com/altercation/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized.git

@@ -1,0 +1,3 @@
+#!/bin/bash
+export PULSE_LATENCY_MSEC=60
+/usr/bin/steam

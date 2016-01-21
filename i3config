@@ -1,0 +1,215 @@
+set $mod Mod4
+
+for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
+
+smart_gaps on
+smart_borders on
+for_window [class="^.*"] border pixel 5
+
+gaps inner 10
+gaps outer 10
+
+bindsym Print exec --no-startup-id "scrot ~/Pictures/$(date +%F-%T).png; notify-send Screenshot 'Image saved to ~/Pictures/'$(date +%F-%T).png"
+
+# colors
+
+client.focused #96a900 #859900 #fdf6e3 #859900
+client.focused_inactive #369be2 #269be2 #eee8d5 #6c71c4
+client.unfocused #369be2 #269be2 #ffffff #586e75
+client.urgent #cb4b16 #dc322f #fdf6e3 #dc322
+font pango: Cantarell, Material Design Icons 10
+floating_modifier $mod
+
+bindsym XF86AudioRaiseVolume exec audiocontrol.sh inc
+bindsym XF86AudioLowerVolume exec audiocontrol.sh dec
+bindsym XF86AudioMute exec audiocontrol.sh mute
+bindsym Control+XF86AudioPlay exec "youtube_currentsong"
+
+# cmus controls
+bindsym XF86AudioPlay exec audioplayer_control pause
+bindsym XF86AudioPause exec audioplayer_control pause
+bindsym XF86AudioNext exec audioplayer_control next
+bindsym XF86AudioPrev exec audioplayer_control prev
+bindsym XF86AudioStop exec audioplayer_control stop
+
+# toggle pause
+bindsym $mod+p exec audioplayer_control pause
+bindsym $mod+o exec audioplayer_control stop
+# prev/next
+bindsym $mod+bracketleft exec audioplayer_control prev
+bindsym $mod+bracketright exec audioplayer_control next
+# seek -/+
+bindsym $mod+Shift+bracketleft exec audioplayer_control seekd
+bindsym $mod+Shift+bracketright exec audioplayer_control seeki
+
+#start cmus
+bindsym $mod+Shift+p exec start_cmus
+
+bindsym $mod+Return exec i3-sensible-terminal
+bindsym Mod1+Control+L exec monitors_off_lock
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec dmenu_run
+
+# change focus
+bindsym $mod+j focus left
+bindsym $mod+k focus down
+bindsym $mod+l focus up
+bindsym $mod+semicolon focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+j move left
+bindsym $mod+Shift+k move down
+bindsym $mod+Shift+l move up
+bindsym $mod+Shift+semicolon move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+h split h
+bindsym $mod+v split v
+bindsym $mod+f fullscreen toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+
+# BEGIN programs on workspaces
+#
+# navicat
+assign [class="^Wine$"] 2
+# netbeans
+assign [class="^NetBeans IDE Dev$"] 1
+# sykpe 
+assign [class="^Skype$"] 3
+# 
+# chrome-unstable
+assign [class="^google-chrome-unstable$"] 4
+# cmus in terminal
+assign [window_role="termcmusplayer"] 5
+# END programs on workspaces
+
+# BEGIN workspaces - home
+workspace 1 output DVI-0
+workspace 2 output DVI-0
+workspace 3 output DVI-0
+workspace 4 output DisplayPort-0
+workspace 5 output DisplayPort-0
+workspace 6 output DisplayPort-0
+workspace 7 output DisplayPort-0
+workspace 8 output DisplayPort-0
+workspace 9 output DisplayPort-0
+workspace 10 output DisplayPort-0
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace 1
+bindsym $mod+Shift+2 move container to workspace 2
+bindsym $mod+Shift+3 move container to workspace 3
+bindsym $mod+Shift+4 move container to workspace 4
+bindsym $mod+Shift+5 move container to workspace 5
+bindsym $mod+Shift+6 move container to workspace 6
+bindsym $mod+Shift+7 move container to workspace 7
+bindsym $mod+Shift+8 move container to workspace 8
+bindsym $mod+Shift+9 move container to workspace 9
+bindsym $mod+Shift+0 move container to workspace 10
+
+# Use mod-Control-Up and Down to rotate through the workspace list.
+bindsym $mod+Control+Left workspace prev
+bindsym $mod+Control+Right workspace next
+
+# Use mod-Shift-Control-Up and Down to move the selected window to an
+# adjacent workspace. (This does *not* change your view to that workspace,
+# it just "zaps" the window there.)
+bindsym $mod+Shift+Control+Left move workspace prev;workspace prev
+bindsym $mod+Shift+Control+Right move workspace next;workspace next
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+#bindsym $mod+Shift+e exec "i3-msg exit"
+
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+bindsym $mod+m bar mode toggle
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+bar {
+	strip_workspace_numbers yes
+        separator_symbol "  "
+	status_command i3blocks -c ~/.i3blocks/left.conf
+	position          top
+	font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+	id bar-1
+	output DVI-0
+	tray_output DVI-0
+        colors {
+                focused_workspace #96a900 #859900 #fdf6e3
+                inactive_workspace #369be2 #269be2 #ffffff
+                active_workspace #96a900 #266E9E #fdf6e3
+        }
+}
+
+bar {
+        strip_workspace_numbers yes
+        separator_symbol "  "
+        status_command i3blocks -c ~/.i3blocks/right.conf
+        position          top
+        font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+        id bar-2
+	tray_output none
+	output	DisplayPort-0
+        colors {
+                focused_workspace #96a900 #859900 #fdf6e3
+                inactive_workspace #369be2 #269be2 #ffffff
+                active_workspace #96a900 #266E9E #fdf6e3
+        }
+
+}

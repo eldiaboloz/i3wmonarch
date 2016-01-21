@@ -1,0 +1,10 @@
+#!/bin/bash
+case $1 in
+"play") cmus-remote --play;;
+"stop") cmus-remote --stop;;
+"pause") cmus-remote --pause;;
+"prev") cmus-remote --prev;;
+"next") cmus-remote --next;;
+"seeki") cmus-remote --seek +10;;
+"seekd") cmus-remote --seek -10;;
+esac

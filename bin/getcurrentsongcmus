@@ -1,0 +1,33 @@
+#!/bin/bash
+cmusdata=`cmus-remote -Q`
+if [[ $? != 0 ]]; then
+	exit
+fi
+case $BLOCK_BUTTON in
+        # 1-2-3 left-middle-right mouse button
+        1) ~/dev/i3wmonarch/bin/audioplayer_control pause;;
+	2) ~/dev/i3wmonarch/bin/youtube_currentsong > /dev/null;;
+	3) ~/dev/i3wmonarch/bin/audioplayer_control next;;
+	4) ~/dev/i3wmonarch/bin/audioplayer_control seeki;;
+	5) ~/dev/i3wmonarch/bin/audioplayer_control seekd;;
+
+esac
+
+curmode=$(echo "$cmusdata" | sed -n 1p | cut -d ' ' -f2-)
+case $curmode in
+	stopped)
+		echo -n " "
+	;;
+	playing)
+		echo -n " "
+	;;
+	paused)
+		echo -n " "
+	;;
+esac
+cursong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
+cursong=`echo "$cursong" | cut -c 1-80`
+songtotal=$(echo "$cmusdata" | sed -n 3p | cut -d ' ' -f2-)
+songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
+
+printf '%s %02d:%02d / %02d:%02d\n' "$cursong" $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60))

@@ -1,0 +1,3 @@
+#!/bin/bash
+# arrange work monitors
+xrandr --output DVI-0 --left-of DisplayPort-0

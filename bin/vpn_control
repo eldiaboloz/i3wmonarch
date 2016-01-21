@@ -1,0 +1,28 @@
+#!/bin/bash
+vpnpids=`pgrep openvpn`
+state=$?
+case $1 in
+	start)
+		if [ $state -ne 0 ]; then
+			OPENVPN_USER=$USER
+			sudo openvpn --daemon --config $HOME/dev/vpn/config.ovpn
+		fi
+	;;
+	stop)
+		if [ $state -eq 0 ]; then
+			sudo kill $vpnpids	
+		fi
+	;;
+	watch)
+	if [ $state -eq 0 ]; then
+		echo "VPN: Yes"
+		echo "VPN: Yes"
+		echo "#00FF00"
+	else
+		echo "VPN: No"
+		echo "VPN: No"
+		echo "#FF0000"
+	fi
+	;;
+esac
+exit 0

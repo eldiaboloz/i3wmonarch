@@ -1,0 +1,16 @@
+#!/bin/bash
+cmusdata=`cmus-remote -Q`
+if [[ $? != 0 ]]; then
+	exit
+fi
+thesong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
+regex="\-([A-Za-z0-9_-]{11})\.(f141\.m4a|f251\.webm)"
+if [[ $thesong =~ $regex ]]; then
+	songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
+	curmode=$(echo "$cmusdata" | sed -n 1p | cut -d ' ' -f2-)
+	if [ "$curmode" = "playing" ]; then
+		cmus-remote --pause
+	fi
+	xdg-open "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent"
+	i3-msg "workspace 4"
+fi
