@@ -20,10 +20,13 @@ client.urgent #cb4b16 #dc322f #fdf6e3 #dc322
 font pango: Cantarell, Material Design Icons 10
 floating_modifier $mod
 
-bindsym XF86AudioRaiseVolume exec audiocontrol.sh inc
-bindsym XF86AudioLowerVolume exec audiocontrol.sh dec
-bindsym XF86AudioMute exec audiocontrol.sh mute
+bindsym XF86AudioRaiseVolume exec audiocontrol inc
+bindsym XF86AudioLowerVolume exec audiocontrol dec
+bindsym XF86AudioMute exec audiocontrol mute
 bindsym Control+XF86AudioPlay exec "youtube_currentsong"
+
+bindsym Mod1+$mod+bracketright exec audiocontrol inc
+bindsym Mod1+$mod+bracketleft exec audiocontrol dec
 
 # cmus controls
 bindsym XF86AudioPlay exec audioplayer_control pause
@@ -43,7 +46,7 @@ bindsym $mod+Shift+bracketleft exec audioplayer_control seekd
 bindsym $mod+Shift+bracketright exec audioplayer_control seeki
 
 #start cmus
-bindsym $mod+Shift+p exec start_cmus
+bindsym $mod+Shift+p exec start_audioplayer
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym Mod1+Control+L exec monitors_off_lock

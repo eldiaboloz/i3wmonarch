@@ -1,6 +1,7 @@
 #!/bin/bash
 cmuspid=`pgrep cmus`
-if [[ $? = 0 ]]; then
+if [[ $? -eq 0 ]]; then
+	echo "cmus $cmuspid"
 # cmus is already running
 	exit
 fi

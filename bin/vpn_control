@@ -4,7 +4,6 @@ state=$?
 case $1 in
 	start)
 		if [ $state -ne 0 ]; then
-			OPENVPN_USER=$USER
 			sudo openvpn --daemon --config $HOME/dev/vpn/config.ovpn
 		fi
 	;;

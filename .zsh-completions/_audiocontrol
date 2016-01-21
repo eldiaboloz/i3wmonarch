@@ -1,0 +1,8 @@
+#compdef audiocontrol
+echo $CURRENT
+if (( CURRENT > 2 )); then
+        return 0
+fi
+local -a options
+_alternative 'args:custom args:((inc\:"inc" dec\:"dec" mute\:"mute"))'
+
