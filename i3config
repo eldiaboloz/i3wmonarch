@@ -11,6 +11,18 @@ gaps outer 10
 
 bindsym Print exec --no-startup-id "scrot ~/Pictures/$(date +%F-%T).png; notify-send Screenshot 'Image saved to ~/Pictures/'$(date +%F-%T).png"
 
+# workspace definitions
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
 # colors
 
 client.focused #96a900 #859900 #fdf6e3 #859900
@@ -27,6 +39,9 @@ bindsym Control+XF86AudioPlay exec "youtube_currentsong"
 
 bindsym Mod1+$mod+bracketright exec audiocontrol inc
 bindsym Mod1+$mod+bracketleft exec audiocontrol dec
+
+bindsym Mod5+$mod+bracketright exec audiocontrol inc
+bindsym Mod5+$mod+bracketleft exec audiocontrol dec
 
 # cmus controls
 bindsym XF86AudioPlay exec audioplayer_control pause
@@ -88,53 +103,55 @@ bindsym $mod+a focus parent
 # BEGIN programs on workspaces
 #
 # navicat
-assign [class="^Wine$"] 2
+assign [class="^Wine$"] $ws2
 # netbeans
-assign [class="^NetBeans IDE Dev$"] 1
-# sykpe 
-assign [class="^Skype$"] 3
-# 
+assign [class="^NetBeans IDE Dev$"] $ws1
+# skype 
+assign [class="^Skype$"] $ws3
+# viber
+assign [class="^ViberPC$"] $ws3
 # chrome-unstable
-assign [class="^google-chrome-unstable$"] 4
+assign [class="^google-chrome-unstable$"] $ws4
 # cmus in terminal
-assign [window_role="termcmusplayer"] 5
+assign [window_role="termcmusplayer"] $ws5
+#
 # END programs on workspaces
 
 # BEGIN workspaces - home
-workspace 1 output DVI-0
-workspace 2 output DVI-0
-workspace 3 output DVI-0
-workspace 4 output DisplayPort-0
-workspace 5 output DisplayPort-0
-workspace 6 output DisplayPort-0
-workspace 7 output DisplayPort-0
-workspace 8 output DisplayPort-0
-workspace 9 output DisplayPort-0
-workspace 10 output DisplayPort-0
+workspace $ws1 output DVI-0
+workspace $ws2 output DVI-0
+workspace $ws3 output DVI-0
+workspace $ws4 output DisplayPort-0
+workspace $ws5 output DisplayPort-0
+workspace $ws6 output DisplayPort-0
+workspace $ws7 output DisplayPort-0
+workspace $ws8 output DisplayPort-0
+workspace $ws9 output DisplayPort-0
+workspace $ws10 output DisplayPort-0
 
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
 
 # Use mod-Control-Up and Down to rotate through the workspace list.
 bindsym $mod+Control+Left workspace prev
@@ -181,6 +198,7 @@ mode "resize" {
 }
 
 bindsym $mod+r mode "resize"
+
 bindsym $mod+m bar mode toggle
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)

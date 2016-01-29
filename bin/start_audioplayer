@@ -1,8 +1,7 @@
 #!/bin/bash
-cmuspid=`pgrep cmus`
+cmusdata=`cmus-remote -Q`
 if [[ $? -eq 0 ]]; then
-	echo "cmus $cmuspid"
-# cmus is already running
 	exit
 fi
+
 xfce4-terminal -e 'cmus' --role termcmusplayer
