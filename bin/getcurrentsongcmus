@@ -26,7 +26,7 @@ case $curmode in
 	;;
 esac
 cursong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
-cursong=`echo "$cursong" | cut -c 1-80`
+cursong=`echo "$cursong" | cut -c 1-81`
 songtotal=$(echo "$cmusdata" | sed -n 3p | cut -d ' ' -f2-)
 songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
 
