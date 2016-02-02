@@ -1,14 +1,13 @@
 #!/bin/bash
-def_device="alsa_output.usb-Creative_Technology_Ltd._SB_Tactic3D_Rage_Wireless-00.analog-stereo"
 case $1 in
 inc)
-pactl set-sink-volume $def_device +5%
+pactl set-sink-volume @DEFAULT_SINK@ +5%
 ;;
 dec)
-pactl set-sink-volume "$def_device" -5%
+pactl set-sink-volume @DEFAULT_SINK@ -5%
 ;;
 mute)
-pactl set-sink-mute "$def_device" toggle
+pactl set-sink-mute @DEFAULT_SINK@ toggle
 ;;
 esac
 sleep 0.1
