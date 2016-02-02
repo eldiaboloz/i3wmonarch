@@ -1,4 +1,4 @@
-#compdef audioplayer_control
+#compdef audioplayercontrol
 if (( CURRENT > 2 )); then
         return 0
 fi

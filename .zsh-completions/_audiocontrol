@@ -1,5 +1,4 @@
 #compdef audiocontrol
-echo $CURRENT
 if (( CURRENT > 2 )); then
         return 0
 fi
