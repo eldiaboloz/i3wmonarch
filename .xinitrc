@@ -35,11 +35,10 @@ xrandr --auto
 xset -b
 # setup specific layout
 xrandr --output DVI-0 --left-of DisplayPort-0
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
 # dropbox daemon
 dropbox.py start
 # numlock
-numlockx on
+#numlockx on
 # extra bindings
 xbindkeys
 # start ssh-agent on login

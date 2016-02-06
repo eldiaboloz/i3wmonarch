@@ -1,0 +1,5 @@
+! Make Home/End default instead of PageUp/Pagedown
+keycode 112 = Home NoSymbol Home
+keycode 110 = Prior NoSymbol Prior
+keycode 117 = End NoSymbol End
+keycode 115 = Next NoSymbol Next

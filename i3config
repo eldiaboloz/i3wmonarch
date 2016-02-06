@@ -60,8 +60,14 @@ bindsym $mod+bracketright exec audioplayer_control next
 bindsym $mod+Shift+bracketleft exec audioplayer_control seekd
 bindsym $mod+Shift+bracketright exec audioplayer_control seeki
 
+bindsym Shift+XF86AudioPrev exec audioplayer_control seekd
+bindsym Shift+XF86AudioNext exec audioplayer_control seeki
+
 #start cmus
 bindsym $mod+Shift+p exec start_audioplayer
+bindsym XF86Tools exec start_audioplayer
+
+bindsym XF86Calculator exec gnome-calculator
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym Mod1+Control+L exec monitors_off_lock
