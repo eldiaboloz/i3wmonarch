@@ -1,5 +1,5 @@
-keycode   9 = Escape NoSymbol Escape
-keycode  49 = grave asciitilde Cyrillic_che Cyrillic_CHE
+keycode   9 = grave NoSymbol Cyrillic_che NoSymbol
+keycode  49 = Escape asciitilde Escape Cyrillic_CHE
 
 keycode 112 = Home NoSymbol Home
 keycode 110 = Prior NoSymbol Prior
