@@ -2,12 +2,13 @@ set $mod Mod4
 
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
-smart_gaps on
-smart_borders on
-for_window [class="^.*"] border pixel 5
+#smart_gaps on
+#smart_borders on
+#for_window [class="^.*"] border pixel 5
 
-gaps inner 10
-gaps outer 10
+#gaps inner 10
+#gaps outer 10
+
 
 bindsym Print exec --no-startup-id "scrot ~/Pictures/$(date +%F-%T).png; notify-send Screenshot 'Image saved to ~/Pictures/'$(date +%F-%T).png"
 
@@ -23,6 +24,7 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+
 # colors
 
 client.focused #96a900 #859900 #fdf6e3 #859900
@@ -31,6 +33,9 @@ client.unfocused #369be2 #269be2 #ffffff #586e75
 client.urgent #cb4b16 #dc322f #fdf6e3 #dc322
 font pango: Cantarell, Material Design Icons 10
 floating_modifier $mod
+
+bindsym $mod+Escape exec toggle_xmodmap
+bindsym $mod+grave exec toggle_xmodmap
 
 bindsym XF86AudioRaiseVolume exec audiocontrol inc
 bindsym XF86AudioLowerVolume exec audiocontrol dec
@@ -67,7 +72,7 @@ bindsym Shift+XF86AudioNext exec audioplayer_control seeki
 bindsym $mod+Shift+p exec start_audioplayer
 bindsym XF86Tools exec start_audioplayer
 
-bindsym XF86Calculator exec gnome-calculator
+bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
 
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym Mod1+Control+L exec monitors_off_lock
@@ -120,7 +125,8 @@ assign [class="^ViberPC$"] $ws3
 assign [class="^google-chrome-unstable$"] $ws4
 # cmus in terminal
 assign [window_role="termcmusplayer"] $ws5
-#
+# qalc
+for_window [window_role="calculator"] floating enable
 # END programs on workspaces
 
 # BEGIN workspaces - home
