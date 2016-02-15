@@ -40,7 +40,7 @@ bindsym $mod+grave exec toggle_xmodmap
 bindsym XF86AudioRaiseVolume exec audiocontrol inc
 bindsym XF86AudioLowerVolume exec audiocontrol dec
 bindsym XF86AudioMute exec audiocontrol mute
-bindsym Control+XF86AudioPlay exec "youtube_currentsong"
+bindsym Control+XF86AudioPlay exec youtube_currentsong
 
 bindsym Mod1+$mod+bracketright exec audiocontrol inc
 bindsym Mod1+$mod+bracketleft exec audiocontrol dec
@@ -80,20 +80,10 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec dmenu_run
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
-
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
 
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
@@ -165,55 +155,31 @@ bindsym $mod+Shift+8 move container to workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9
 bindsym $mod+Shift+0 move container to workspace $ws10
 
-# Use mod-Control-Up and Down to rotate through the workspace list.
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
-# Use mod-Shift-Control-Up and Down to move the selected window to an
-# adjacent workspace. (This does *not* change your view to that workspace,
-# it just "zaps" the window there.)
 bindsym $mod+Shift+Control+Left move workspace prev;workspace prev
 bindsym $mod+Shift+Control+Right move workspace next;workspace next
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
-
-#bindsym $mod+Shift+e exec "i3-msg exit"
 
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
-
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
         bindsym Left resize shrink width 10 px or 10 ppt
         bindsym Down resize grow height 10 px or 10 ppt
         bindsym Up resize shrink height 10 px or 10 ppt
         bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape
-        bindsym Return mode "default"
+        
+	bindsym Return mode "default"
         bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
 bindsym $mod+m bar mode toggle
-# Start i3bar to display a workspace bar (plus the system information i3status
-# finds out, if available)
+
 bar {
 	strip_workspace_numbers yes
         separator_symbol "  "
