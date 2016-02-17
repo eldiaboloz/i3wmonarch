@@ -34,7 +34,7 @@ xrandr --auto
 # disable beep
 xset -b
 # setup specific layout
-xrandr --output DVI-0 --left-of DisplayPort-0
+xrandr --output DisplayPort-0 --left-of HDMI-2
 # dropbox daemon
 dropbox.py start
 # numlock

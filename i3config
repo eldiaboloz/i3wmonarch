@@ -120,16 +120,16 @@ for_window [window_role="calculator"] floating enable
 # END programs on workspaces
 
 # BEGIN workspaces - home
-workspace $ws1 output DVI-0
-workspace $ws2 output DVI-0
-workspace $ws3 output DVI-0
-workspace $ws4 output DisplayPort-0
-workspace $ws5 output DisplayPort-0
-workspace $ws6 output DisplayPort-0
-workspace $ws7 output DisplayPort-0
-workspace $ws8 output DisplayPort-0
-workspace $ws9 output DisplayPort-0
-workspace $ws10 output DisplayPort-0
+workspace $ws1 output DisplayPort-0
+workspace $ws2 output DisplayPort-0
+workspace $ws3 output DisplayPort-0
+workspace $ws4 output HDMI-2
+workspace $ws5 output HDMI-2
+workspace $ws6 output HDMI-2
+workspace $ws7 output HDMI-2
+workspace $ws8 output HDMI-2
+workspace $ws9 output HDMI-2
+workspace $ws10 output HDMI-2
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -187,8 +187,8 @@ bar {
 	position          top
 	font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
 	id bar-1
-	output DVI-0
-	tray_output DVI-0
+	output DisplayPort-0
+	tray_output DisplayPort-0
         colors {
                 focused_workspace #96a900 #859900 #fdf6e3
                 inactive_workspace #369be2 #269be2 #ffffff
@@ -204,7 +204,7 @@ bar {
         font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
         id bar-2
 	tray_output none
-	output	DisplayPort-0
+	output	HDMI-2
         colors {
                 focused_workspace #96a900 #859900 #fdf6e3
                 inactive_workspace #369be2 #269be2 #ffffff
