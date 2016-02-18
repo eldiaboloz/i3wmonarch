@@ -1,0 +1,20 @@
+#"xbindkeys_show" 
+#  control+shift + q
+#prev
+"xte 'keydown Control_L' 'keydown Page_Up' 'keyup Page_Up' 'keyup Control_L'"
+  m:0x0 + b:8
+#next
+"xte 'keydown Control_L' 'keydown Page_Down' 'keyup Page_Down' 'keyup Control_L'"
+  m:0x0 + b:9
+# prev workspace
+"i3-msg 'workspace prev'"
+  Mod4 + b:8
+# next workspace
+"i3-msg 'workspace next'"
+  Mod4 + b:9
+# move to prev workspace
+"i3-msg 'move workspace prev;workspace prev'"
+  Mod4 + Shift + b:8
+# move to next workspace
+"i3-msg 'move workspace next;workspace next'"
+  Mod4 + Shift + b:9
