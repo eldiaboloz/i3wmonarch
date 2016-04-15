@@ -17,8 +17,8 @@ set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
+set $ws5 "5 "
+set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -98,6 +98,8 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 bindsym $mod+Shift+space floating toggle
 
+bindsym $mod+Shift+w sticky toggle 
+
 bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
@@ -113,8 +115,11 @@ assign [class="^Skype$"] $ws3
 assign [class="^ViberPC$"] $ws3
 # chrome-unstable
 assign [class="^google-chrome-unstable$"] $ws4
+# chromium
+assign [class="^chromium$"] $ws5
 # cmus in terminal
-assign [window_role="termcmusplayer"] $ws5
+assign [window_role="termcmusplayer"] $ws6
+assign [class="konsole" instance="termcmusplayer"] $ws6
 # qalc
 for_window [window_role="calculator"] floating enable
 # END programs on workspaces

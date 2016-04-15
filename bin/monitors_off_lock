@@ -3,7 +3,7 @@
 icon="$HOME/.xlock/icon.png"
 tmpbg='/tmp/screen.png'
 scrot "$tmpbg"
-convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg"
+convert "$tmpbg" -scale 20% -scale 500% "$tmpbg"
 convert "$tmpbg" "$icon" -geometry +960+540 -composite -matte "$tmpbg" 
 convert "$tmpbg" "$icon" -geometry +2880+540 -composite -matte "$tmpbg" 
 cmusdata=`cmus-remote -Q`

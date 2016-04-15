@@ -24,7 +24,7 @@ set number
 set laststatus=2
 set encoding=utf-8
 set t_Co=256
-set cul
+"set cul
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif

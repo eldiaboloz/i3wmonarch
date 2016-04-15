@@ -5,3 +5,6 @@ viber >/dev/null 2>&1 &
 navicat >/dev/null 2>&1 &
 start_audioplayer >/dev/null 2>&1 &
 google-chrome-unstable >/dev/null 2>&1 &
+chromium >/dev/null 2>&1 &
+sleep 1
+audioplayer_control play
