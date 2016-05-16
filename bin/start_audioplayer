@@ -4,5 +4,5 @@ if [[ $? -eq 0 ]]; then
 	exit
 fi
 
-#xfce4-terminal -e 'cmus' --role termcmusplayer
-konsole --name "termcmusplayer" -e 'cmus'
+xfce4-terminal -e 'cmus' --role termcmusplayer
+#konsole --name "termcmusplayer" -e 'cmus'

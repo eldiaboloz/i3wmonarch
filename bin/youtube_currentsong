@@ -4,7 +4,7 @@ if [[ $? != 0 ]]; then
 	exit
 fi
 thesong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
-regex="\-([A-Za-z0-9_-]{11})\.(mkv|f141\.m4a|f251\.webm)"
+regex="\-([A-Za-z0-9_-]{11})\.mp3"
 if [[ $thesong =~ $regex ]]; then
 	songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
 	curmode=$(echo "$cmusdata" | sed -n 1p | cut -d ' ' -f2-)

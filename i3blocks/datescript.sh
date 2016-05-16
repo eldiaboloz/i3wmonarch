@@ -1,4 +1,5 @@
 #!/bin/bash
+LANG=bg_BG.UTF-8
 thestr=" `date '+ %a %d %b %Y %H:%M:%S'`"
 full="$thestr"
 short="$thestr"

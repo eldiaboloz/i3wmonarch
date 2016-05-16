@@ -31,16 +31,18 @@ fi
 
 # init all displays
 xrandr --auto
+# setup layout based on machine
+$HOME/bin/setup_monitors.sh
+
 # disable beep
 xset -b
-# setup specific layout
-xrandr --output DisplayPort-0 --left-of HDMI-2
+
 # dropbox daemon
 dropbox.py start
-# numlock
-#numlockx on
+
 # extra bindings
 xbindkeys
+
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK

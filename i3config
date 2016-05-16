@@ -109,6 +109,7 @@ bindsym $mod+a focus parent
 assign [class="^Wine$"] $ws2
 # netbeans
 assign [class="^NetBeans IDE Dev$"] $ws1
+assign [class="^NetBeans IDE 8\.1$"] $ws1
 # skype 
 assign [class="^Skype$"] $ws3
 # viber
@@ -169,6 +170,15 @@ bindsym $mod+Shift+Control+Right move workspace next;workspace next
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
+# TODO: context aware - double tapping etc
+
+mode "remote"{
+    bindsym XF86AudioRaiseVolume exec audioplayer_control next
+    bindsym XF86AudioLowerVolume exec audioplayer_control seeki
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
