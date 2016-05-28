@@ -1,0 +1,13 @@
+export ZSH=/home/iliyan/.oh-my-zsh
+
+ZSH_THEME="agnoster-light"
+
+plugins=()
+
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+fpath=($HOME/dev/i3wmonarch/.zsh-completions $fpath)
+source $ZSH/oh-my-zsh.sh
+
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.profile
+

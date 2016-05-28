@@ -31,8 +31,10 @@ fi
 
 # init all displays
 xrandr --auto
-# setup layout based on machine
-$HOME/bin/setup_monitors.sh
+# load setup script when starting X server based on hostname
+if [ -f "$HOME/.hosts/$(hostname).once" ]; then
+	source "$HOME/.hosts/$(hostname).once"
+fi
 
 # disable beep
 xset -b

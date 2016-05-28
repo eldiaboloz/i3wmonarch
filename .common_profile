@@ -1,0 +1,35 @@
+# common config options for all hosts
+
+# bash setup
+if [ -n "$BASH_VERSION" ]; then
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# path setup $HOME/bin
+if [ -d "$HOME/bin" ]; then
+    PATH="$HOME/bin:$PATH"
+fi
+# path setup /work/dev/bin
+if [ -d "/work/dev/bin" ]; then
+    PATH="/work/dev/bin:$PATH"
+fi
+# load host specific config
+if [ -f "$HOME/dev/i3wmonarch/.hosts/$HOST" ]; then
+	source "$HOME/dev/i3wmonarch/.hosts/$HOST"
+fi
+
+# current terminal to use
+export TERMINAL=xfce4-terminal
+
+# env for php cronjobs
+export APPLICATION_ENV="development"
+
+alias lsal="ls --color=never -al"
+alias greps="pgrep -fa"
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+# some alias helpers for work setup git-svn
+alias gitdmz="git commit && git stash -u && git svn dcommit && git svn rebase && git push origin master && git stash pop && git status"
+alias prjup="$HOME/dev/i3wmonarch/scripts/git_push_svn_rebase_work.sh"
+alias prjsync="$HOME/dev/i3wmonarch/scripts/git_pull_svn_rebase_work.sh"
