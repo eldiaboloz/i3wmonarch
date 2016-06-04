@@ -1,0 +1,12 @@
+#!/bin/bash
+host=$1
+localport=$2
+remoteport=$3
+target=$4
+socfile="/tmp/.sshtunnel.$host.$localport.$remoteport.$target"
+if [ ! -e "$socfile" ]; then
+	ssh -L "$localport:$target:$remoteport" "$host" -f -N -M -S "$socfile"
+else
+	ssh -S "$socfile" -O exit "$target" 
+fi
+

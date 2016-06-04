@@ -32,8 +32,8 @@ fi
 # init all displays
 xrandr --auto
 # load setup script when starting X server based on hostname
-if [ -f "$HOME/.hosts/$(hostname).once" ]; then
-	source "$HOME/.hosts/$(hostname).once"
+if [ -f "$HOME/dev/i3wmonarch/.hosts/$(hostname).once" ]; then
+	source "$HOME/dev/i3wmonarch/.hosts/$(hostname).once"
 fi
 
 # disable beep
