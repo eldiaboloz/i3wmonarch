@@ -68,6 +68,9 @@ bindsym $mod+Shift+bracketright exec audioplayer_control seeki
 bindsym Shift+XF86AudioPrev exec audioplayer_control seekd
 bindsym Shift+XF86AudioNext exec audioplayer_control seeki
 
+bindsym $mod+Control+Shift+bracketleft exec audioplayer_control seekd60
+bindsym $mod+Control+Shift+bracketright exec audioplayer_control seeki60
+
 #start cmus
 bindsym $mod+Shift+p exec start_audioplayer
 bindsym XF86Tools exec start_audioplayer
@@ -77,31 +80,36 @@ bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
 bindsym $mod+Return exec i3-sensible-terminal
 bindsym Mod1+Control+L exec monitors_off_lock
 bindsym $mod+Shift+q kill
-bindsym $mod+d exec dmenu_run
+#bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
 
-# change focus
+# focus window
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
 bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
+# move window
 bindsym $mod+Shift+Left move left
 bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
-bindsym $mod+h split h
+# modify layout
 bindsym $mod+v split v
-bindsym $mod+f fullscreen toggle
+bindsym $mod+h split h
 bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
-
-bindsym $mod+Shift+w sticky toggle 
-
-bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
+
+# modify window property
+bindsym $mod+Shift+w sticky toggle 
+bindsym $mod+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+f fullscreen toggle
 
 # BEGIN programs on workspaces
 #
@@ -123,6 +131,8 @@ assign [window_role="termcmusplayer"] $ws6
 assign [class="konsole" instance="termcmusplayer"] $ws6
 # qalc
 for_window [window_role="calculator"] floating enable
+# gcolor2
+for_window [class="^Gcolor2$"] sticky enable
 # END programs on workspaces
 
 # BEGIN workspaces - home
@@ -203,8 +213,8 @@ bar {
 	font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
 	id bar-1
 	output DisplayPort-0
-	tray_output DisplayPort-0
-        colors {
+	tray_output none
+	colors {
                 focused_workspace #96a900 #859900 #fdf6e3
                 inactive_workspace #369be2 #269be2 #ffffff
                 active_workspace #96a900 #266E9E #fdf6e3
@@ -218,8 +228,8 @@ bar {
         position          top
         font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
         id bar-2
-	tray_output none
 	output	HDMI-2
+	tray_output HDMI-2
         colors {
                 focused_workspace #96a900 #859900 #fdf6e3
                 inactive_workspace #369be2 #269be2 #ffffff

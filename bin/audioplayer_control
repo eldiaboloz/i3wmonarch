@@ -7,4 +7,6 @@ case $1 in
 "next") cmus-remote --next;;
 "seeki") cmus-remote --seek +10;;
 "seekd") cmus-remote --seek -10;;
+"seeki60") cmus-remote --seek +60;;
+"seekd60") cmus-remote --seek -60;;
 esac

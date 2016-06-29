@@ -1,0 +1,21 @@
+#!/bin/bash
+if [ ! -e "/tmp/last_saved_song_from_cmus.txt" ]; then
+	exit 1
+fi
+songname=`cat /tmp/last_saved_song_from_cmus.txt | sed -n 1p`
+songtime=`cat /tmp/last_saved_song_from_cmus.txt | sed -n 2p`
+if [ -z "$songname" ]; then
+	exit 1
+fi
+if [ -z "$songtime" ]; then
+	exit 1
+fi
+
+cmusdata=`cmus-remote -Q`
+if [[ $? != 0 ]]; then
+	start_audioplayer
+	sleep 2
+fi
+
+cmus-remote --file "$songname"
+cmus-remote --seek "$songtime"

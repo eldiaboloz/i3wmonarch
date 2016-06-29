@@ -14,5 +14,6 @@ if [ $? -eq 0 ]; then
 	fi
 fi
 ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set 0
-i3lock -u -i "$tmpbg"
+i3lock -i "$tmpbg"
+
 sleep 1; xset dpms force off
