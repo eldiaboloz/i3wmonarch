@@ -123,7 +123,7 @@ assign [class="^Skype$"] $ws3
 # viber
 assign [class="^ViberPC$"] $ws3
 # chrome-unstable
-assign [class="^google-chrome-unstable$"] $ws4
+assign [class="^Google-chrome-unstable$"] $ws4
 # chromium
 assign [class="^chromium$"] $ws5
 # cmus in terminal

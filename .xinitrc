@@ -39,11 +39,11 @@ fi
 # disable beep
 xset -b
 
-# dropbox daemon
-dropbox.py start
-
 # extra bindings
 xbindkeys
+
+# seafile client
+seafile-applet &
 
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
