@@ -45,6 +45,9 @@ xbindkeys
 # seafile client
 seafile-applet &
 
+# dropbox daemon
+dropbox.py start
+
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
