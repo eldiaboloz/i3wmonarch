@@ -77,7 +77,9 @@ bindsym XF86Tools exec start_audioplayer
 
 bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
 
-bindsym $mod+Return exec i3-sensible-terminal
+#bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec xfce4-terminal
+
 bindsym Mod1+Control+L exec monitors_off_lock
 bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
@@ -114,7 +116,7 @@ bindsym $mod+f fullscreen toggle
 # BEGIN programs on workspaces
 #
 # navicat
-assign [class="^Wine$"] $ws2
+assign [class="^Wine$" instance="^navicat\.exe$"] $ws2
 # netbeans
 assign [class="^NetBeans IDE Dev$"] $ws1
 assign [class="^NetBeans IDE 8\.1$"] $ws1
