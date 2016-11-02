@@ -118,16 +118,17 @@ bindsym $mod+f fullscreen toggle
 # navicat
 assign [class="^Wine$" instance="^navicat\.exe$"] $ws2
 # netbeans
-assign [class="^NetBeans IDE Dev$"] $ws1
-assign [class="^NetBeans IDE 8\.1$"] $ws1
+assign [class="^NetBeans IDE .*$"] $ws1
 # skype 
 assign [class="^Skype$"] $ws3
+# Thunderbird 
+assign [class="^Thunderbird$"] $ws3
 # viber
 assign [class="^ViberPC$"] $ws3
 # chrome-unstable
 assign [class="^Google-chrome-unstable$"] $ws4
 # chromium
-assign [class="^chromium$"] $ws5
+assign [class="^Chromium$"] $ws5
 # cmus in terminal
 assign [window_role="termcmusplayer"] $ws6
 assign [class="konsole" instance="termcmusplayer"] $ws6
@@ -137,6 +138,12 @@ for_window [window_role="calculator"] floating enable
 for_window [class="^Gcolor2$"] sticky enable
 # END programs on workspaces
 
+# mclip.py
+#set $mclip /work/dev/rofi-clipboard-manager/mclip.py
+#bindsym control+shift+v exec rofi -modi "clipboard:$mclip menu" -show clipboard && $mclip paste
+#exec --no-startup-id $mclip daemon
+# mclip.py
+#
 # BEGIN workspaces - home
 workspace $ws1 output DisplayPort-0
 workspace $ws2 output DisplayPort-0
