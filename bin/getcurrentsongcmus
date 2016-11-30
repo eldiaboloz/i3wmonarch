@@ -33,10 +33,16 @@ songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
 
 printf '%s %02d:%02d / %02d:%02d\n' "$cursong" $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60))
 echo $cursong
-blink=`date "+%S"`
-blink=$((blink%2))
-if [ "$blink" -eq 0 ]; then
-	echo "#FFFFFF"
-else
-	echo "#FFFF00"
-fi
+colorR=$(printf "%02X" $((0+$RANDOM%256)))
+colorG=$(printf "%02X" $((0+$RANDOM%256)))
+colorB=$(printf "%02X" $((0+$RANDOM%256)))
+echo "#$colorR$colorG$colorB"
+
+
+#blink=`date "+%S"`
+#blink=$((blink%2))
+#if [ "$blink" -eq 0 ]; then
+#	echo "#FFFFFF"
+#else
+#	echo "#FFFF00"
+#fi
