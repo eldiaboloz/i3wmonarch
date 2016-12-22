@@ -1,2 +1,0 @@
-#!/bin/bash
-pkill -SIGTERM -f 'openvpn --daemon --config /home/iliyan/dev/vpn/config.ovpn'

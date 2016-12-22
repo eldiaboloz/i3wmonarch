@@ -39,6 +39,20 @@ fi
 # disable beep
 xset -b
 
+case $WM in
+vb1)
+	# dual monitor is too buggy
+	xrandr --output DisplayPort-0 --off
+	VirtualBox -startvm "ubuntu-vm" -fullscreen
+	exit
+;;
+vb2)
+	# dual monitor is too buggy
+	xrandr --output DisplayPort-0 --off
+	VirtualBox -startvm "win10-vm" -fullscreen
+	exit
+;;
+*)
 # extra bindings
 xbindkeys
 
@@ -52,3 +66,5 @@ dropbox.py start
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 exec i3
+;;
+esac
