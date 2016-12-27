@@ -30,7 +30,7 @@ alias lsal="ls --color=never -al"
 alias greps="pgrep -fa"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 # some alias helpers for work setup git-svn
-alias gitdmz="git stash -u && git svn rebase && git stash pop && git commit && git stash -u && git svn dcommit && git svn rebase && git push origin master && git stash pop && git status"
+alias gitdmz="git commit && git stash -u && git svn dcommit && git svn rebase && git push origin master && git stash pop && git status"
 alias prjup="$HOME/dev/i3wmonarch/scripts/git_push_svn_rebase_work.sh"
 alias prjsync="$HOME/dev/i3wmonarch/scripts/git_pull_svn_rebase_work.sh"
 alias sshw="ssh -F $HOME/.ssh/config_work"
