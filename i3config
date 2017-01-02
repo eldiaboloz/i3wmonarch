@@ -132,6 +132,8 @@ assign [class="^Chromium$"] $ws5
 # cmus in terminal
 assign [window_role="termcmusplayer"] $ws6
 assign [class="konsole" instance="termcmusplayer"] $ws6
+# visual studio code
+assign [class="^Code$"] $ws7
 # qalc
 for_window [window_role="calculator"] floating enable
 # gcolor2

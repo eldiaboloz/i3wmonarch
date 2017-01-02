@@ -1,6 +1,15 @@
 #compdef vpn_control
-if (( CURRENT > 2 )); then
+if (( CURRENT > 3 )); then
 	return 0
 fi
-local -a options 
-_alternative 'args:custom args:((start\:"start" stop\:"stop" watch\:"watch"))'
+
+local -a options
+if (( CURRENT = 2)); then
+	_alternative 'args:custom args:((work\:"work" swarm\:"swarm"))'
+fi	
+if (( CURRENT == 1)); then
+	_alternative 'args:custom args:((start\:"start" stop\:"stop" watch\:"watch"))'
+fi
+
+#local -a options 
+#_alternative 'args:custom args:((start\:"start" stop\:"stop" watch\:"watch"))'
