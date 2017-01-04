@@ -1,5 +1,5 @@
 export ZSH=/home/iliyan/.oh-my-zsh
-
+export ZSH_CUSTOM=$HOME/dev/i3wmonarch/oh-my-zsh/custom
 ZSH_THEME="agnoster-light"
 
 plugins=()
