@@ -1,0 +1,7 @@
+// Place your settings in this file to overwrite the default settings
+{
+      "editor.wordWrap": true,
+      "editor.fontSize": 16,
+      "editor.fontFamily": "'DejaVu Sans Mono for Powerline', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+      "window.openFilesInNewWindow": false
+}

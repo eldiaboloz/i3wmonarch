@@ -1,7 +1,7 @@
 #!/bin/bash
 # where is project cloned
 reporoot=${1:-"/work/dev/personal/i3wmonarch"}
-dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" )
+dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" "$HOME/.config/htop" "$HOME/.config/Code/User" )
 links=(\
 "/" "$HOME/dev/i3wmonarch" \
 "/bin" "$HOME/bin" \
@@ -12,6 +12,8 @@ links=(\
 "/.xinitrc" "$HOME/.xinitrc" \
 "/.xfce4_terminalrc" "$HOME/.config/xfce4/terminal/terminalrc" \
 "/.xbindkeysrc" "$HOME/.xbindkeysrc" \
+"/.htoprc" "$HOME/.config/htop/htoprc" \
+"/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \
 )
 
 dcnt="${#dirs[@]}"
