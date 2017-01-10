@@ -1,13 +1,9 @@
 #!/bin/bash
-if [ ! -e "/tmp/last_saved_song_from_cmus.txt" ]; then
+bp="$HOME/dev/i3wmonarch/temp"
+if [ ! -e "${bp}/last_song_cmus.path" ]; then
 	exit 1
 fi
-songname=`cat /tmp/last_saved_song_from_cmus.txt | sed -n 1p`
-songtime=`cat /tmp/last_saved_song_from_cmus.txt | sed -n 2p`
-if [ -z "$songname" ]; then
-	exit 1
-fi
-if [ -z "$songtime" ]; then
+if [ ! -e "${bp}/last_song_cmus.time" ]; then
 	exit 1
 fi
 
@@ -17,5 +13,5 @@ if [[ $? != 0 ]]; then
 	sleep 2
 fi
 
-cmus-remote --file "$songname"
-cmus-remote --seek "$songtime"
+cmus-remote --file "$(cat ${bp}/last_song_cmus.path)"
+cmus-remote --seek "$(cat ${bp}/last_song_cmus.time)"

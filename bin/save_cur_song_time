@@ -1,7 +1,5 @@
 #!/bin/bash
 cmusdata=`cmus-remote -Q`
-songname=$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)
-songtime=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
-echo $songname > /tmp/last_saved_song_from_cmus.txt
-echo $songtime >> /tmp/last_saved_song_from_cmus.txt
-
+mkdir -pv $HOME/dev/i3wmonarch/temp
+echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2- > $HOME/dev/i3wmonarch/temp/last_song_cmus.path
+echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2- > $HOME/dev/i3wmonarch/temp/last_song_cmus.time

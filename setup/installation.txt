@@ -55,6 +55,12 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # pacman
 echo 'Server = http://mirror.telepoint.bg/archlinux/$repo/os/$arch' >> /etc/pacman.d/mirrorlist
 
+# keep boot messages on login tty
+mkdir -pv "/etc/systemd/system/getty@tty1.service.d"
+cat /etc/systemd/system/getty@tty1.service.d/noclear.conf
+[Service]
+TTYVTDisallocate=no
+
 # reboot into new installation
 exit
 umount -R /mnt
@@ -64,6 +70,19 @@ reboot
 useradd -m iliyan
 passwd iliyan
 groupadd sudo
+
+# setup keyboard
+mkdir /etc/X11/xorg.conf.d
+cat /etc/X11/xorg.conf.d/00-keyboard.conf 
+Section "InputClass"
+        Identifier "system-keyboard"
+        MatchIsKeyboard "on"
+        Option "XkbLayout" "us,bg"
+        Option "XkbModel" "pc104"
+        Option "XkbVariant" "euro,phonetic"
+        Option "XkbOptions" "grp:shifts_toggle,grp_led:scroll"
+EndSection
+
 
 # general groups
 usermod -aG sudo,video,audio,scanner iliyan
