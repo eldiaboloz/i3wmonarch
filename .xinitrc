@@ -52,6 +52,11 @@ vb2)
 	VirtualBox -startvm "win10-vm" -fullscreen
 	exit
 ;;
+vb3)
+	# dual monitor is too buggy
+	VirtualBox -startvm "win7_x86_for_linux" -fullscreen
+	exit
+;;
 *)
 # extra bindings
 xbindkeys
