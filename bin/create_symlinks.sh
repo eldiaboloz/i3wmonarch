@@ -14,6 +14,7 @@ links=(\
 "/.xbindkeysrc" "$HOME/.xbindkeysrc" \
 "/.htoprc" "$HOME/.config/htop/htoprc" \
 "/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \
+"/.tmux.conf" "$HOME/.tmux.conf" \
 )
 
 dcnt="${#dirs[@]}"
