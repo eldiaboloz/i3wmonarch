@@ -1,5 +1,5 @@
 #!/bin/bash
-gputemp=$(nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
+gputemp=$(optirun nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader)
 
 echo "GPU: $gputemp °C"
 echo "GPU: $gputemp °C"
