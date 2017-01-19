@@ -37,6 +37,8 @@ floating_modifier $mod
 bindsym $mod+Escape exec toggle_xmodmap
 bindsym $mod+grave exec toggle_xmodmap
 
+bindsym $mod+F10 exec toggle_xmodmap_vi
+
 bindsym XF86AudioRaiseVolume exec audiocontrol inc
 bindsym XF86AudioLowerVolume exec audiocontrol dec
 bindsym XF86AudioMute exec audiocontrol mute
@@ -131,6 +133,7 @@ assign [class="^Google-chrome-unstable$"] $ws4
 assign [class="^Chromium$"] $ws5
 # cmus in terminal
 assign [window_role="termcmusplayer"] $ws6
+assign [window_role="tmuxwww"] $ws10
 assign [class="konsole" instance="termcmusplayer"] $ws6
 # visual studio code
 assign [class="^Code$"] $ws7

@@ -99,7 +99,7 @@ usermod -aG bumblebee iliyan
 # setup sudoers - see ./sudoers file
 
 # install pacaur
-https://gist.github.com/eldiaboloz/c05a3a7ccdf9bd6d1f75b6f9ae01e93c
+https://gist.githubusercontent.com/eldiaboloz/c05a3a7ccdf9bd6d1f75b6f9ae01e93c/raw/b3b5595a262c0633da1025c29757bbdd81b715cd/pacaur_install.sh
 
 # install all required packages - ./packages.txt
 

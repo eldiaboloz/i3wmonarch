@@ -1,0 +1,4 @@
+keycode 46 = Up NoSymbol Up
+keycode 45 = Down NoSymbol Down
+keycode 44 = Left NoSymbol Left
+keycode 47 = Right NoSymbol Right

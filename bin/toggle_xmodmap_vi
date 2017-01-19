@@ -1,0 +1,10 @@
+#!/bin/bash
+current=`xmodmap -pke | grep "keycode  44 = Left"`
+if [ $? -ne 0 ]; then
+# default config is loaded
+	xmodmap ~/.XmodmapVim
+else
+# alternate conig is loaded
+	xmodmap ~/.XmodmapVimRevert
+fi
+pkill -RTMIN+1 i3blocks

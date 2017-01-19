@@ -11,10 +11,16 @@ if [ $? -ne 0 ]; then
 else
 	current="def"
 fi
+extcurrent=$(xmodmap -pke | grep "keycode  44 = Left")
+if [ $? -eq 0 ]; then
+	current="$current/vi"
+fi
 kb=`~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state print %s;echo "/$current"`
 echo $kb
 echo $kb
 if [ "$current" == "def" ]; then
+	echo "#FFFFFF"
+elif [ "$current" == "def/vi" ]; then
 	echo "#FFFFFF"
 else
 	echo "#24DDAA"	
