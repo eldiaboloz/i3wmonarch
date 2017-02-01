@@ -1,0 +1,12 @@
+#!/bin/bash
+# include nanosecond in filename
+filename=$(date +%Y_%m_%d_%H_%M_%S_%N)
+if [[ "$#" -eq 0 ]]; then
+	scrot ~/Pictures/${filename}.png
+	mode="full"
+else
+	maim -s -p 0 -c 0.96,0.5,0.09 ~/Pictures/${filename}.png
+	mode="partial"
+fi
+
+notify-send "Screenshot $mode" "~/Pictures/${filename}.png"

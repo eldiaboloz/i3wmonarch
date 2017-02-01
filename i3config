@@ -10,7 +10,8 @@ for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 #gaps outer 10
 
 
-bindsym Print exec --no-startup-id "scrot ~/Pictures/$(date +%F-%T).png; notify-send Screenshot 'Image saved to ~/Pictures/'$(date +%F-%T).png"
+bindsym Print exec --no-startup-id "screenshot"
+bindsym --release Shift+Print exec --no-startup-id "screenshot 1"
 
 # workspace definitions
 set $ws1 "1"
@@ -78,6 +79,7 @@ bindsym $mod+Shift+p exec start_audioplayer
 bindsym XF86Tools exec start_audioplayer
 
 bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
+bindsym $mod+Shift+o exec xfce4-terminal -e get_files_in_www --role="fzfnetbeans"
 
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec xfce4-terminal
@@ -141,6 +143,8 @@ assign [class="^Code$"] $ws7
 for_window [window_role="calculator"] floating enable
 # gcolor2
 for_window [class="^Gcolor2$"] sticky enable
+# fzf in floating terminal window to open files in netbeans
+for_window [window_role="fzfnetbeans"] floating enable
 # END programs on workspaces
 
 # mclip.py
@@ -220,6 +224,8 @@ bindsym $mod+r mode "resize"
 bindsym $mod+m bar mode toggle
 
 bar {
+	bindsym button4 nop
+	bindsym button5 nop
 	strip_workspace_numbers yes
         separator_symbol "  "
 	status_command i3blocks -c ~/.i3blocks/left.conf
@@ -236,6 +242,8 @@ bar {
 }
 
 bar {
+	bindsym button4 nop
+	bindsym button5 nop
         strip_workspace_numbers yes
         separator_symbol "  "
         status_command i3blocks -c ~/.i3blocks/right.conf

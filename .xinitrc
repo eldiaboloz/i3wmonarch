@@ -4,7 +4,8 @@ usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 # merge in defaults and keymaps
-
+# setting layout here, before setting custom xmodmaps 
+setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll"
 if [ -f $sysresources ]; then
     xrdb -merge $sysresources
 fi
