@@ -3,5 +3,6 @@
       "editor.wordWrap": true,
       "editor.fontSize": 16,
       "editor.fontFamily": "'DejaVu Sans Mono for Powerline', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
-      "window.openFilesInNewWindow": false
+    "window.openFilesInNewWindow": false,
+    "workbench.welcome.enabled": false
 }
