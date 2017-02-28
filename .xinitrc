@@ -41,36 +41,35 @@ fi
 xset -b
 
 case $WM in
-vb1)
+ie6-xp)
 	# dual monitor is too buggy
 	xrandr --output DisplayPort-0 --off
-	VirtualBox -startvm "ubuntu-vm" -fullscreen
+	VirtualBox -startvm "IE6 - WinXP" -fullscreen
 	exit
 ;;
-vb2)
+ie11-win7)
 	# dual monitor is too buggy
 	xrandr --output DisplayPort-0 --off
-	VirtualBox -startvm "win10-vm" -fullscreen
+	VirtualBox -startvm "IE11 - Win7" -fullscreen
 	exit
 ;;
-vb3)
-	# dual monitor is too buggy
+win7)
 	VirtualBox -startvm "win7_x86_for_linux" -fullscreen
 	exit
 ;;
 *)
-# extra bindings
-xbindkeys
+	# extra bindings
+	xbindkeys
 
-# seafile client
-seafile-applet &
+	# seafile client
+	seafile-applet &
 
-# dropbox daemon
-dropbox.py start
+	# dropbox daemon
+	dropbox.py start
 
-# start ssh-agent on login
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
-exec i3
+	# start ssh-agent on login
+	eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+	export SSH_AUTH_SOCK
+	exec i3
 ;;
 esac
