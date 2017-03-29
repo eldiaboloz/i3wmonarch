@@ -1,6 +1,9 @@
 #!/bin/bash
-startdir=`pwd`
-for x in `find /work/www -mindepth 2 -maxdepth 2 -name ".git" -type d`; do
+myname=$(basename "$0")
+dopush=""
+[[ "$myname" == git_push_* ]] && dopush="y"
+startdir=$(pwd)
+for x in $(find /work/www -mindepth 2 -maxdepth 2 -name ".git" -type d); do
     cd $x/../
 	echo "Repo : $(basename $(pwd))"
 
@@ -9,10 +12,20 @@ for x in `find /work/www -mindepth 2 -maxdepth 2 -name ".git" -type d`; do
 		echo "on brach $gitcb so skipping!!!"
 		continue
 	fi
-	git stash -u
-       	git pull origin master
-       	git svn fetch
-       	git svn rebase
-	git stash pop
-	cd $startdir
+
+	git svn info >/dev/null 2>&1
+	if [ $? -ne 0 ]; then
+		# this is not a git-svn repo
+		git pull origin master
+	else
+		# this is a git-svn repo
+		git stash -u \
+		&& git pull origin master \
+		&& git svn fetch \
+		&& git svn rebase \
+		&& ( ( [ -z "$dopush" ] && git push origin master ) || true  ) \
+		&& git stash pop
+	fi
+	echo ""
 done
+cd $startdir
