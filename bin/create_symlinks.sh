@@ -15,6 +15,8 @@ links=(\
 "/.htoprc" "$HOME/.config/htop/htoprc" \
 "/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \
 "/.tmux.conf" "$HOME/.tmux.conf" \
+"/.zlogin" "$HOME/.zlogin" \
+"/.zlogout" "$HOME/.zlogout" \
 )
 
 dcnt="${#dirs[@]}"
