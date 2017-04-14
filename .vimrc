@@ -2,6 +2,12 @@ set nocompatible              " be iMproved, required
 set backspace=indent,eol,start
 filetype off                  " required
 
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+"set list
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -20,7 +26,6 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 syntax on
-filetype plugin indent on
 " show line numbers
 set number
 " show relative line numbers

@@ -30,7 +30,8 @@ MiscMouseWheelZoom=TRUE
 MiscMiddleClickOpensUri=FALSE
 MiscDefaultWorkingDir=
 MiscRewrapOnResize=TRUE
-MiscUseShiftArrowsToScroll=FALSE
+MiscUseShiftArrowsToScroll=TRUE
 ScrollingOnOutput=FALSE
 ScrollingLines=10000
+ShortcutsNoMenukey=TRUE
 

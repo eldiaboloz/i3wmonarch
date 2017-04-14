@@ -1,0 +1,7 @@
+compdefas () {
+  local a
+  a="$1"
+  shift
+  compdef "$_comps[$a]" "${(@)*}=$a"
+}
+compdefas docker

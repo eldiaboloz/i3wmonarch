@@ -147,6 +147,7 @@ for_window [window_role="calculator"] floating enable
 for_window [class="^Gcolor2$"] sticky enable
 # fzf in floating terminal window to open files in netbeans
 for_window [window_role="fzfnetbeans"] floating enable
+for_window [window_role="fzffloatme"] floating enable
 # END programs on workspaces
 
 # mclip.py

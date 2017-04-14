@@ -1,8 +1,7 @@
 #!/bin/bash
 cmusdata=`cmus-remote -Q`
 if [[ $? -eq 0 ]]; then
-	exit
+	exec xfce4-terminal -e 'screen -x cmus' --role termcmusplayer
+else
+	exec xfce4-terminal -e 'screen -R cmus -m cmus' --role termcmusplayer
 fi
-
-xfce4-terminal -e 'cmus' --role termcmusplayer
-#konsole --name "termcmusplayer" -e 'cmus'
