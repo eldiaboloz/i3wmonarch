@@ -66,6 +66,12 @@ win7)
 
 	# dropbox daemon
 	dropbox.py start
+    
+    # fix for .zlogin/.zlogout
+    ssh-agent -k
+    
+    # start clipboard manager
+    parcellite &
 
 	# start ssh-agent on login
 	eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
