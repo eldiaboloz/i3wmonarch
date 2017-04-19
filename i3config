@@ -113,7 +113,7 @@ bindsym $mod+a focus parent
 
 # modify window property
 bindsym $mod+Shift+w sticky toggle 
-bindsym $mod+space focus mode_toggle
+bindsym $mod+Mod1+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+f fullscreen toggle
 
@@ -250,6 +250,7 @@ bar {
         strip_workspace_numbers yes
         separator_symbol "  "
         status_command i3blocks -c ~/.i3blocks/right.conf
+#        status_command /usr/lib/python3.6/site-packages/powerline/bindings/i3/powerline-i3.py
         position          top
         font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
         id bar-2
