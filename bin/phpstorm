@@ -1,1 +1,29 @@
-/work/phpstorm/bin/phpstorm.sh
+#!/usr/bin/env bash
+jetbr=${JETBRAINS_ROOT:-"/jetbrains"}
+
+# locate phpstorm.sh first
+for file in "$(find "$jetbr/apps/PhpStorm" -type f -name "phpstorm.sh")"; do
+    phpstorme=$(realpath "$file")
+    break
+done
+
+# .sh file was not found
+if [ -z "$phpstorme" ]; then
+    echo "phpstorm.sh was not found" 1>&2
+    exit 1
+fi
+
+# vm options file
+vmopts=$(dirname "$phpstorme")/phpstorm64.vmoptions
+if [ ! -f "$vmopts" ]; then
+    echo "phpstorm64.vmoptions file was not found" 1>&2
+    exit 1
+fi
+
+# setup lang and cnt
+grep -Fq -- "-Duser.country" "$vmopts" || echo '-Duser.country=BG' >> "$vmopts"
+grep -Fq -- "-Duser.language" "$vmopts" || echo '-Duser.language=bg' >> "$vmopts"
+
+# start the executable
+nohup "$phpstorme" >/dev/null 2>&1 &
+i3-msg "workspace 1; layout stacked" >/dev/null 2>&1

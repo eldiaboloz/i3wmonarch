@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+exec xfce4-terminal -e "/usr/bin/vim '$1'" --role mygvim

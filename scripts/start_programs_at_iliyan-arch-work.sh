@@ -1,13 +1,12 @@
 #!/bin/bash
-#netbeans-php-nightly >/dev/null 2>&1 &
-#netbeans >/dev/null 2>&1 &
-phpstorm >/dev/null 2>&1 &
-LC_TIME="C" skype >/dev/null 2>&1 &
-LC_TIME="C" skypeforlinux >/dev/null 2>&1 &
-#viber >/dev/null 2>&1 &
-navicat >/dev/null 2>&1 &
-start_audioplayer >/dev/null 2>&1 &
-google-chrome-unstable >/dev/null 2>&1 &
-chromium >/dev/null 2>&1 &
+phpstorm
+LC_TIME="C" nohup skype > /dev/null  2>&1 &
+LC_TIME="C" nohup skypeforlinux > /dev/null 2>&1 &
+#nohup viber >/dev/null 2>&1 &
+nohup navicat >/dev/null 2>&1 &
+nohup start_audioplayer >/dev/null 2>&1 &
+nohup google-chrome-unstable >/dev/null 2>&1 &
+nohup chromium >/dev/null 2>&1 &
+#nohup jetbrains-toolbox >/dev/null 2>&1 &
 sleep 3
-audioplayer_control play
+nohup audioplayer_control play >/dev/null 2>&1 &
