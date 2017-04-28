@@ -91,6 +91,9 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec --no-startup-id rofi -show window
 bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
 
+bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/git_push_svn_rebase_work.sh 1" --role="prjupfloat"
+bindsym $mod+Mod1+L exec --no-startup-id xfce4-terminal -e "gitcommitpush 1" --role="prjupfloat"
+
 # focus window
 bindsym $mod+Left focus left
 bindsym $mod+Down focus down
@@ -139,6 +142,7 @@ assign [class="^Chromium$"] $ws5
 assign [window_role="termcmusplayer"] $ws6
 assign [window_role="tmuxwww"] $ws10
 assign [class="konsole" instance="termcmusplayer"] $ws6
+assign [class="URxvt" instance="termcmusplayer"] $ws6
 # visual studio code
 assign [class="^Code$"] $ws7
 # qalc
@@ -150,6 +154,9 @@ for_window [window_role="fzfnetbeans"] floating enable
 for_window [window_role="fzffloatme"] floating enable
 # float vim in xfce terminal
 for_window [window_role="mygvim"] floating enable
+# float terminal with update script
+for_window [window_role="prjupfloat"] floating enable
+
 # END programs on workspaces
 
 # mclip.py

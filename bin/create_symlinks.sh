@@ -17,6 +17,7 @@ links=(\
 "/.tmux.conf" "$HOME/.tmux.conf" \
 "/.zlogin" "$HOME/.zlogin" \
 "/.zlogout" "$HOME/.zlogout" \
+"/.Xresources" "$HOME/.Xresources" \
 )
 
 dcnt="${#dirs[@]}"

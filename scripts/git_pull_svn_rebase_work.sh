@@ -29,3 +29,4 @@ for x in $(find /work/www -mindepth 2 -maxdepth 2 -name ".git" -type d); do
 	echo ""
 done
 cd $startdir
+[ ! -z "$1" ] && read -n1 -r -p "Press any key..." key

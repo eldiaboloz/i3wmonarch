@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+
+set -e
+
+SHOW_PROMPT_ON_EXIT={1:-""}
+
+startdir="$(pwd)"
+
+reposroot=${REPOS_ROOT:-"/work/gitrepos/all"}
+
+byebye () {
+    cd "$startdir"
+    [ ! -z "$SHOW_PROMPT_ON_EXIT" ] && read -n1 -r -p "Press any key..." key
+    exit ${1-:"0"}
+}
+
+# if we are not in a git repo ask for a git repo
+if [ ! -d "$PWD/.git" ]; then
+    cd "$reposroot/$(find "$reposroot" -type l -printf '%P\n' | fzf)"
+    if [ ! -d "$PWD/.git" ]; then
+        cd "$startdir"
+        echo "not in a git repo!" 1>&2
+        byebye 1
+    fi  
+fi
+# if we are not on master branch exit
+if [ "$(git rev-parse --abbrev-ref HEAD)" "!=" "master" ]; then
+    echo "not on master branch" 1>&2
+    byebye 1
+fi
+
+# get initial git status
+inist="$(git status --porcelain)"
+
+# clean working copy
+if [ -z "$inist" ]; then
+    echo "no changes from HEAD" 1>&2
+    byebye 1
+fi
+
+# if there are no staged changes ask what to stage
+echo "$inist" | grep -v "^[? ]" || \
+    git add --interactive
+
+# if there are still no staged changes exit
+git status --porcelain | grep -v "^[? ]" || \
+    ( echo "no staged changes" 1>&2; byebye 1 )
+
+# commit and push
+git commit
+if git svn info >/dev/null 2>&1 ; then
+    git stash -u
+    git svn dcommit
+    git svn rebase
+    git push origin master
+    git stash pop
+else
+    git push origin master
+fi
+git status
+
+byebye 0
+
+# ex: filetype=sh

@@ -1,0 +1,165 @@
+! rofi setup
+rofi.ssh-command:          {terminal} -e "{ssh-client} {host}"
+
+! fonts setup
+URxvt*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=12,xft:FontAwseome:size=12
+
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+
+URxvt.letterSpace: -1
+URxvt.letterSpace: -2
+URxvt.scrollBar_right: 1
+
+URxvt.iso14755 : false
+URxvt.saveLines : 10000
+
+URxvt.keysym.C-C: perl:clipboard:copy
+URxvt.keysym.C-V: perl:clipboard:paste
+URxvt.keysym.C-A-V: perl:clipboard:paste_escaped
+
+URxvt.perl-ext-common: default,matcher,clipboard,vtwheel
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+URxvt.fading: 0
+
+URxvt.transparent: false
+URxvt.shading: 0
+
+URxvt.secondaryScreen: 1
+URxvt.secondaryScroll: 1
+
+! Solarized color scheme for the X Window System
+!
+! http://ethanschoonover.com/solarized
+
+! Common
+
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
+
+
+! Dark
+
+!#define S_base03        #002b36
+!#define S_base02        #073642
+!#define S_base01        #586e75
+!#define S_base00        #657b83
+!#define S_base0         #839496
+!#define S_base1         #93a1a1
+!#define S_base2         #eee8d5
+!#define S_base3         #fdf6e3
+
+
+! Light
+
+#define S_base03        #fdf6e3
+#define S_base02        #eee8d5
+#define S_base01        #93a1a1
+#define S_base00        #839496
+#define S_base0         #657b83
+#define S_base1         #586e75
+#define S_base2         #073642
+#define S_base3         #002b36
+
+
+! To only apply colors to your terminal, for example, prefix
+! the color assignment statement with its name. Example:
+!
+! URxvt*background:            S_base03
+
+URxvt*background:              S_base03
+URxvt*foreground:              S_base0
+URxvt*fading:                  40
+URxvt*fadeColor:               S_base03
+URxvt*cursorColor:             S_base1
+URxvt*pointerColorBackground:  S_base01
+URxvt*pointerColorForeground:  S_base1
+
+URxvt*color0:                  S_base02
+URxvt*color1:                  S_red
+URxvt*color2:                  S_green
+URxvt*color3:                  S_yellow
+URxvt*color4:                  S_blue
+URxvt*color5:                  S_magenta
+URxvt*color6:                  S_cyan
+URxvt*color7:                  S_base2
+URxvt*color9:                  S_orange
+URxvt*color8:                  S_base03
+URxvt*color10:                 S_base01
+URxvt*color11:                 S_base00
+URxvt*color12:                 S_base0
+URxvt*color13:                 S_violet
+URxvt*color14:                 S_base1
+URxvt*color15:                 S_base3
+
+! UXterm setup ...
+
+!UXTerm*font: xft:DejaVu\ Sans\ Mono\ for\ Powerline:size=12,xft:FontAwseome:size=12
+
+UXTerm*background:              S_base03
+UXTerm*foreground:              S_base0
+UXTerm*fading:                  40
+UXTerm*fadeColor:               S_base03
+UXTerm*cursorColor:             S_base1
+UXTerm*pointerColorBackground:  S_base01
+UXTerm*pointerColorForeground:  S_base1
+
+! do not scroll with output
+UXterm*scrollTtyOutput: false
+
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+UXterm*scrollWithBuffer: true
+
+! scroll back to the bottom on keypress
+UXterm*scrollTtyKeypress: true
+
+UXterm.letterSpace: -1
+UXterm.scrollBar_right: 1
+
+UXterm.iso14755 : false
+UXterm.saveLines : 10000
+
+UXterm.keysym.C-C: perl:clipboard:copy
+UXterm.keysym.C-V: perl:clipboard:paste
+UXterm.keysym.C-A-V: perl:clipboard:paste_escaped
+
+UXterm.perl-ext-common: default,matcher,clipboard,vtwheel
+UXterm.url-launcher: /usr/bin/xdg-open
+UXterm.matcher.button: 1
+UXterm.fading: 0
+
+UXterm.transparent: false
+UXterm.shading: 0
+
+UXterm.secondaryScreen: 1
+UXterm.secondaryScroll: 1
+
+UXTerm*color0:                  S_base02
+UXTerm*color1:                  S_red
+UXTerm*color2:                  S_green
+UXTerm*color3:                  S_yellow
+UXTerm*color4:                  S_blue
+UXTerm*color5:                  S_magenta
+UXTerm*color6:                  S_cyan
+UXTerm*color7:                  S_base2
+UXTerm*color9:                  S_orange
+UXTerm*color8:                  S_base03
+UXTerm*color10:                 S_base01
+UXTerm*color11:                 S_base00
+UXTerm*color12:                 S_base0
+UXTerm*color13:                 S_violet
+UXTerm*color14:                 S_base1
+UXTerm*color15:                 S_base3
