@@ -2,10 +2,7 @@
 jetbr=${JETBRAINS_ROOT:-"/jetbrains"}
 
 # locate phpstorm.sh first
-for file in "$(find "$jetbr/apps/PhpStorm" -type f -name "phpstorm.sh")"; do
-    phpstorme=$(realpath "$file")
-    break
-done
+phpstorme=$(realpath "$(find "$jetbr/apps/PhpStorm" -type f -name "phpstorm.sh" | sort -r | sed -n 1p)")
 
 # .sh file was not found
 if [ -z "$phpstorme" ]; then
@@ -26,4 +23,6 @@ grep -Fq -- "-Duser.language" "$vmopts" || echo '-Duser.language=bg' >> "$vmopts
 
 # start the executable
 nohup "$phpstorme" >/dev/null 2>&1 &
-i3-msg "workspace 1; layout stacked" >/dev/null 2>&1
+i3-msg "workspace 1" >/dev/null 2>&1
+sleep 5
+i3-msg "layout stacked" >/dev/null 2>&1
