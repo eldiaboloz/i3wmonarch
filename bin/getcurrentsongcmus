@@ -1,29 +1,28 @@
 #!/bin/bash
 cmusdata=`cmus-remote -Q`
 if [[ $? != 0 ]]; then
-	exit
+    exit
 fi
 case $BLOCK_BUTTON in
-        # 1-2-3 left-middle-right mouse button
-        1) ~/dev/i3wmonarch/bin/audioplayer_control pause;;
-	2) ~/dev/i3wmonarch/bin/youtube_currentsong > /dev/null;;
-	3) ~/dev/i3wmonarch/bin/audioplayer_control next;;
-	4) ~/dev/i3wmonarch/bin/audioplayer_control seeki;;
-	5) ~/dev/i3wmonarch/bin/audioplayer_control seekd;;
-
+    # 1-2-3 left-middle-right mouse button
+    1) ~/dev/i3wmonarch/bin/audioplayer_control pause;;
+    2) ~/dev/i3wmonarch/bin/youtube_currentsong > /dev/null;;
+    3) ~/dev/i3wmonarch/bin/audioplayer_control next;;
+    4) ~/dev/i3wmonarch/bin/audioplayer_control seeki;;
+    5) ~/dev/i3wmonarch/bin/audioplayer_control seekd;;
 esac
 
 curmode=$(echo "$cmusdata" | sed -n 1p | cut -d ' ' -f2-)
 case $curmode in
-	stopped)
-		echo -n " "
-	;;
-	playing)
-		echo -n " "
-	;;
-	paused)
-		echo -n " "
-	;;
+    stopped)
+        echo -n " "
+        ;;
+    playing)
+        echo -n " "
+        ;;
+    paused)
+        echo -n " "
+        ;;
 esac
 cursong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
 maxlen="${curcmussonglenlimit:-35}"
@@ -42,7 +41,7 @@ echo "#$colorR$colorG$colorB"
 #blink=`date "+%S"`
 #blink=$((blink%2))
 #if [ "$blink" -eq 0 ]; then
-#	echo "#FFFFFF"
+#   echo "#FFFFFF"
 #else
-#	echo "#FFFF00"
+#   echo "#FFFF00"
 #fi
