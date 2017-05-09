@@ -40,7 +40,7 @@ fi
 
 # if there are no staged changes ask what to stage
 echo "$inist" | grep -v "^[? ]" >/dev/null || \
-    git add --interactive >/dev/null
+    git add --interactive 2>/dev/null
 
 # if there are still no staged changes exit
 git status --porcelain | grep -v "^[? ]" >/dev/null || \
