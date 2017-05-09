@@ -23,6 +23,6 @@ grep -Fq -- "-Duser.language" "$vmopts" || echo '-Duser.language=bg' >> "$vmopts
 
 # start the executable
 nohup "$phpstorme" >/dev/null 2>&1 &
-i3-msg "workspace 1" >/dev/null 2>&1
 sleep 5
+i3-msg "workspace 1" >/dev/null 2>&1
 i3-msg "layout stacked" >/dev/null 2>&1
