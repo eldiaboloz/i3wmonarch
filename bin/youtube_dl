@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# vim ft=bash
+set -e
+
+TARGET_DIR=${TARGET_DIR:-"$HOME/Music/Music"}
+
+targetfilename=$(youtube-dl --get-filename "$1")
+youtube-dl --extract-audio --audio-format mp3 --verbose "$1" -o "$targetfilename"

@@ -24,24 +24,34 @@ case $curmode in
         echo -n " "
         ;;
 esac
-cursong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
+cursong=$(echo "$cmusdata" | sed -n 2p | cut -d '/' -f6-)
 maxlen="${curcmussonglenlimit:-35}"
-cursong="${cursong:(0):$maxlen}"
+curslen=${#cursong}
+if [ "$curslen" -gt "$maxlen" ]; then
+ delta=$((($(date +%-S))%($curslen-$maxlen+1)))
+ cursong="${cursong:($delta):$maxlen}"
+fi
 songtotal=$(echo "$cmusdata" | sed -n 3p | cut -d ' ' -f2-)
 songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
 
 printf '%s %02d:%02d / %02d:%02d\n' "$cursong" $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60))
 echo $cursong
-colorR=$(printf "%02X" $((0+$RANDOM%256)))
-colorG=$(printf "%02X" $((0+$RANDOM%256)))
-colorB=$(printf "%02X" $((0+$RANDOM%256)))
-echo "#$colorR$colorG$colorB"
+#colorR=$(printf "%02X" $((0+$RANDOM%256)))
+#colorG=$(printf "%02X" $((0+$RANDOM%256)))
+#colorB=$(printf "%02X" $((0+$RANDOM%256)))
+#echo "#$colorR$colorG$colorB"
 
 
-#blink=`date "+%S"`
-#blink=$((blink%2))
-#if [ "$blink" -eq 0 ]; then
-#   echo "#FFFFFF"
-#else
-#   echo "#FFFF00"
-#fi
+blink=$(($(date "+%-S")%8))
+case "$blink" in
+    0) colorrgb="#0BDD94";;
+    1) colorrgb="#E16725";;
+    2) colorrgb="#E5E913";;
+    3) colorrgb="#008DFF";;
+    4) colorrgb="#FF0041";;
+    5) colorrgb="#22FEE0";;
+    6) colorrgb="#E4E4E4";;
+    7) colorrgb="#FFD59C";;
+    *) colorrgb="#FFFFFF";;
+esac
+echo "$colorrgb"
