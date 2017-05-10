@@ -1,4 +1,5 @@
 # copy pasted from default file ...
+# vim: ft=sh
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
 sysresources=/etc/X11/xinit/.Xresources
@@ -23,10 +24,10 @@ if [ -f "$usermodmap" ]; then
 fi
 
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
- for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
-  [ -x "$f" ] && . "$f"
- done
- unset f
+    for f in /etc/X11/xinit/xinitrc.d/?*.sh ; do
+        [ -x "$f" ] && . "$f"
+    done
+    unset f
 fi
 # end of copy-pasted
 
@@ -34,48 +35,40 @@ fi
 xrandr --auto
 # load setup script when starting X server based on hostname
 if [ -f "$HOME/dev/i3wmonarch/.hosts/$(hostname).once" ]; then
-	source "$HOME/dev/i3wmonarch/.hosts/$(hostname).once"
+    source "$HOME/dev/i3wmonarch/.hosts/$(hostname).once"
 fi
 
 # disable beep
 xset -b
 
-case $WM in
-ie6-xp)
-	# dual monitor is too buggy
-	xrandr --output DisplayPort-0 --off
-	VirtualBox -startvm "IE6 - WinXP" -fullscreen
-	exit
-;;
-ie11-win7)
-	# dual monitor is too buggy
-	xrandr --output DisplayPort-0 --off
-	VirtualBox -startvm "IE11 - Win7" -fullscreen
-	exit
-;;
-win7)
-	VirtualBox -startvm "win7_x86_for_linux" -fullscreen
-	exit
-;;
-*)
-	# extra bindings
-	xbindkeys
+case $VM in
+    ie8|ie9|ie10|ie11)
+        # dual monitor is too buggy
+        xrandr --output DisplayPort-0 --off
+        VirtualBox -startvm "$(tr '[:lower:]' '[:upper:]' <<<$VM) - Win7" -fullscreen
+        exit
+        ;;
+    win7)
+        VirtualBox -startvm "win7_x86_for_linux" -fullscreen
+        exit
+        ;;
+esac    
+# extra bindings
+xbindkeys
 
-	# seafile client
-	seafile-applet &
+# seafile client
+seafile-applet &
 
-	# dropbox daemon
-	dropbox.py start
-    
-    # fix for .zlogin/.zlogout
-    ssh-agent -k
-    
-    # start clipboard manager
-    parcellite &
+# dropbox daemon
+dropbox.py start
 
-	# start ssh-agent on login
-	eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-	export SSH_AUTH_SOCK
-	exec i3
-;;
-esac
+# fix for .zlogin/.zlogout
+ssh-agent -k
+
+# start clipboard manager
+parcellite &
+
+# start ssh-agent on login
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+exec i3
