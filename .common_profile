@@ -38,3 +38,6 @@ alias sshh="ssh -F $HOME/.ssh/config_home"
 alias gitdc="git diff --cached"
 alias gitd="git diff"
 alias gitco="git checkout"
+if [ -f "$HOME/dev/i3wmonarch/.profile" ]; then
+    source "$HOME/dev/i3wmonarch/.profile"
+fi

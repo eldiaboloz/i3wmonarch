@@ -18,6 +18,8 @@ links=(\
 "/.zlogin" "$HOME/.zlogin" \
 "/.zlogout" "$HOME/.zlogout" \
 "/.Xresources" "$HOME/.Xresources" \
+"/.common_zshrc" "$HOME/.zshrc" \
+"/.common_profile" "$HOME/.profile" \
 )
 
 dcnt="${#dirs[@]}"

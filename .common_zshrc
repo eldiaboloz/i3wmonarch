@@ -24,3 +24,6 @@ alias ryzen='vim /storage/Dropbox/ryzen.txt'
 alias dce='docker container exec -it'
 alias dcr='docker container run -it'
 alias cdi3='cd $HOME/dev/i3wmonarch'
+if [ -f "$HOME/dev/i3wmonarch/.zshrc" ]; then
+    source "$HOME/dev/i3wmonarch/.zshrc"
+fi
