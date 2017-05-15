@@ -1,8 +1,10 @@
-#!/usr/bin/env bash
-jetbr=${JETBRAINS_ROOT:-"/jetbrains"}
+#!/usr/bin/bash
+rootfolder="/jetbrains/apps/PhpStorm/ch-0"
+[[ "$(basename "$0")" == *_r ]] && sord="-r" || sord=""
+pversion=$(cat "${rootfolder}/.channel.settings.json" | jq -r '.["active-application"]["builds"] | .[]' | sort $sord | sed -n 1p)
 
 # locate phpstorm.sh first
-phpstorme=$(realpath "$(find "$jetbr/apps/PhpStorm" -type f -name "phpstorm.sh" | sort -r | sed -n 1p)")
+phpstorme=$(realpath "$rootfolder/$pversion/bin/phpstorm.sh")
 
 # .sh file was not found
 if [ -z "$phpstorme" ]; then

@@ -21,8 +21,8 @@ alias gpgd='gpg --decrypt'
 alias ctop='([ -z "$(docker container ps -a -q -f "name=ctop\$")" ] && docker container run -it --name ctop -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest ) || (docker container start ctop && docker container attach ctop)'
 alias ctopi='([ -z "$(docker container ps -a -q -f "name=ctopi\$")" ] && docker container run -it --name ctopi -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest -i ) || (docker container start ctopi && docker container attach ctopi)'
 alias ryzen='vim /storage/Dropbox/ryzen.txt'
-alias dce='docker container exec -it'
-alias dcr='docker container run -it'
+alias dce='docker container exec -i -t'
+alias dcr='docker container run -i -t'
 alias cdi3='cd $HOME/dev/i3wmonarch'
 if [ -f "$HOME/dev/i3wmonarch/.zshrc" ]; then
     source "$HOME/dev/i3wmonarch/.zshrc"
