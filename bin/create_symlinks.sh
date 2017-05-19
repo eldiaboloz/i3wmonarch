@@ -1,7 +1,7 @@
 #!/bin/bash
 # where is project cloned
 reporoot=${1:-"/work/dev/personal/i3wmonarch"}
-dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" "$HOME/.config/htop" "$HOME/.config/Code/User" )
+dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" "$HOME/.config/htop" "$HOME/.config/Code/User" "$HOME/.ncmpcpp")
 links=(\
 "/" "$HOME/dev/i3wmonarch" \
 "/bin" "$HOME/bin" \
@@ -20,6 +20,7 @@ links=(\
 "/.Xresources" "$HOME/.Xresources" \
 "/.common_zshrc" "$HOME/.zshrc" \
 "/.common_profile" "$HOME/.profile" \
+"/.ncmpcpp_config" "$HOME/.ncmpcpp/config" \
 )
 
 dcnt="${#dirs[@]}"
