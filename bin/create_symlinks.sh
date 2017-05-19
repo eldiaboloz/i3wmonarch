@@ -2,11 +2,15 @@
 # where is project cloned
 reporoot=${1:-"/work/dev/personal/i3wmonarch"}
 dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" "$HOME/.config/htop" "$HOME/.config/Code/User" "$HOME/.ncmpcpp")
+
+extran=""
+hwinfo --keyboard | grep -E "Model.*71M-RGB" 2>/dev/null 1>&2 && extran="Drevo71"
+
 links=(\
 "/" "$HOME/dev/i3wmonarch" \
 "/bin" "$HOME/bin" \
-"/.Xmodmap" "$HOME/.Xmodmap" \
-"/.XmodmapFnEscape" "$HOME/.XmodmapFnEscape" \
+"/.Xmodmap$extran" "$HOME/.Xmodmap" \
+"/.XmodmapFnEscape$extran" "$HOME/.XmodmapFnEscape" \
 "/i3blocks" "$HOME/.i3blocks" \
 "/.vimrc" "$HOME/.vimrc" \
 "/.xinitrc" "$HOME/.xinitrc" \
