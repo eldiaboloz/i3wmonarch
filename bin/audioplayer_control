@@ -1,12 +1,13 @@
 #!/bin/bash
 case $1 in
-"play") cmus-remote --play;;
-"stop") cmus-remote --stop;;
-"pause") cmus-remote --pause;;
-"prev") cmus-remote --prev;;
-"next") cmus-remote --next;;
-"seeki") cmus-remote --seek +10;;
-"seekd") cmus-remote --seek -10;;
-"seeki60") cmus-remote --seek +60;;
-"seekd60") cmus-remote --seek -60;;
+"play") mpc play;;
+"stop") mpc stop;;
+"pause") mpc pause;;
+"toggle") mpc toggle;;
+"prev") mpc prev;;
+"next") mpc next;;
+"seeki") mpc seek +10;;
+"seekd") mpc seek -10;;
+"seeki60") mpc seek +60;;
+"seekd60") mpc seek -60;;
 esac

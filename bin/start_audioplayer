@@ -1,7 +1,6 @@
 #!/bin/bash
-cmusdata=`cmus-remote -Q`
-if [[ $? -eq 0 ]]; then
-	exec xfce4-terminal -e 'screen -x cmus' --role termcmusplayer
-else
-	exec xfce4-terminal -e 'screen -R cmus -m cmus' --role termcmusplayer
-fi
+
+# start player if not started
+mpc -q 2>/dev/null || mpd ~/.mpd.conf
+
+exec xfce4-terminal -e 'screen  -x -R audioplayer -m ncmpcpp' --role termaudioplayer
