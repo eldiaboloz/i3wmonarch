@@ -1,6 +1,6 @@
 #!/bin/bash
 
 # start player if not started
-mpc -q 2>/dev/null || mpd ~/.mpd.conf
+mpc -q 2>/dev/null || mpd $HOME/dev/i3wmonarch/.mpd/mpd.conf
 
 exec xfce4-terminal -e 'screen  -x -R audioplayer -m ncmpcpp' --role termaudioplayer
