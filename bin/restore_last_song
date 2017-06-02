@@ -1,17 +1,15 @@
 #!/bin/bash
+
+
+
 bp="$HOME/dev/i3wmonarch/temp"
-if [ ! -e "${bp}/last_song_cmus.path" ]; then
+if [ ! -e "${bp}/mpc_last_song" ]; then
 	exit 1
 fi
-if [ ! -e "${bp}/last_song_cmus.time" ]; then
-	exit 1
-fi
+source "${bp}/mpc_last_song"
 
-cmusdata=`cmus-remote -Q`
-if [[ $? != 0 ]]; then
-	start_audioplayer
-	sleep 2
-fi
+mpc -q 2>/dev/null || (	start_audioplayer; sleep 2 )
 
-cmus-remote --file "$(cat ${bp}/last_song_cmus.path)"
-cmus-remote --seek "$(cat ${bp}/last_song_cmus.time)"
+mpc play "$LAST_SONG_POS"
+mpc seek "$LAST_SONG_SEEK"
+

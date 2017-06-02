@@ -1,5 +1,9 @@
 #!/bin/bash
-cmusdata=`cmus-remote -Q`
-mkdir -pv $HOME/dev/i3wmonarch/temp
-echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2- > $HOME/dev/i3wmonarch/temp/last_song_cmus.path
-echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2- > $HOME/dev/i3wmonarch/temp/last_song_cmus.time
+
+mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | nc localhost 6600)
+if [[ $? != 0 ]]; then
+    exit
+fi
+
+echo LAST_SONG_SEEK=$(echo "$mpcdata" | grep "^elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1) > $HOME/dev/i3wmonarch/temp/mpc_last_song
+echo LAST_SONG_POS=$(echo "$mpcdata" | grep "^Id:" | cut -d ' ' -f2- | cut -d '.' -f1) >> $HOME/dev/i3wmonarch/temp/mpc_last_song

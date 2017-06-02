@@ -14,6 +14,7 @@ source ~/.profile
 alias fix_kbd='setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll";xmodmap ~/.Xmodmap'
 
 alias humble='cat /storage/Dropbox/humble_bundle_extra_keys.txt | sed -n "1~3p"'
+alias humble_e='$EDITOR /storage/Dropbox/humble_bundle_extra_keys.txt'
 alias chkp='namei -om $(pwd)'
 alias rainbowstream='docker run -it --rm -v /etc/localtime:/etc/localtime -v $HOME/.rainbowstream/.rainbow_oauth:/root/.rainbow_oauth -v $HOME/.rainbowstream/.rainbow_config.json:/root/.rainbow_config.json jess/rainbowstream'
 alias gpgc='gpg --cipher-algo AES256 --armor -c'

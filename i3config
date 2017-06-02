@@ -60,7 +60,6 @@ bindsym XF86AudioStop exec audioplayer_control stop
 
 # toggle pause
 bindsym $mod+p exec audioplayer_control toggle
-bindsym $mod+o exec audioplayer_control stop
 # prev/next
 bindsym $mod+bracketleft exec audioplayer_control prev
 bindsym $mod+bracketright exec audioplayer_control next
@@ -73,6 +72,9 @@ bindsym Shift+XF86AudioNext exec audioplayer_control seeki
 
 bindsym $mod+Control+Shift+bracketleft exec audioplayer_control seekd60
 bindsym $mod+Control+Shift+bracketright exec audioplayer_control seeki60
+
+# use for song dialog
+bindsym $mod+o exec xfce4-terminal -e audioplayer_choose_song --role="fzffloatme"
 
 #start audioplayer
 bindsym $mod+Shift+p exec start_audioplayer
@@ -143,7 +145,7 @@ assign [window_role="termaudioplayer"] $ws6
 # tmuxwww session in terminal
 assign [window_role="tmuxwww"] $ws10
 # visual studio code
-assign [class="^Code$"] $ws7
+assign [class="^Code$" window_role="^browser-window$"] $ws7
 # qalc
 for_window [window_role="calculator"] floating enable
 # gcolor2
