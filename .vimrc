@@ -49,3 +49,5 @@ let g:airline_solarized_bg="dark"
 "colorscheme solarized
 set background=light
 set clipboard=unnamedplus
+set ignorecase
+set smartcase

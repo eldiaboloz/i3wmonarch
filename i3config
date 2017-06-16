@@ -10,8 +10,8 @@ for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 #gaps outer 10
 
 
-bindsym Print exec --no-startup-id "screenshot"
-bindsym --release Shift+Print exec --no-startup-id "screenshot 1"
+bindsym $mod+Menu exec --no-startup-id "screenshot"
+bindsym --release $mod+Shift+Menu exec --no-startup-id "screenshot 1"
 
 # workspace definitions
 set $ws1 "1"
