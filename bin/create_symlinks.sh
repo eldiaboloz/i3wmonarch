@@ -1,7 +1,7 @@
 #!/bin/bash
 # where is project cloned
 reporoot=${1:-"/work/dev/personal/i3wmonarch"}
-dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" "$HOME/.config/htop" "$HOME/.config/Code/User" "$HOME/.ncmpcpp")
+dirs=("$HOME/dev" "$HOME/.config/xfce4/terminal" "$HOME/.config/htop" "$HOME/.config/Code/User" "$HOME/.ncmpcpp" "$HOME/.vim/bundle")
 
 extran=""
 hwinfo --keyboard | grep -E "Model.*71M-RGB" 2>/dev/null 1>&2 && extran="Drevo71"
@@ -25,12 +25,13 @@ links=(\
 "/.common_zshrc" "$HOME/.zshrc" \
 "/.common_profile" "$HOME/.profile" \
 "/.ncmpcpp_config" "$HOME/.ncmpcpp/config" \
+"/github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" \
 )
 
 dcnt="${#dirs[@]}"
 for (( i=0; i<$dcnt; i+=1 )); do
 	target="${dirs[$i]}"
-	mkdir --verbose -p "$target"
+	mkdir -v -p "$target"
 done
 
 lcnt="${#links[@]}"
@@ -39,7 +40,7 @@ for (( i=0; i<$lcnt; i+=2 )); do
 	target="${links[$i+1]}"
 	if [ -e "$source" ]; then
 		if [ ! -e "$target" ]; then
-			ln --verbose -s "$source" "$target"
+			ln -v -s "$source" "$target"
 		fi
 	else
 		echo "$source does not exist"

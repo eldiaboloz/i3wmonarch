@@ -126,9 +126,10 @@ bindsym $mod+f fullscreen toggle
 #
 # navicat
 assign [class="^Wine$" instance="^navicat\.exe$"] $ws2
-# netbeans
+# IDEs on first workspace
 assign [class="^NetBeans IDE .*$"] $ws1
 assign [class="^jetbrains-phpstorm$"] $ws1
+assign [class="^jetbrains-studio$"] $ws1
 # skype 
 assign [class="^Skype$"] $ws3
 assign [class="^skypeforlinux$"] $ws3

@@ -13,3 +13,6 @@
 [submodule "github.com/vivien/i3blocks"]
 	path = github.com/vivien/i3blocks
 	url = https://github.com/vivien/i3blocks.git
+[submodule "github.com/VundleVim/Vundle.vim"]
+	path = github.com/VundleVim/Vundle.vim
+	url = https://github.com/VundleVim/Vundle.vim.git
