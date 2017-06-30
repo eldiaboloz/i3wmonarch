@@ -81,7 +81,7 @@ bindsym $mod+Shift+p exec start_audioplayer
 bindsym XF86Tools exec start_audioplayer
 
 bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
-bindsym $mod+Shift+o exec xfce4-terminal -e get_files_in_www --role="fzfnetbeans"
+#bindsym $mod+Shift+o exec xfce4-terminal -e get_files_in_www --role="fzfnetbeans"
 
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec xfce4-terminal
