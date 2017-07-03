@@ -35,58 +35,58 @@ client.urgent #cb4b16 #dc322f #fdf6e3 #dc322
 font pango: Cantarell, Material Design Icons 10
 floating_modifier $mod
 
-bindsym $mod+Escape exec toggle_xmodmap
-bindsym $mod+grave exec toggle_xmodmap
+bindsym $mod+Escape exec --no-startup-id toggle_xmodmap
+bindsym $mod+grave exec --no-startup-id toggle_xmodmap
 
-bindsym $mod+F10 exec toggle_xmodmap_vi
+bindsym $mod+F10 exec --no-startup-id toggle_xmodmap_vi
 
-bindsym XF86AudioRaiseVolume exec audiocontrol inc
-bindsym XF86AudioLowerVolume exec audiocontrol dec
-bindsym XF86AudioMute exec audiocontrol mute
-bindsym Control+XF86AudioPlay exec youtube_currentsong
+bindsym XF86AudioRaiseVolume exec --no-startup-id audiocontrol inc
+bindsym XF86AudioLowerVolume exec --no-startup-id audiocontrol dec
+bindsym XF86AudioMute exec --no-startup-id audiocontrol mute
+bindsym Control+XF86AudioPlay exec --no-startup-id youtube_currentsong
 
-bindsym Mod1+$mod+bracketright exec audiocontrol inc
-bindsym Mod1+$mod+bracketleft exec audiocontrol dec
+bindsym Mod1+$mod+bracketright exec --no-startup-id audiocontrol inc
+bindsym Mod1+$mod+bracketleft exec --no-startup-id audiocontrol dec
 
-bindsym Mod5+$mod+bracketright exec audiocontrol inc
-bindsym Mod5+$mod+bracketleft exec audiocontrol dec
+bindsym Mod5+$mod+bracketright exec --no-startup-id audiocontrol inc
+bindsym Mod5+$mod+bracketleft exec --no-startup-id audiocontrol dec
 
 # audioplayer controls
-bindsym XF86AudioPlay exec audioplayer_control toggle
-bindsym XF86AudioPause exec audioplayer_control pause
-bindsym XF86AudioNext exec audioplayer_control next
-bindsym XF86AudioPrev exec audioplayer_control prev
-bindsym XF86AudioStop exec audioplayer_control stop
+bindsym XF86AudioPlay exec --no-startup-id audioplayer_control toggle
+bindsym XF86AudioPause exec --no-startup-id audioplayer_control pause
+bindsym XF86AudioNext exec --no-startup-id audioplayer_control next
+bindsym XF86AudioPrev exec --no-startup-id audioplayer_control prev
+bindsym XF86AudioStop exec --no-startup-id audioplayer_control stop
 
 # toggle pause
-bindsym $mod+p exec audioplayer_control toggle
+bindsym $mod+p exec --no-startup-id audioplayer_control toggle
 # prev/next
-bindsym $mod+bracketleft exec audioplayer_control prev
-bindsym $mod+bracketright exec audioplayer_control next
+bindsym $mod+bracketleft exec --no-startup-id audioplayer_control prev
+bindsym $mod+bracketright exec --no-startup-id audioplayer_control next
 # seek -/+
-bindsym $mod+Shift+bracketleft exec audioplayer_control seekd
-bindsym $mod+Shift+bracketright exec audioplayer_control seeki
+bindsym $mod+Shift+bracketleft exec --no-startup-id audioplayer_control seekd
+bindsym $mod+Shift+bracketright exec --no-startup-id audioplayer_control seeki
 
-bindsym Shift+XF86AudioPrev exec audioplayer_control seekd
-bindsym Shift+XF86AudioNext exec audioplayer_control seeki
+bindsym Shift+XF86AudioPrev exec --no-startup-id audioplayer_control seekd
+bindsym Shift+XF86AudioNext exec --no-startup-id audioplayer_control seeki
 
-bindsym $mod+Control+Shift+bracketleft exec audioplayer_control seekd60
-bindsym $mod+Control+Shift+bracketright exec audioplayer_control seeki60
+bindsym $mod+Control+Shift+bracketleft exec --no-startup-id audioplayer_control seekd60
+bindsym $mod+Control+Shift+bracketright exec --no-startup-id audioplayer_control seeki60
 
 # use for song dialog
-bindsym $mod+o exec xfce4-terminal -e audioplayer_choose_song --role="fzffloatme"
+bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="fzffloatme"
+bindsym $mod+Shift+f exec --no-startup-id add_current_song_to_favourtes
 
 #start audioplayer
 bindsym $mod+Shift+p exec start_audioplayer
 bindsym XF86Tools exec start_audioplayer
 
 bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
-#bindsym $mod+Shift+o exec xfce4-terminal -e get_files_in_www --role="fzfnetbeans"
 
 #bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Return exec xfce4-terminal
 
-bindsym Mod1+Control+L exec monitors_off_lock
+bindsym Mod1+Control+L exec --no-startup-id monitors_off_lock
 bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
 bindsym $mod+d exec --no-startup-id rofi -show run
@@ -215,8 +215,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 # TODO: context aware - double tapping etc
 
 mode "remote"{
-    bindsym XF86AudioRaiseVolume exec audioplayer_control next
-    bindsym XF86AudioLowerVolume exec audioplayer_control seeki
+    bindsym XF86AudioRaiseVolume exec --no-startup-id audioplayer_control next
+    bindsym XF86AudioLowerVolume exec --no-startup-id audioplayer_control seeki
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -241,7 +241,7 @@ bar {
 	bindsym button4 nop
 	bindsym button5 nop
 	strip_workspace_numbers yes
-        separator_symbol "  "
+    separator_symbol "  "
 	status_command i3blocks -c ~/.i3blocks/left.conf
 	position          top
 	font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
@@ -249,28 +249,27 @@ bar {
 	output DisplayPort-0
 	tray_output none
 	colors {
-                focused_workspace #96a900 #859900 #fdf6e3
-                inactive_workspace #369be2 #269be2 #ffffff
-                active_workspace #96a900 #266E9E #fdf6e3
-        }
+        focused_workspace #96a900 #859900 #fdf6e3
+        inactive_workspace #369be2 #269be2 #ffffff
+        active_workspace #96a900 #266E9E #fdf6e3
+    }
 }
 
 bar {
 	bindsym button4 nop
 	bindsym button5 nop
-        strip_workspace_numbers yes
-        separator_symbol "  "
-        status_command i3blocks -c ~/.i3blocks/right.conf
-#        status_command /usr/lib/python3.6/site-packages/powerline/bindings/i3/powerline-i3.py
-        position          top
-        font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
-        id bar-2
+    strip_workspace_numbers yes
+    separator_symbol "  "
+    status_command i3blocks -c ~/.i3blocks/right.conf
+    position          top
+    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    id bar-2
 	output	HDMI-2
 	tray_output HDMI-2
-        colors {
-                focused_workspace #96a900 #859900 #fdf6e3
-                inactive_workspace #369be2 #269be2 #ffffff
-                active_workspace #96a900 #266E9E #fdf6e3
-        }
+    colors {
+        focused_workspace #96a900 #859900 #fdf6e3
+        inactive_workspace #369be2 #269be2 #ffffff
+        active_workspace #96a900 #266E9E #fdf6e3
+    }
 
 }

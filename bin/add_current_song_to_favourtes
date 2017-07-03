@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
+cursong=$(mpc -f "%file%" | sed -n 1p | tr -d '\n') && \
+    mpc playlist Favorites | grep -- "$cursong" > /dev/null || \
+    ( echo -ne 'playlistadd Favorites "'"${cursong}"'"\nclose\n' | nc localhost 6600 > /dev/null )
