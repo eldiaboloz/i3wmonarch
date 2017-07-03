@@ -55,3 +55,4 @@ case "$blink" in
     *) colorrgb="#FFFFFF";;
 esac
 echo "$colorrgb"
+echo "$colorrgb"
