@@ -75,6 +75,9 @@ bindsym $mod+Control+Shift+bracketright exec --no-startup-id audioplayer_control
 
 # use for song dialog
 bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="fzffloatme"
+# choose from favourites
+bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite --role="fzffloatme"
+
 bindsym $mod+Shift+f exec --no-startup-id add_current_song_to_favourtes
 
 #start audioplayer

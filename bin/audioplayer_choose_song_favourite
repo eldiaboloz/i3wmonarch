@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+# vim ft=bash
+
+# choose song from favourites playlist
+filename=$(mpc -f "%file%" playlist Favorites | fzf --reverse)
+[ -z "$filename" ] && exit 1
+
+# add the song to the current playlist
+mpc insert "$filename"
+
+# play the song
+mpc next
+

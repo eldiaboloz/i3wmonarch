@@ -2,5 +2,5 @@
 set -e
 
 cursong=$(mpc -f "%file%" | sed -n 1p | tr -d '\n') && \
-    mpc playlist Favorites | grep -- "$cursong" > /dev/null || \
-    ( echo -ne 'playlistadd Favorites "'"${cursong}"'"\nclose\n' | nc localhost 6600 > /dev/null )
+    mpc -f "%file%" playlist Favorites | grep -F -- "$cursong" > /dev/null || \
+    ( echo -ne 'playlistadd Favorites "'"${cursong}"'"\nclose\n' | nc localhost 6600 > /dev/null; DISPLAY=:0 DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/1000/bus notify-send --icon=media-playback-start "New Favourite" "$(printf %q $cursong)" -t 100 ) 
