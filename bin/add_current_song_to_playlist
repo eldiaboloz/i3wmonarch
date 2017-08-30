@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -e
+
+listname=${1:-"whatever"}
+cursong=$(mpc -f "%file%" | sed -n 1p | tr -d '\n') && \
+    mpc -f "%file%" playlist "${listname}"  | grep -F -- "$cursong" > /dev/null || \
+    ( echo -ne 'playlistadd '"${listname}"' "'"${cursong}"'"\nclose\n' | nc localhost 6600 ) 

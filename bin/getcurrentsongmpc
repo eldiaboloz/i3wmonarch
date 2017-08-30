@@ -24,23 +24,24 @@ case $curmode in
         echo -n " "
         ;;
 esac
-cursong=$(echo "$mpcdata" | grep "file:" | cut -d ' ' -f2-)
+songtotal=$(echo "$mpcdata" | grep "duration:" | head -n 1 | cut -d ' ' -f2- | cut -d '.' -f1)
+songcurrent=$(echo "$mpcdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
+
+if [ -z "$songtotal" ]; then
+    cursong=$(echo "$mpcdata" | grep "Title:" | cut -d ' ' -f2-)
+else
+    cursong=$(echo "$mpcdata" | grep "file:" | cut -d ' ' -f2-)
+    songtimes=$(printf '%02d:%02d / %02d:%02d' $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60)))
+fi
+
 maxlen="${curcmussonglenlimit:-35}"
 curslen=${#cursong}
 if [ "$curslen" -gt "$maxlen" ]; then
  delta=$((($(date +%-S))%($curslen-$maxlen+1)))
  cursong="${cursong:($delta):$maxlen}"
 fi
-songtotal=$(echo "$mpcdata" | grep "duration:" | head -n 1 | cut -d ' ' -f2- | cut -d '.' -f1)
-songcurrent=$(echo "$mpcdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
 
-printf '%s %02d:%02d / %02d:%02d\n' "$cursong" $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60))
-#echo $cursong
-#colorR=$(printf "%02X" $((0+$RANDOM%256)))
-#colorG=$(printf "%02X" $((0+$RANDOM%256)))
-#colorB=$(printf "%02X" $((0+$RANDOM%256)))
-#echo "#$colorR$colorG$colorB"
-
+echo -ne "${cursong} ${songtimes}\n"
 
 blink=$(($(date "+%-S")%8))
 case "$blink" in

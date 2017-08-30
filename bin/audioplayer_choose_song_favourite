@@ -8,6 +8,9 @@ filename=$(mpc -f "%file%" playlist Favorites | fzf --reverse)
 # add the song to the current playlist
 mpc insert "$filename"
 
+# if we only want to queue next song
+[[ "$(basename "$0")" == *_queue ]] && exit 0
+
 # play the song
 mpc next
 

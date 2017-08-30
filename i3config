@@ -25,6 +25,8 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
+set $leftout "VGA1"
+set $rightout "HDMI2"
 
 # colors
 
@@ -77,7 +79,9 @@ bindsym $mod+Control+Shift+bracketright exec --no-startup-id audioplayer_control
 bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="fzffloatme"
 # choose from favourites
 bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite --role="fzffloatme"
-
+# queue from favourites
+bindsym $mod+Control+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite_queue --role="fzffloatme"
+# add current song to favourties
 bindsym $mod+Shift+f exec --no-startup-id add_current_song_to_favourtes
 
 #start audioplayer
@@ -171,16 +175,16 @@ for_window [window_role="prjupfloat"] floating enable
 # mclip.py
 #
 # BEGIN workspaces - home
-workspace $ws1 output DisplayPort-0
-workspace $ws2 output DisplayPort-0
-workspace $ws3 output DisplayPort-0
-workspace $ws4 output HDMI-2
-workspace $ws5 output HDMI-2
-workspace $ws6 output HDMI-2
-workspace $ws7 output HDMI-2
-workspace $ws8 output HDMI-2
-workspace $ws9 output HDMI-2
-workspace $ws10 output HDMI-2
+workspace $ws1 output $leftout
+workspace $ws2 output $leftout
+workspace $ws3 output $leftout
+workspace $ws4 output $rightout
+workspace $ws5 output $rightout
+workspace $ws6 output $rightout
+workspace $ws7 output $rightout
+workspace $ws8 output $rightout
+workspace $ws9 output $rightout
+workspace $ws10 output $rightout
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -249,7 +253,7 @@ bar {
 	position          top
 	font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
 	id bar-1
-	output DisplayPort-0
+	output $leftout
 	tray_output none
 	colors {
         focused_workspace #96a900 #859900 #fdf6e3
@@ -267,8 +271,8 @@ bar {
     position          top
     font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
     id bar-2
-	output	HDMI-2
-	tray_output HDMI-2
+	output $rightout
+	tray_output $rightout
     colors {
         focused_workspace #96a900 #859900 #fdf6e3
         inactive_workspace #369be2 #269be2 #ffffff
@@ -276,3 +280,21 @@ bar {
     }
 
 }
+#bar {
+#	bindsym button4 nop
+#	bindsym button5 nop
+#    workspace_buttons no
+#    separator_symbol "  "
+#    status_command i3blocks -c ~/.i3blocks/right_bottom.conf
+#    position          bottom
+#    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+#    id bar-3
+#	output $rightout
+#	tray_output none
+#    colors {
+#        focused_workspace #96a900 #859900 #fdf6e3
+#        inactive_workspace #369be2 #269be2 #ffffff
+#        active_workspace #96a900 #266E9E #fdf6e3
+#    }
+#
+#}

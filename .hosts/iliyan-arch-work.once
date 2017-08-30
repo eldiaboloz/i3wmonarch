@@ -1,1 +1,1 @@
-xrandr --output DisplayPort-0 --left-of HDMI-2
+xrandr --output HDMI2 --right-of VGA1
