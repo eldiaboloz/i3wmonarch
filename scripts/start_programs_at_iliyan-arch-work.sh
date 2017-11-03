@@ -1,6 +1,5 @@
 #!/bin/bash
 phpstorm
-LC_TIME="C" nohup skype > /dev/null  2>&1 &
 LC_TIME="C" nohup skypeforlinux > /dev/null 2>&1 &
 #nohup viber >/dev/null 2>&1 &
 nohup navicat >/dev/null 2>&1 &
