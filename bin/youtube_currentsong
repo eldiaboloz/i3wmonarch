@@ -1,16 +1,21 @@
 #!/bin/bash
-cmusdata=`cmus-remote -Q`
+songdata="$(echo -ne "status\ncurrentsong\nclose\n" | nc localhost 6600)"
 if [[ $? != 0 ]]; then
 	exit
 fi
-thesong=$(basename "$(echo "$cmusdata" | sed -n 2p | cut -d ' ' -f2-)")
+thesong=$(echo "$songdata" | grep "file:" | cut -d ' ' -f2-)
 regex="\-([A-Za-z0-9_-]{11})\.mp3"
-if [[ $thesong =~ $regex ]]; then
-	songcurrent=$(echo "$cmusdata" | sed -n 4p | cut -d ' ' -f2-)
-	curmode=$(echo "$cmusdata" | sed -n 1p | cut -d ' ' -f2-)
-	if [ "$curmode" = "playing" ]; then
-		cmus-remote --pause
-	fi
-	xdg-open "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent"
-	i3-msg "workspace 4"
+curmode=$(echo "$songdata" | grep "state:" | cut -d ' ' -f2-)
+if [ "$curmode" = "play" ]; then
+		mpc pause
 fi
+if [[ $thesong =~ $regex ]]; then
+    # there is song id
+    songcurrent=$(echo "$songdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
+    xdg-open "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent"
+else
+    # there is no song id so try our luck
+    xdg-open "http://www.google.com/search?btnI=Search&q=youtube+$(mpc -f '%file%' | sed -n 1p | tr ' ' '+')"
+fi
+i3-msg "workspace 4"
+

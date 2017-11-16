@@ -60,6 +60,8 @@ bindsym XF86AudioNext exec --no-startup-id audioplayer_control next
 bindsym XF86AudioPrev exec --no-startup-id audioplayer_control prev
 bindsym XF86AudioStop exec --no-startup-id audioplayer_control stop
 
+bindsym $mod+b exec --no-startup-id pkill notify-osd
+
 # toggle pause
 bindsym $mod+p exec --no-startup-id audioplayer_control toggle
 # prev/next
@@ -75,12 +77,12 @@ bindsym Shift+XF86AudioNext exec --no-startup-id audioplayer_control seeki
 bindsym $mod+Control+Shift+bracketleft exec --no-startup-id audioplayer_control seekd60
 bindsym $mod+Control+Shift+bracketright exec --no-startup-id audioplayer_control seeki60
 
-# use for song dialog
-bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="fzffloatme"
+# choose song
+bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="floatme"
 # choose from favourites
-bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite --role="fzffloatme"
+bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite --role="floatme"
 # queue from favourites
-bindsym $mod+Control+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite_queue --role="fzffloatme"
+bindsym $mod+Control+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite_queue --role="floatme"
 # add current song to favourties
 bindsym $mod+Shift+f exec --no-startup-id add_current_song_to_favourtes
 
@@ -96,12 +98,12 @@ bindsym $mod+Return exec xfce4-terminal
 bindsym Mod1+Control+L exec --no-startup-id monitors_off_lock
 bindsym $mod+Shift+q kill
 #bindsym $mod+d exec dmenu_run
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show run 
 bindsym $mod+Shift+d exec --no-startup-id rofi -show window
 bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
 
-bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/git_pull_svn_rebase_work_float.sh" --role="prjupfloat"
-bindsym $mod+Mod1+L exec --no-startup-id xfce4-terminal -e "gitcommitpush 1" --role="prjupfloat"
+bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/git_pull_svn_rebase_work_float.sh" --role="floatme"
+bindsym $mod+Mod1+L exec --no-startup-id xfce4-terminal -e "gitcommitpush 1" --role="floatme"
 
 # focus window
 bindsym $mod+Left focus left
@@ -158,13 +160,8 @@ assign [class="^Code$" window_role="^browser-window$"] $ws7
 for_window [window_role="calculator"] floating enable
 # gcolor2
 for_window [class="^Gcolor2$"] sticky enable
-# fzf in floating terminal window to open files in netbeans
-for_window [window_role="fzfnetbeans"] floating enable
-for_window [window_role="fzffloatme"] floating enable
-# float vim in xfce terminal
-for_window [window_role="mygvim"] floating enable
-# float terminal with update script
-for_window [window_role="prjupfloat"] floating enable
+# enable float when requested
+for_window [window_role="floatme"] floating enable
 
 # END programs on workspaces
 
@@ -280,21 +277,72 @@ bar {
     }
 
 }
-#bar {
-#	bindsym button4 nop
-#	bindsym button5 nop
-#    workspace_buttons no
-#    separator_symbol "  "
-#    status_command i3blocks -c ~/.i3blocks/right_bottom.conf
-#    position          bottom
-#    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
-#    id bar-3
-#	output $rightout
-#	tray_output none
-#    colors {
-#        focused_workspace #96a900 #859900 #fdf6e3
-#        inactive_workspace #369be2 #269be2 #ffffff
-#        active_workspace #96a900 #266E9E #fdf6e3
-#    }
-#
-#}
+bar {
+	bindsym button4 nop
+	bindsym button5 nop
+    workspace_buttons no
+    separator_symbol "  "
+    status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps.conf
+    position          bottom
+    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    id bar-4
+	output $rightout
+	tray_output none
+    colors {
+        focused_workspace #96a900 #859900 #fdf6e3
+        inactive_workspace #369be2 #269be2 #ffffff
+        active_workspace #96a900 #266E9E #fdf6e3
+    }
+}
+bar {
+	bindsym button4 nop
+	bindsym button5 nop
+    workspace_buttons no
+    separator_symbol "  "
+    status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps_second.conf
+    position          bottom
+    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    id bar-6
+	output $rightout
+	tray_output none
+    colors {
+        focused_workspace #96a900 #859900 #fdf6e3
+        inactive_workspace #369be2 #269be2 #ffffff
+        active_workspace #96a900 #266E9E #fdf6e3
+    }
+}
+
+bar {
+	bindsym button4 nop
+	bindsym button5 nop
+    workspace_buttons no
+    separator_symbol "  "
+    status_command i3blocks -c ~/.i3blocks/right_bottom.conf
+    position          bottom
+    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    id bar-3
+	output $rightout
+	tray_output none
+    colors {
+        focused_workspace #96a900 #859900 #fdf6e3
+        inactive_workspace #369be2 #269be2 #ffffff
+        active_workspace #96a900 #266E9E #fdf6e3
+    }
+}
+bar {
+	bindsym button4 nop
+	bindsym button5 nop
+    workspace_buttons no
+    separator_symbol "  "
+    status_command i3blocks -c ~/.i3blocks/right_bottom_rigs.conf
+    position          bottom
+    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    id bar-5
+	output $rightout
+	tray_output none
+    colors {
+        focused_workspace #96a900 #859900 #fdf6e3
+        inactive_workspace #369be2 #269be2 #ffffff
+        active_workspace #96a900 #266E9E #fdf6e3
+    }
+}
