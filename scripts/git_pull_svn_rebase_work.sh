@@ -15,10 +15,15 @@ for x in $repos; do
     fi
     cd $x/../
     echo "Repo : $(basename $(pwd))"
-
-    gitcb=$(git rev-parse --abbrev-ref HEAD)
+    if ! git remote | grep origin >/dev/null 2>/dev/null ; then 
+        echo "remote origin not set" 1>&2
+        echo ""
+        continue
+    fi
+    gitcb=$(git symbolic-ref --short HEAD)
     if [ "$gitcb" != "master" ]; then
         echo "on brach $gitcb so skipping!!!"
+        echo ""
         continue
     fi
 
