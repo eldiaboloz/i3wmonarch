@@ -7,9 +7,15 @@ MY_P="$(echo "$data" | cut -d ';' -f2 | sed -e 's/^"//' -e 's/"$//')"
 MY_C="$(echo "$data" | cut -d ';' -f3 | sed -e 's/^"//' -e 's/"$//')"
 MY_B="$(echo "$data" | cut -d ';' -f4 | sed -e 's/^"//' -e 's/"$//')"
 
-echo -n "${MY_S}: \$$MY_P"
-if [ "$coin" != "bitcoin" ] && [ ! -z "$1" ]; then
-    echo -n " | $MY_B BTC"
+echo -n "${MY_S}: "
+sep=""
+if [ ! -z "$1" ]; then
+    echo -n "\$${MY_P}"
+    sep=" | "
+fi
+if [ "$coin" != "bitcoin" ] && [ ! -z "$2" ]; then
+    MY_B=$( bc<<<"$MY_B*100000000" | cut -d '.' -f1)
+    echo -n "${sep}$MY_B SAT"
 fi
 echo ""
 case $BLOCK_BUTTON in
