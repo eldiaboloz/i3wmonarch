@@ -13,17 +13,19 @@ case $BLOCK_BUTTON in
 esac
 
 curmode=$(echo "$mpcdata" | grep "state:" | cut -d ' ' -f2-) 
+shortst=""
 case $curmode in
     stop)
-        echo -n " "
+        shortst=" "
         ;;
     play)
-        echo -n " "
+        shortst=" "
         ;;
     pause)
-        echo -n " "
+        shortst=" "
         ;;
 esac
+echo -n "$shortst"
 songtotal=$(echo "$mpcdata" | grep "duration:" | head -n 1 | cut -d ' ' -f2- | cut -d '.' -f1)
 songcurrent=$(echo "$mpcdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
 
@@ -55,5 +57,5 @@ case "$blink" in
     7) colorrgb="#FFD59C";;
     *) colorrgb="#FFFFFF";;
 esac
-echo "$colorrgb"
+echo "$shortst"
 echo "$colorrgb"

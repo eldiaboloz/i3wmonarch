@@ -16,7 +16,7 @@ while read -r line; do
         printme="${printme};R-${rigr}"
     fi
     printme="$printme $rigu min |"
-done < <(ssh pi-entry /root/monitor_ethminer.sh)
+done < <(ssh pi-entry /root/monitor_rigs.sh)
 
 printme="${printme::-2}"
 echo "$printme"

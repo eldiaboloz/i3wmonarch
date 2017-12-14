@@ -8,6 +8,8 @@ ini_set('max_execution_time', 30);
 ini_set('memory_limit', '128M');
 mb_internal_encoding('UTF-8');
 
+require_once dirname(realpath(__FILE__)) . '/../.local/crypto_addr.php';
+
 $poolParams = init_pool_params($argv);
 $indexToUse = determineIndexToShow($poolParams);
 $params = $poolParams[$indexToUse];
@@ -38,16 +40,23 @@ exit;
 
 function init_pool_params($argv)
 {
+    global $myDict;
     unset($argv[0]);
     $return = array();
     foreach ($argv as $arg)
     {
         $argArray = explode(';', $arg);
         $type = strtolower($argArray[0]);
-        $wallet = $argArray[1];
-        $email = (isset($argArray[2])) ? (strtolower($argArray[2])) : '';
-        $expectedHashRate = (isset($argArray[3])) ? (floatval($argArray[3])) : 0.0;
-        $coinSymbol = (isset($argArray[4]) ? $argArray[4] : '');
+        $keyInDict = $argArray[1];
+        if (!isset($myDict[$keyInDict]))
+        {
+            throw new Exception('Unknown wallet');
+        }
+        $wallet = $myDict[$keyInDict];
+        $email = $myDict['email'];
+
+        $expectedHashRate = (isset($argArray[2])) ? (floatval($argArray[2])) : 0.0;
+        $coinSymbol = (isset($argArray[3]) ? $argArray[3] : '');
 
         switch ($type)
         {
@@ -78,6 +87,8 @@ function init_pool_params($argv)
                 $infoUrl = 'http://musicoin.nomnom.technology/#/account/' . $wallet;
                 break;
             case 'suprnova':
+                $wallet = $myDict['suprnova']['key'];
+                $email = $myDict['suprnova']['id'];
                 $walletRegex = '#^[0-9a-zA-Z]{64}$#';
                 $apiUrl = 'https://' . $coinSymbol . '.suprnova.cc/index.php?page=api&action=getuserstatus&api_key=' . $wallet . '&id=' . $email;
                 $infoUrl = 'https://' . $coinSymbol . '.suprnova.cc/index.php?page=dashboard';
@@ -123,7 +134,7 @@ function parse_api_response($params)
             $response = parse_api_response_nomnom_music($json);
             break;
         case "suprnova":
-            $response = parse_api_response_suprnova($json,$params);
+            $response = parse_api_response_suprnova($json, $params);
             break;
         default:
             throw new Exception('Unknown pool type: ' . $type);
@@ -344,11 +355,12 @@ function parse_api_response_nomnom_music($json)
     return array('message' => $message, 'notify' => $notifyMessage, 'color' => $color);
 }
 
-function parse_api_response_suprnova($json,$params)
+function parse_api_response_suprnova($json, $params)
 {
-    var_dump($json);exit;
+    var_dump($json);
+    exit;
     $color = '#00FF00';
-    $message = strtoupper($params['coin']).':';
+    $message = strtoupper($params['coin']) . ':';
     $notifyMessage = '';
     if (!empty($json))
     {
