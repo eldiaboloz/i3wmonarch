@@ -18,6 +18,7 @@ links=(\
 "/.xbindkeysrc" "$HOME/.xbindkeysrc" \
 "/.htoprc" "$HOME/.config/htop/htoprc" \
 "/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \
+"/.vscode.keybindings.json" "$HOME/.config/Code/User/keybindings.json" \
 "/.tmux.conf" "$HOME/.tmux.conf" \
 "/.zlogin" "$HOME/.zlogin" \
 "/.zlogout" "$HOME/.zlogout" \
