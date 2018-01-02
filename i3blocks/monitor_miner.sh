@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 righash="${1:-0}"
+righashalt="${2:-righash}"
 rigip="192.168.1.201"
 rigname="${BLOCK_INSTANCE:-"rig"}"
 
@@ -20,12 +21,16 @@ ssh pi-entry << EOF
         rigmhs=\$((\$(echo "\$ccmout" | cut -d ';' -f2)/1000))
         rigacc="\$(echo "\$ccmout" | cut -d ';' -f3)"
         rigrej="\$(echo "\$ccmout" | cut -d ';' -f4)"
+        # expected hash rate for arg1
+        righash="$righash"
     elif [ ! -z "\$ccmout" ]; then
-	    eval "\$(echo "\$ccmout" | tr -d '|')"
-        rigmhs="\$(echo "$\KHS" | cut d '.' -f1)"
-        rigupt="\$((UPTIME/60))"
-        rigacc="\$ACC"
-        rigrej="\$REJ"
+        ccmout="\$(echo "\$ccmout" | tr ';' '\n')"
+        rigmhs="\$((\$(echo "\$ccmout" | grep -- '^KHS=' | cut -d '=' -f2 | cut -d '.' -f1)/1000))"
+        rigupt="\$((\$(echo "\$ccmout" | grep -- '^UPTIME=' | cut -d '=' -f2)/60))"
+        rigacc="\$(echo "\$ccmout" | grep -- '^ACC=' | cut -d '=' -f2)"
+        rigrej="\$(echo "\$ccmout" | grep -- '^REJ=' | cut -d '=' -f2)"
+        # expected hash rate for arg2
+        righash="$righashalt"
     fi
     if [ -z "\$rigmhs" ]; then
         echo "\$rigname 0 MH/s"
@@ -39,7 +44,7 @@ ssh pi-entry << EOF
     echo " \$rigupt min"
     # short
     echo "\$rigname: \$rigmhs MH/s"
-    rigper=\$( bc<<<"(\$rigmhs*100)/$righash" )
+    rigper=\$( bc<<<"(\$rigmhs*100)/\$righash" )
     if [ "\$rigper" -lt "60" ]; then
         echo "#FF0000"
     elif [ "\$rigper" -lt "80" ]; then
