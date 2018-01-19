@@ -9,7 +9,7 @@
 	url = https://github.com/walshc/i3.git
 [submodule "github.com/acleverpun/i3-blocks-contrib"]
 	path = github.com/acleverpun/i3-blocks-contrib
-	url = https://github.com/acleverpun/i3-blocks-contrib.git
+	url = https://github.com/eldiaboloz/i3-blocks-contrib.git
 [submodule "github.com/vivien/i3blocks"]
 	path = github.com/vivien/i3blocks
 	url = https://github.com/vivien/i3blocks.git
