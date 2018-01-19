@@ -30,3 +30,5 @@ if [ -f "$HOME/dev/i3wmonarch/.zshrc" ]; then
 fi
 alias gpass='head /dev/urandom | tr -dc A-Za-z0-9 | head -c16'
 compdef _pacaur trizen
+alias ddp='dd status=progress'
+

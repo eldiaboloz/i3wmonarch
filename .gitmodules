@@ -16,3 +16,6 @@
 [submodule "github.com/VundleVim/Vundle.vim"]
 	path = github.com/VundleVim/Vundle.vim
 	url = https://github.com/VundleVim/Vundle.vim.git
+[submodule "github.com/eldiaboloz/i3-blocks-contrib"]
+	path = github.com/eldiaboloz/i3-blocks-contrib
+	url = https://github.com/eldiaboloz/i3-blocks-contrib.git

@@ -33,6 +33,6 @@ else
     color="#FF0000"
 fi
 
-echo "$color"
+echo "${MY_S}"
 echo "$color"
 exit 0

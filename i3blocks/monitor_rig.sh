@@ -32,9 +32,8 @@ while read -r line; do
             gpu_type="G9"
         ;;
     esac
-    printme="$printme $gpu_type $gpu_temp | "
+    printme="$printme $gpu_type-$gpu_temp"
 done < <(ssh $rig nvidia-smi --query-gpu=name,temperature.gpu --format=csv,noheader,nounits 2>/dev/null)
-printme="${printme::-2}"
 echo "$printme"
-echo "#FFFFFF"
+echo "$printme"
 echo "#FFFFFF"

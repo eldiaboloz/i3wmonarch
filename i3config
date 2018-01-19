@@ -281,7 +281,7 @@ bar {
 	bindsym button4 nop
 	bindsym button5 nop
     workspace_buttons no
-    separator_symbol "  "
+    separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps.conf
     position          bottom
     font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
@@ -298,7 +298,7 @@ bar {
 	bindsym button4 nop
 	bindsym button5 nop
     workspace_buttons no
-    separator_symbol "  "
+    separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps_second.conf
     position          bottom
     font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
@@ -316,7 +316,7 @@ bar {
 	bindsym button4 nop
 	bindsym button5 nop
     workspace_buttons no
-    separator_symbol "  "
+    separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_miners.conf
     position          bottom
     font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
@@ -329,20 +329,20 @@ bar {
         active_workspace #96a900 #266E9E #fdf6e3
     }
 }
-bar {
-	bindsym button4 nop
-	bindsym button5 nop
-    workspace_buttons no
-    separator_symbol "  "
-    status_command i3blocks -c ~/.i3blocks/right_bottom_rigs.conf
-    position          bottom
-    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
-    id bar-5
-	output $rightout
-	tray_output none
-    colors {
-        focused_workspace #96a900 #859900 #fdf6e3
-        inactive_workspace #369be2 #269be2 #ffffff
-        active_workspace #96a900 #266E9E #fdf6e3
-    }
-}
+#bar {
+#	bindsym button4 nop
+#	bindsym button5 nop
+#    workspace_buttons no
+#    separator_symbol " "
+#    status_command i3blocks -c ~/.i3blocks/right_bottom_rigs.conf
+#    position          bottom
+#    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+#    id bar-5
+#	output $rightout
+#	tray_output none
+#    colors {
+#        focused_workspace #96a900 #859900 #fdf6e3
+#        inactive_workspace #369be2 #269be2 #ffffff
+#        active_workspace #96a900 #266E9E #fdf6e3
+#    }
+#}
