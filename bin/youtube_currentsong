@@ -4,7 +4,7 @@ if [[ $? != 0 ]]; then
 	exit
 fi
 thesong=$(echo "$songdata" | grep "file:" | cut -d ' ' -f2-)
-regex="\-([A-Za-z0-9_-]{11})\.mp3"
+regex="\-([A-Za-z0-9_-]{11})((\.[a-zA-Z0-9]+)?)\.mp3"
 curmode=$(echo "$songdata" | grep "state:" | cut -d ' ' -f2-)
 if [ "$curmode" = "play" ]; then
 		mpc pause

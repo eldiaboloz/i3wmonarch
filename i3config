@@ -2,13 +2,17 @@ set $mod Mod4
 
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
-#smart_gaps on
-#smart_borders on
-#for_window [class="^.*"] border pixel 5
+smart_gaps on
+smart_borders on
+for_window [class="^.*"] border pixel 5
 
-#gaps inner 10
-#gaps outer 10
+gaps inner 0
+gaps outer 0
 
+
+for_window [class="^mpv$"] floating enable sticky enable
+for_window [class="^mpv$"] resize set 320 240
+for_window [class="^mpv$"] move absolute position 3450px 100px
 
 bindsym $mod+Menu exec --no-startup-id "screenshot"
 bindsym --release $mod+Shift+Menu exec --no-startup-id "screenshot 1"
