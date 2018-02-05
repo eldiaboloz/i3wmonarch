@@ -12,10 +12,10 @@ fi
 if [[ $thesong =~ $regex ]]; then
     # there is song id
     songcurrent=$(echo "$songdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
-    xdg-open "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent"
+    chromium "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent" > /dev/null 2>&1 &
 else
     # there is no song id so try our luck
-    xdg-open "http://www.google.com/search?btnI=Search&q=youtube+$(mpc -f '%file%' | sed -n 1p | tr ' ' '+')"
+    chromium "http://www.google.com/search?btnI=Search&q=youtube+$(mpc -f '%file%' | sed -n 1p | tr ' ' '+')" > /dev/null 2>&1 &
 fi
 i3-msg "workspace 4"
 

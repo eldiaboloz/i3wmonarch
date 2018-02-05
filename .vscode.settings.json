@@ -1,11 +1,11 @@
 // Place your settings in this file to overwrite the default settings
 {
     "editor.wordWrap": "on",
-      "editor.fontSize": 16,
-      "editor.fontFamily": "'DejaVu Sans Mono for Powerline', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontSize": 16,
+    "editor.fontFamily": "'DejaVu Sans Mono for Powerline', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "window.openFilesInNewWindow": "off",
     "workbench.colorTheme": "Solarized Light",
     "json.schemas": [],
     "editor.emptySelectionClipboard": true,
-    "php.suggest.basic":false
+    "php.suggest.basic": false
 }

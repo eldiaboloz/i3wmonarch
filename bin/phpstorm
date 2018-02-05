@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 rootfolder="/jetbrains/apps/PhpStorm/ch-0"
-[[ "$(basename "$0")" == *_r ]] && sord="" || sord="-r"
+[[ "$(basename "$0")" == *_r ]] && sord="-r" || sord=""
 pversion=$(cat "${rootfolder}/.channel.settings.json" | jq -r '.["active-application"]["builds"] | .[]' | sort $sord | sed -n 1p)
 
 # locate phpstorm.sh first

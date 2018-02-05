@@ -1,13 +1,37 @@
 #!/bin/bash
 # https://www.reddit.com/r/unixporn/comments/3358vu/i3lock_unixpornworthy_lock_screen
+
+local icon tmpbg playerlaststate
+
+# take screenshot and use it as background
 icon="$HOME/.xlock/icon.png"
 tmpbg='/tmp/screen.png'
 scrot "$tmpbg"
 convert "$tmpbg" -scale 20% -scale 500% "$tmpbg"
 convert "$tmpbg" "$icon" -geometry +960+540 -composite -matte "$tmpbg"
 convert "$tmpbg" "$icon" -geometry +2880+540 -composite -matte "$tmpbg"
-audioplayer_control pause
-~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set 0
-i3lock -i "$tmpbg"
 
+# pause audioplayer and save state
+playerlaststate="$(getcurrentsongmpc | sed -n 1p | cut -d ' ' -f1)"
+audioplayer_control pause
+
+# reset keyboard layout
+~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set 0
+
+# kill all i3block instances while the pc is locked
+killall i3blocks
+
+# turn off monitor(s)
 sleep 1; xset dpms force off
+
+# lock the screen
+i3lock -i "$tmpbg" -n
+
+# restart i3
+i3-msg restart
+
+# start playing again
+if [ "$playerlaststate" = "" ]; then
+    audioplayer_control play
+fi
+
