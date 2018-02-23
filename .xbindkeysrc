@@ -1,20 +1,20 @@
 #"xbindkeys_show" 
 #  control+shift + q
 #prev
-"xte 'keydown Control_L' 'keydown Page_Up' 'keyup Page_Up' 'keyup Control_L'"
+"handle_mouse_extra.sh 1"
   m:0x0 + b:8
 #next
-"xte 'keydown Control_L' 'keydown Page_Down' 'keyup Page_Down' 'keyup Control_L'"
+"handle_mouse_extra.sh 2"
   m:0x0 + b:9
 # prev workspace
-"i3-msg 'workspace prev'"
+"handle_mouse_extra.sh 3"
   Mod4 + b:8
 # next workspace
-"i3-msg 'workspace next'"
+"handle_mouse_extra.sh 4"
   Mod4 + b:9
 # move to prev workspace
-"i3-msg 'move workspace prev;workspace prev'"
+"handle_mouse_extra.sh 5"
   Mod4 + Shift + b:8
 # move to next workspace
-"i3-msg 'move workspace next;workspace next'"
+"handle_mouse_extra.sh 6"
   Mod4 + Shift + b:9

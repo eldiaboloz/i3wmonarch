@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+set -e
+# select random SEB song
+mpc insert "$(cd ~/Music; find SEB_001_238/ -type f|shuf|sed -n 1p)"
+# play the song
+mpc next -q

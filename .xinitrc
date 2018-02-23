@@ -68,6 +68,9 @@ ssh-agent -k
 # start clipboard manager
 parcellite &
 
+# bluetooth applet
+blueman-applet 1>/dev/null 2>&1 &
+
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
