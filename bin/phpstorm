@@ -3,8 +3,6 @@
 rootfolder="/jetbrains/apps/PhpStorm/ch-${psch}"
 [[ "$(basename "$0")" == *_r ]] && sord="" || sord="-r"
 pversion=$(cat "${rootfolder}/.channel.settings.json" | jq -r '.["active-application"]["builds"] | .[]' | sort $sord | sed -n 1p)
-echo "${pversion}"
-exit
 
 # locate phpstorm.sh first
 phpstorme=$(realpath "$rootfolder/$pversion/bin/phpstorm.sh")
