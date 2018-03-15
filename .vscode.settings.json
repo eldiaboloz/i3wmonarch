@@ -7,5 +7,6 @@
     "workbench.colorTheme": "Solarized Light",
     "json.schemas": [],
     "editor.emptySelectionClipboard": true,
-    "php.suggest.basic": false
+    "php.suggest.basic": false,
+    "workbench.startupEditor": "newUntitledFile"
 }
