@@ -1,6 +1,19 @@
 #!/usr/bin/env bash
 # vim ft=bash
-song_position=$(mpc -f "%position%) %file% (%time%)" playlist | \
-fzf --query="$1" --reverse --select-1 --exit-0 | \
-sed -n 's/^\([0-9]\+\)).*/\1/p') || exit 1
-[ -n "$song_position" ] && mpc -q play $song_position
+
+# use favs playlist or whole library
+[[ "$(basename "$0")" == *_favourite* ]] && wsong="playlist Favorites" || wsong="listall"
+
+# choose song from whole specifed location
+filename=$(mpc -f "%file%" $wsong | fzf --reverse)
+[ -z "$filename" ] && exit 1
+
+# add the song to the current playlist
+mpc insert "$filename"
+
+# if we only want to queue next song
+[[ "$(basename "$0")" == *_queue ]] && exit 0
+
+# play the song
+mpc next
+

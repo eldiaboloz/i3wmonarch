@@ -99,10 +99,12 @@ bindsym Shift+XF86AudioNext exec --no-startup-id audioplayer_control seeki
 bindsym $mod+Control+Shift+bracketleft exec --no-startup-id audioplayer_control seekd60
 bindsym $mod+Control+Shift+bracketright exec --no-startup-id audioplayer_control seeki60
 
-# choose song
+# choose from library
 bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="floatme"
 # choose from favourites
 bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite --role="floatme"
+# queue from library
+bindsym $mod+Control+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_queue --role="floatme"
 # queue from favourites
 bindsym $mod+Control+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite_queue --role="floatme"
 # add current song to favourties
