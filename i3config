@@ -2,6 +2,9 @@ set $mod Mod4
 
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
+# jetbrains popup fix ... https://youtrack.jetbrains.com/issue/IDEA-188824#comment=27-2777552
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
+
 #smart_gaps on
 smart_borders on
 
