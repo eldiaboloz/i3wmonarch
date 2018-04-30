@@ -1,6 +1,8 @@
 #!/bin/bash
 # https://www.reddit.com/r/unixporn/comments/3358vu/i3lock_unixpornworthy_lock_screen
 
+keepmusic=${1:-"0"}
+
 local icon tmpbg playerlaststate
 
 # take screenshot and use it as background
@@ -12,9 +14,10 @@ convert "$tmpbg" "$icon" -geometry +960+540 -composite -matte "$tmpbg"
 convert "$tmpbg" "$icon" -geometry +2880+540 -composite -matte "$tmpbg"
 
 # pause audioplayer and save state
-playerlaststate="$(getcurrentsongmpc | sed -n 1p | cut -d ' ' -f1)"
-audioplayer_control pause
-
+if [ "$keepmusic" -eq 0 ]; then
+    playerlaststate="$(getcurrentsongmpc | sed -n 1p | cut -d ' ' -f1)"
+    audioplayer_control pause
+fi
 # reset keyboard layout
 ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set 0
 
