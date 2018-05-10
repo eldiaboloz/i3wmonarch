@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-filename="$(echo "$1" | cut -d ' ' -f2-)"
-ffprobe -hide_banner "$HOME/Music/$filename"
+filepath="$HOME/Music/$(echo "$1" | cut -d ' ' -f2- | tr -d '\n')"
+if [ ! -f "$filepath" ]; then
+    echo "File not found"
+    exit
+fi
+ffprobe -hide_banner "$filepath"
