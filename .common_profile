@@ -38,6 +38,8 @@ alias sshh="ssh -F $HOME/.ssh/config_home"
 alias gitdc="git diff --cached"
 alias gitd="git diff"
 alias gitco="git checkout"
+alias stod="stod(){date '+%Y-%m-%d %H:%M:%S' -d \"@\${1}\"; unset -f stod;};stod"
+
 if [ -f "$HOME/dev/i3wmonarch/.profile" ]; then
     source "$HOME/dev/i3wmonarch/.profile"
 fi
