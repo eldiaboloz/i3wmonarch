@@ -1,0 +1,83 @@
+#!/usr/bin/env bash
+
+usage(){
+    echo "Usage:"
+    echo "  -i input as string"
+    echo "  -p 0|1|2 (public,unlisted,private)"
+    echo "  -f path_to_input_file"
+    echo "  -t paste format"
+    echo "Order of input: pipe,-f,-i"
+    exit 1
+}
+
+# parse input
+while getopts ":i:p:f:n:t:" o; do
+    case "${o}" in
+        i)
+            inputstr=${OPTARG}        
+            ;;
+        p)
+            api_paste_private=${OPTARG}
+            ((api_paste_private==2 || api_paste_private==1 || api_paste_private==0)) || usage
+            ;;
+        f)
+            filepath="$(realpath ${OPTARG})"
+            if [ ! -f "$filepath" ]; then
+                echo "file: \"$filepath\" does not exist!"
+                usage
+            fi
+            ;;
+        n)
+            api_paste_name=${OPTARG}
+            ;;
+        t)
+            api_paste_format=${OPTARG}
+            ;;
+        *)
+            usage
+            ;;
+    esac
+done
+
+# prefer private pastes
+api_paste_private="${api_paste_private:-"2"}"
+# api_option ( TODO: implement other calls )
+api_option="${api_option:-"paste"}"
+api_paste_name="${api_paste_name:-"$(date +%Y_%m_%d_%H_%M_%S)"}"
+
+# api_paste_format
+api_paste_format=${api_paste_format:-"text"}
+
+# read piped input
+[ ! -t 0 ] && input="$(cat)"
+# read input from cli
+[ ! -z "$inputstr" ] && input="${input}${inputstr}"
+# read file passed from cli
+[ ! -z "$filepath" ] && input="${input}$(cat "$filepath")"
+
+# input is empty after all
+if [ -z "$input" ]; then
+    echo "empty input!"
+    usage
+fi
+
+# source keys
+source $HOME/.ssh/pastebin_keys
+
+# make the API call and open chromium
+curl -X POST https://pastebin.com/api/api_post.php \
+    --show-error \
+    --data "api_dev_key=$api_dev_key" \
+    --data "api_user_key=$api_user_key" \
+    --data "api_paste_private=$api_paste_private" \
+    --data "api_option=$api_option" \
+    --data "api_paste_format=$api_paste_format" \
+    --data-urlencode "api_paste_name=$api_paste_name" \
+    --data-urlencode "api_paste_code=$input" \
+| cat - | xargs -0 -n 1 -I{} sh -c 'chromium "{}" > /dev/null 2>&1 &'
+
+# make i3 go to chromium workspace 
+i3-msg "workspace \"5 \""
+
+# END
+
