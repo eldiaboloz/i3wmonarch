@@ -8,5 +8,6 @@
     "json.schemas": [],
     "editor.emptySelectionClipboard": true,
     "php.suggest.basic": false,
-    "workbench.startupEditor": "newUntitledFile"
+    "workbench.startupEditor": "newUntitledFile",
+    "files.autoGuessEncoding": false
 }
