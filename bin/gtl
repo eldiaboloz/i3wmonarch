@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+f="$(ag "$1" "${2:-$(pwd)}" | fzf)"
+if [ ! -z "$f" ]; then
+    vim "$(echo "$f" | cut -d ":" -f1)" "+$(echo "$f" | cut -d ":" -f2)"
+fi
