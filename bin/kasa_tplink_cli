@@ -26,7 +26,7 @@ query_device(){
     curl -s --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" --data '{"method":"passthrough", "params": {"deviceId": "'"$1"'", "requestData": "{\"system\":{\"get_sysinfo\":null}}" }}' --header "Content-Type: application/json" | jq -r '.result.responseData' | jq
 }
 get_power_usage(){
-    curl -s --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" --data '{"method":"passthrough", "params": {"deviceId": "'"$1"'", "requestData": "{\"emeter\":{\"get_realtime\":null}}" }}' --header "Content-Type: application/json" | jq -r '.result.responseData' | jq -r '.emeter.get_realtime.power'
+    curl -s --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" --data '{"method":"passthrough", "params": {"deviceId": "'"$1"'", "requestData": "{\"emeter\":{\"get_realtime\":null}}" }}' --header "Content-Type: application/json" | jq -r '.result.responseData' | jq -r '.emeter.get_realtime.power' | awk '{print int($1)}'
 }
 
 source $HOME/.ssh/secrets/tplink_kasa.sh

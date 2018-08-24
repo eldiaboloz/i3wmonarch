@@ -1,5 +1,8 @@
 set $mod Mod4
 
+# lock screen on start
+exec --no-startup-id bash -c 'i3lock'
+
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
 # jetbrains popup fix ... https://youtrack.jetbrains.com/issue/IDEA-188824#comment=27-2777552
@@ -356,7 +359,7 @@ bar {
     separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_miners.conf
     position          bottom
-    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    font pango:DejaVu Sans Mono, Icons 12, FontAwesome 12
     id bar-3
 	output $rightout
 	tray_output none
@@ -366,6 +369,7 @@ bar {
         active_workspace #96a900 #266E9E #fdf6e3
     }
 }
+
 
 #bar {
 #	bindsym button4 nop

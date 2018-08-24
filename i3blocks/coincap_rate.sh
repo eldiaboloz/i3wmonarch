@@ -10,7 +10,8 @@ MY_B="$(echo "$data" | cut -d ';' -f4 | sed -e 's/^"//' -e 's/"$//')"
 echo -n "${MY_S}: "
 sep=""
 if [ ! -z "$1" ]; then
-    echo -n "\$${MY_P}"
+    echo -n "\$"
+    echo -n "${MY_P}" | awk '{printf "%6.4f", $1}'
     sep=" | "
 fi
 if [ "$coin" != "bitcoin" ] && [ ! -z "$2" ]; then

@@ -30,12 +30,23 @@ ssh pi-entry << EOF
     echo -n "\$rigname: \$rigmhs MH/s A-\$rigacc R-\$rigrej"
     # long
     echo -n " \$rigupt min"
-    # temps here
-    while read -r line; do
-        gputemp="\$(echo -n "\$line" | cut -d ';' -f1 )"
-        gpufan="\$(echo -n "\$line" | cut -d ';' -f2 )"
-        echo -n " \$gputemp-\$gpufan"
-    done < <(echo "\$out" | cut -d ';' -f5- | tr ' ' '\n')
+    MULTILINE=\$(echo "\$out" | cut -d ';' -f5- | tr ' ' '\n')
+    if (( \$(grep -c . <<<"\$MULTILINE") > 1 )); then
+    # ethminer version <= 0.15.0.dev10
+        while read -r line; do
+            gputemp="\$(echo -n "\$line" | cut -d ';' -f1 )"
+            gpufan="\$(echo -n "\$line" | cut -d ';' -f2 )"
+            echo -n " \$gputemp-\$gpufan"
+        done < <(echo "\$MULTILINE")
+    else
+    # ethminer version >= 0.15.0rc2
+        while read -r line; do
+            gputemp="\$line"
+            read -r line
+            gpufan="\$line"
+            echo -n " \$gputemp-\$gpufan"
+        done < <(echo "\$MULTILINE" | tr ';' '\n' | head -c -1)
+    fi
     # flush long output
     echo ""
     # short
