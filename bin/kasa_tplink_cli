@@ -18,9 +18,9 @@ get_deviceid(){
     echo -n "$deviceId"
 }
 start_stop_device(){
-    curl --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" \
+    curl -s --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" \
     --data '{"method":"passthrough", "params": {"deviceId": "'"$1"'", "requestData": "{\"system\":{\"set_relay_state\":{\"state\":'"$2"'}}}" }}' \
-    --header "Content-Type: application/json"
+    --header "Content-Type: application/json" | jq -r '.result.responseData'
 }
 query_device(){
     curl -s --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" --data '{"method":"passthrough", "params": {"deviceId": "'"$1"'", "requestData": "{\"system\":{\"get_sysinfo\":null}}" }}' --header "Content-Type: application/json" | jq -r '.result.responseData' | jq

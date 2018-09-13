@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
 plen=${1:-16}
-chars="A-Za-z0-9 '"'!@#$%^&*()_+=[]{};:",./<>?|\\'
+simple=${2:-""}
+chars="A-Za-z0-9_"
+[ -z "$simple" ] && chars="$chars'"'!@#$%^&*()+=[]{};:",./<>?|\\'
 
 t="$(head /dev/urandom | tr -dc "${chars}" | head -c${plen})"
 if [ ! -z "$DISPLAY" ]; then
