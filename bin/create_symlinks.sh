@@ -6,6 +6,7 @@ dirs=(\
     "$HOME/.config/xfce4/terminal" \
     "$HOME/.config/htop" \
     "$HOME/.config/Code/User" \
+    "$HOME/.config/i3"
     "$HOME/.ncmpcpp" \
     "$HOME/.vim/bundle" \
     "$HOME/.local/share/rofi" \
@@ -19,6 +20,7 @@ links=(\
     "/bin" "$HOME/bin" \
     "/.Xmodmap$extran" "$HOME/.Xmodmap" \
     "/.XmodmapFnEscape$extran" "$HOME/.XmodmapFnEscape" \
+    "/i3config" "$HOME/.config/i3/config" \
     "/i3blocks" "$HOME/.i3blocks" \
     "/.vimrc" "$HOME/.vimrc" \
     "/.xinitrc" "$HOME/.xinitrc" \
@@ -35,6 +37,7 @@ links=(\
     "/.common_profile" "$HOME/.profile" \
     "/.ncmpcpp_config" "$HOME/.ncmpcpp/config" \
     "/github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" \
+    "/github.com/robbyrussell/oh-my-zsh" "$HOME/.oh-my-zsh" \
     "/rofi/config/" "$HOME/.config/rofi" \
     "/rofi/themes/" "$HOME/.local/share/rofi/themes" \
 )

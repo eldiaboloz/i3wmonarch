@@ -3,7 +3,7 @@ set $mod Mod4
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
 # jetbrains popup fix ... https://youtrack.jetbrains.com/issue/IDEA-188824#comment=27-2777552
-#for_window [class="^jetbrains-.+"][window_type=dialog] focus
+for_window [class="^jetbrains-.+"][window_type=dialog] focus
 
 #smart_gaps on
 smart_borders on
@@ -122,8 +122,12 @@ bindsym XF86Tools exec start_audioplayer
 
 bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
 
-#bindsym $mod+Return exec i3-sensible-terminal
-bindsym $mod+Return exec xfce4-terminal
+# open normal term
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
+
+# open floating term
+bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --role="floatme"
+
 
 bindsym Mod1+Control+L exec --no-startup-id monitors_off_lock
 bindsym Mod1+Control+Shift+L exec --no-startup-id monitors_off_lock 1
