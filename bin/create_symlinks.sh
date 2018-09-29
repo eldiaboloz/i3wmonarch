@@ -6,25 +6,24 @@ dirs=(\
     "$HOME/.config/xfce4/terminal" \
     "$HOME/.config/htop" \
     "$HOME/.config/Code/User" \
-    "$HOME/.config/i3"
+    "$HOME/.config/i3" \
+    "$HOME/.config/parcellite" \
     "$HOME/.ncmpcpp" \
     "$HOME/.vim/bundle" \
     "$HOME/.local/share/rofi" \
 )
 
-extran=""
-hwinfo --keyboard | grep -E "Model.*71M-RGB" 2>/dev/null 1>&2 && extran="Drevo71"
-
 links=(\
     "/" "$HOME/dev/i3wmonarch" \
     "/bin" "$HOME/bin" \
-    "/.Xmodmap$extran" "$HOME/.Xmodmap" \
-    "/.XmodmapFnEscape$extran" "$HOME/.XmodmapFnEscape" \
+    "/.Xmodmap" "$HOME/.Xmodmap" \
+    "/.XmodmapFnEscape" "$HOME/.XmodmapFnEscape" \
     "/i3config" "$HOME/.config/i3/config" \
     "/i3blocks" "$HOME/.i3blocks" \
     "/.vimrc" "$HOME/.vimrc" \
     "/.xinitrc" "$HOME/.xinitrc" \
     "/.xfce4_terminalrc" "$HOME/.config/xfce4/terminal/terminalrc" \
+    "/.parcelliterc" "$HOME/.config/parcellite/parcelliterc" \
     "/.xbindkeysrc" "$HOME/.xbindkeysrc" \
     "/.htoprc" "$HOME/.config/htop/htoprc" \
     "/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \
