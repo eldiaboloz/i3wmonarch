@@ -18,3 +18,11 @@
 # move to next workspace
 "handle_mouse_extra.sh 6"
   Mod4 + Shift + b:9
+# horizonatl scroll 
+"handle_mouse_extra.sh 7"
+  m:0x0 + b:6
+# horizontal scroll
+"handle_mouse_extra.sh 8"
+  m:0x0 + b:7
+
+

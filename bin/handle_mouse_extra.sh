@@ -25,5 +25,13 @@ case "$1" in
         # move to next workspace
         i3-msg 'move workspace next;workspace next'
         ;;
+    7)
+#        xte 'keydown Control_L' 'keydown Left' 'keyup Left' 'keyup Control_L'
+        xdotool click 2
+        ;;
+    8)
+#        xte 'keydown Control_L' 'keydown Right' 'keyup Right' 'keyup Control_L'
+        xdotool click 2
+        ;;
 esac
 
