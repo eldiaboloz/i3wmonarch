@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 [[ "$(basename "$0")" == *_eap* ]] && psch="1" || psch="0"
-rootfolder="/jetbrains/apps/PhpStorm/ch-${psch}"
+rootfolder="$HOME/.local/share/JetBrains/Toolbox/apps/PhpStorm/ch-${psch}"
 [[ "$(basename "$0")" == *_r ]] && sord="" || sord="-r"
 pversion=$(cat "${rootfolder}/.channel.settings.json" | jq -r '.["active-application"]["builds"] | .[]' | sort $sord | sed -n 1p)
 

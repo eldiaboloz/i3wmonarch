@@ -289,7 +289,7 @@ bar {
     separator_symbol "  "
 	status_command i3blocks -c ~/.i3blocks/left.conf
 	position          top
-	font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+	font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
 	id bar-1
 	output $leftout
 	tray_output none
@@ -307,7 +307,7 @@ bar {
     separator_symbol "  "
     status_command i3blocks -c ~/.i3blocks/right.conf
     position          top
-    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    font pango:DejaVu Sans Mono for Powerline, Icons 14, Font Awesome 14
     id bar-2
 	output $rightout
 	tray_output $rightout
@@ -325,7 +325,7 @@ bar {
     separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps.conf
     position          bottom
-    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
     id bar-4
 	output $rightout
 	tray_output none
@@ -342,7 +342,7 @@ bar {
     separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps_second.conf
     position          bottom
-    font pango:DejaVu Sans Mono, Icons 14, FontAwesome 14
+    font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
     id bar-6
 	output $rightout
 	tray_output none
@@ -360,7 +360,7 @@ bar {
     separator_symbol " "
     status_command i3blocks -c ~/.i3blocks/right_bottom_miners.conf
     position          bottom
-    font pango:DejaVu Sans Mono, Icons 12, FontAwesome 12
+    font pango:DejaVu Sans Mono for Powerline, Icons 12, FontAwesome 12
     id bar-3
 	output $rightout
 	tray_output none
