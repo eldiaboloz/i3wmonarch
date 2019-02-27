@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-(( ${BASH_VERSION%%.*} < 4 )) && ( echo "Need bash 4 or up but found $BASH_VERSION!" 1>&2; exit 1)
+(( ${BASH_VERSION%%.*} < 4 )) && { echo "Need bash 4 or up but found $BASH_VERSION!" 1>&2; exit 1; }
 get_token(){
     [ -z "$terminalUUID" ] && terminalUUID="$(uuidgen | head -c -1)"
     if [[ -z "$cloudUserName" || -z "$cloudPassword" ]]; then
@@ -28,6 +28,9 @@ query_device(){
 get_power_usage(){
     curl -s --request POST "https://eu-wap.tplinkcloud.com/?token=$token HTTP/1.1" --data '{"method":"passthrough", "params": {"deviceId": "'"$1"'", "requestData": "{\"emeter\":{\"get_realtime\":null}}" }}' --header "Content-Type: application/json" | jq -r '.result.responseData' | jq -r '.emeter.get_realtime.power' | awk '{print int($1)}'
 }
+list_devices(){
+    curl -s --request POST "https://wap.tplinkcloud.com?token=$token HTTP/1.1" --data '{"method":"getDeviceList"}' --header "Content-Type: application/json"
+}
 
 source $HOME/.ssh/secrets/tplink_kasa.sh
 
@@ -43,5 +46,6 @@ case $action in
 	stop) start_stop_device "${rigs["$device"]}" "0";;
 	query) query_device "${rigs["$device"]}";;
     power) get_power_usage "${rigs["$device"]}";;
+    list) list_devices;;
 esac
 

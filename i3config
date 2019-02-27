@@ -3,7 +3,8 @@ set $mod Mod4
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
 # jetbrains popup fix ... https://youtrack.jetbrains.com/issue/IDEA-188824#comment=27-2777552
-for_window [class="^jetbrains-.+"][window_type=dialog] focus
+#for_window [class="^jetbrains-.+"][window_type=dialog] focus
+#for_window [class="^jetbrains-.+"][window_type=con] focus
 
 #smart_gaps on
 smart_borders on
@@ -16,8 +17,10 @@ gaps outer 0
 
 
 for_window [class="^mpv$"] floating enable sticky enable
-for_window [class="^mpv$"] resize set 240 240
-for_window [class="^mpv$"] move absolute position 3450px 100px
+for_window [class="^mpv$"] resize set 400 300
+for_window [class="^mpv$"] move absolute position 3400px 200px
+
+bindsym --release $mod+Shift+Control+Menu exec --no-startup-id "fix_window_mpv"
 
 for_window [window_role="top_right_info"] floating enable sticky enable
 for_window [window_role="top_right_info"] resize set 640 240
@@ -38,20 +41,20 @@ set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
 
-workspace $ws7 gaps inner 20
-workspace $ws7 gaps outer 0
+#workspace $ws7 gaps inner 20
+#workspace $ws7 gaps outer 0
 
-workspace $ws8 gaps inner 15
-workspace $ws8 gaps outer 5
+#workspace $ws8 gaps inner 15
+#workspace $ws8 gaps outer 5
 
-workspace $ws9 gaps inner 15
-workspace $ws9 gaps outer 5
+#workspace $ws9 gaps inner 15
+#workspace $ws9 gaps outer 5
 
-workspace $ws10 gaps inner 15
-workspace $ws10 gaps outer 5
+#workspace $ws10 gaps inner 15
+#workspace $ws10 gaps outer 5
 
-set $leftout "VGA1"
-set $rightout "HDMI2"
+set $leftout "HDMI2"
+set $rightout "VGA1"
 
 # colors
 
@@ -171,10 +174,13 @@ bindsym $mod+f fullscreen toggle
 #
 # navicat
 assign [class="^Wine$" instance="^navicat\.exe$"] $ws2
+assign [class="^jetbrains-datagrip$"] $ws2
 # IDEs on first workspace
 assign [class="^NetBeans IDE .*$"] $ws1
 assign [class="^jetbrains-phpstorm$"] $ws1
 assign [class="^jetbrains-studio$"] $ws1
+assign [class="^jetbrains-pycharm-ce$"] $ws1
+assign [class="^jetbrains-idea-ce$"] $ws1
 # skype 
 assign [class="^Skype$"] $ws3
 assign [class="^skypeforlinux$"] $ws3
@@ -189,7 +195,7 @@ assign [class="^Google-chrome-unstable$"] $ws4
 # chromium
 assign [class="^Chromium$"] $ws5
 # audioplayer in terminal
-assign [window_role="termaudioplayer"] $ws6
+assign [window_role="termaudioplayer"] $ws3
 # tmuxwww session in terminal
 assign [window_role="tmuxwww"] $ws10
 # visual studio code
@@ -280,7 +286,8 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym $mod+m bar mode toggle
+bindsym $mod+m bar mode invisible
+bindsym $mod+Shift+m bar mode dock
 
 bar {
 	bindsym button4 nop
@@ -289,7 +296,8 @@ bar {
     separator_symbol "  "
 	status_command i3blocks -c ~/.i3blocks/left.conf
 	position          top
-	font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
+    font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
+
 	id bar-1
 	output $leftout
 	tray_output none
@@ -307,7 +315,7 @@ bar {
     separator_symbol "  "
     status_command i3blocks -c ~/.i3blocks/right.conf
     position          top
-    font pango:DejaVu Sans Mono for Powerline, Icons 14, Font Awesome 14
+    font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
     id bar-2
 	output $rightout
 	tray_output $rightout
@@ -340,7 +348,7 @@ bar {
 	bindsym button5 nop
     workspace_buttons no
     separator_symbol " "
-    status_command i3blocks -c ~/.i3blocks/right_bottom_coincaps_second.conf
+    status_command i3blocks -c ~/.i3blocks/right_bottom_rigs_power.conf
     position          bottom
     font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
     id bar-6

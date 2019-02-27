@@ -27,8 +27,10 @@ for x in $repos; do
         continue
     fi
 
-    git svn info >/dev/null 2>&1
-    if [ $? -ne 0 ]; then
+    #git svn info >/dev/null 2>&1
+    issvn=0
+    [ -f "$x/svn/.metadata" ] && issvn=1
+    if [ "$issvn" -eq 0 ]; then
         # this is not a git-svn repo
         git pull origin master
     else

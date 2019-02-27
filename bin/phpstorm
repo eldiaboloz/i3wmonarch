@@ -2,8 +2,7 @@
 [[ "$(basename "$0")" == *_eap* ]] && psch="1" || psch="0"
 rootfolder="$HOME/.local/share/JetBrains/Toolbox/apps/PhpStorm/ch-${psch}"
 [[ "$(basename "$0")" == *_r ]] && sord="" || sord="-r"
-pversion=$(cat "${rootfolder}/.channel.settings.json" | jq -r '.["active-application"]["builds"] | .[]' | sort $sord | sed -n 1p)
-
+pversion=$(find "${rootfolder}" -mindepth 1 -maxdepth 1 -type d | xargs -I{} basename "{}"| sort $sord | sed -n 1p)
 # locate phpstorm.sh first
 phpstorme=$(realpath "$rootfolder/$pversion/bin/phpstorm.sh")
 
@@ -14,7 +13,7 @@ if [ -z "$phpstorme" ]; then
 fi
 
 # vm options file
-vmopts=$(dirname "$phpstorme")/phpstorm64.vmoptions
+vmopts="$rootfolder/$pversion.vmoptions"
 if [ ! -f "$vmopts" ]; then
     echo "phpstorm64.vmoptions file was not found" 1>&2
     exit 1
@@ -28,10 +27,9 @@ grep -Fq -- "-Duser.language" "$vmopts" || echo '-Duser.language=bg' >> "$vmopts
 nohup "$phpstorme" "$@" >/dev/null 2>&1 &
 
 if [ "$#" -eq 0 ]; then
-    sleep 5
+    sleep 3
 else
     sleep 1
 fi
-i3-msg "workspace 1" >/dev/null 2>&1
-i3-msg "layout stacked" >/dev/null 2>&1
+i3-msg "workspace 1; layout stacked" >/dev/null 2>&1
 

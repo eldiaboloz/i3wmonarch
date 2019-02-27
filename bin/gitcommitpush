@@ -6,7 +6,7 @@ SHOW_PROMPT_ON_EXIT={1:-""}
 
 startdir="$(pwd)"
 
-reposroot=${REPOS_ROOT:-"/work/gitrepos/all"}
+reposroot=${REPOS_ROOT:-"/www"}
 
 byebye () {
     cd "$startdir"
@@ -16,12 +16,12 @@ byebye () {
 
 # if we are not in a git repo ask for a git repo
 if [ ! -d "$PWD/.git" ]; then
-    cd "$reposroot/$(find "$reposroot" -type l -printf '%P\n' | fzf)"
-    if [ ! -d "$PWD/.git" ]; then
+#    cd "$reposroot/$(find "$reposroot" -type l -printf '%P\n' | fzf)"
+ #   if [ ! -d "$PWD/.git" ]; then
         cd "$startdir"
         echo "not in a git repo!" 1>&2
         byebye 1
-    fi  
+  #  fi  
 fi
 
 if ! git remote | grep origin >/dev/null 2>/dev/null ; then
@@ -55,7 +55,8 @@ git status --porcelain | grep -v "^[? ]" >/dev/null || \
 
 # commit and push
 git commit
-if git svn info >/dev/null 2>&1 ; then
+
+if [ -f "$PWD/.git/svn/.metadata" ]; then
     git stash -u
     git svn dcommit
     git svn rebase

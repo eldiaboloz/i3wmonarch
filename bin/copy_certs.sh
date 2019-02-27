@@ -4,7 +4,7 @@ set -e
 
 # target host
 th=$1
-[ -z "$th" ] && (echo "No target host (arg 1 )" ; exit 1)
+[ -z "$th" ] && { echo "No target host (arg 1 )" ; exit 1; }
 
 # target domain - by default equals target host
 td=${2:-"$th"}

@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+docker container run -v $(pwd):/data my-docker-asar asar "$@"

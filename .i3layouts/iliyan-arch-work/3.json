@@ -1,0 +1,103 @@
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "stacked",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1007,
+               "width": 1920,
+               "x": 0,
+               "y": 0
+            },
+            "name": "Skype",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Skype$",
+                "instance": "^skype$",
+                "window_role": "^browser\\-window$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 458,
+               "width": 814,
+               "x": 0,
+               "y": 0
+            },
+            "name": "ncmpcpp",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Xfce4\\-terminal$",
+                "instance": "^xfce4\\-terminal$",
+                "window_role": "^termaudioplayer$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "stacked",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "pixel",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1007,
+               "width": 960,
+               "x": 960,
+               "y": 73
+            },
+            "name": "Viber",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^ViberPC$",
+                "instance": "^Viber$"
+               }
+            ],
+            "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1051,
+               "width": 960,
+               "x": 0,
+               "y": 0
+            },
+            "name": "Mozilla Thunderbird",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Thunderbird$",
+                "instance": "^Mail$",
+                "window_role": "^3pane$"
+               }
+            ],
+            "type": "con"
+        }
+    ]
+}
+

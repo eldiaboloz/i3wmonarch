@@ -70,8 +70,8 @@ parcellite &
 
 # bluetooth applet
 blueman-applet 1>/dev/null 2>&1 &
-
+I3CONFIGNAME=${I3CONFIGNAME:-"config"}
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
-exec i3
+exec i3 --config $HOME/.config/i3/${I3CONFIGNAME}

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+xdotool search --class mpv | xargs -I{} sh -c "xdotool windowsize {} 400 300;xdotool windowmove {} 3400 200"
+

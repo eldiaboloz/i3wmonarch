@@ -8,6 +8,7 @@ dirs=(\
     "$HOME/.config/Code/User" \
     "$HOME/.config/i3" \
     "$HOME/.config/parcellite" \
+    "$HOME/.config/gsimplecal" \
     "$HOME/.ncmpcpp" \
     "$HOME/.vim/bundle" \
     "$HOME/.local/share/rofi" \
@@ -24,6 +25,7 @@ links=(\
     "/.xinitrc" "$HOME/.xinitrc" \
     "/.xfce4_terminalrc" "$HOME/.config/xfce4/terminal/terminalrc" \
     "/.parcelliterc" "$HOME/.config/parcellite/parcelliterc" \
+    "/.gsimplecal_config" "$HOME/.config/gsimplecal/config" \
     "/.xbindkeysrc" "$HOME/.xbindkeysrc" \
     "/.htoprc" "$HOME/.config/htop/htoprc" \
     "/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \

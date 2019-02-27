@@ -1,2 +1,2 @@
 #!/bin/bash
-/usr/share/playonlinux/playonlinux --run "navicat"
+WINEPREFIX=/work/navicat WINEARCH=win32 wine /work/navicat/drive_c/Program\ Files/PremiumSoft/Navicat\ Premium/navicat.exe
