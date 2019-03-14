@@ -57,10 +57,10 @@ esac
 xbindkeys
 
 # seafile client
-seafile-applet &
+command -v seafile-applet  > /dev/null 2>&1 && seafile-applet &
 
 # dropbox daemon
-dropbox.py start
+command -v dropbox.py > /dev/null 2>&1 && dropbox.py start
 
 # fix for .zlogin/.zlogout
 ssh-agent -k
@@ -70,6 +70,7 @@ parcellite &
 
 # bluetooth applet
 blueman-applet 1>/dev/null 2>&1 &
+
 I3CONFIGNAME=${I3CONFIGNAME:-"config"}
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)

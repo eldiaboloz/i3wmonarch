@@ -13,5 +13,5 @@ fi
 # start player if not started
 mpc -q 2>/dev/null || mpd $HOME/dev/i3wmonarch/.mpd/mpd.conf
 
-i3-msg 'workspace 6'
+#i3-msg 'workspace 6'
 exec xfce4-terminal -e 'screen  -x -R audioplayer -m ncmpcpp' --role termaudioplayer

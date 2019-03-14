@@ -51,3 +51,14 @@ set background=light
 "set clipboard=unnamedplus
 set ignorecase
 set smartcase
+
+" setup undofile and undo-dir
+if !isdirectory($HOME."/.vim")
+    call mkdir($HOME."/.vim", "", 0700)
+endif
+if !isdirectory($HOME."/.vim/undo-dir")
+    call mkdir($HOME."/.vim/undo-dir", "", 0700)
+endif
+
+set undodir=~/.vim/undodir
+set undofile " Maintain undo history between session
