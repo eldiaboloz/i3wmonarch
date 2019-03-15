@@ -202,8 +202,8 @@ assign [class="^Chromium$"] $ws5
 assign [window_role="termaudioplayer"] $ws3
 # tmuxwww session in terminal
 assign [window_role="tmuxwww"] $ws10
-# visual studio code
-assign [class="^Code$" window_role="^browser-window$"] $ws7
+# visual studio code oss
+assign [class="^code-oss$" window_role="^browser-window$"] $ws7
 # qalc
 for_window [window_role="calculator"] floating enable
 # gcolor2
