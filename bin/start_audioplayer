@@ -13,5 +13,19 @@ fi
 # start player if not started
 mpc -q 2>/dev/null || mpd $HOME/dev/i3wmonarch/.mpd/mpd.conf
 
-#i3-msg 'workspace 6'
-exec xfce4-terminal -e 'screen  -x -R audioplayer -m ncmpcpp' --role termaudioplayer
+get_con_id() {
+    i3-msg -t get_tree | jq '..|.?|select(.nodes)|select(.window_properties.window_role)|select(.window_properties.window_role=="termaudioplayer")|.id'|head -n1
+}
+# start screen in terminal window or in current shell
+if [ ! -z "$DISPLAY" ]; then
+    # try to find existing player window
+    if [ -z "$(get_con_id)" ]; then
+        # create new player window
+        exec xfce4-terminal -e 'screen  -x -R audioplayer -m ncmpcpp' --role termaudioplayer
+    fi
+    # focus the player window
+    i3-msg "[con_id=\"$(get_con_id)\"] focus"
+else
+    screen  -x -R audioplayer -m ncmpcpp
+fi
+
