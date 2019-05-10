@@ -3,8 +3,6 @@
 
 keepmusic=${1:-"0"}
 
-local icon tmpbg playerlaststate
-
 # take screenshot and use it as background
 icon="$HOME/.xlock/icon.png"
 tmpbg='/tmp/screen.png'
@@ -27,11 +25,38 @@ killall i3blocks
 # turn off monitor(s)
 sleep 1; xset dpms force off
 
+lock_mac() {
+ssh my.mac.lan << EOF 
+        osascript -e 'tell application "Finder" to sleep'
+EOF
+}
+
+unlock_mac() {
+# ensure mac is locked
+lock_mac
+sleep 1
+ssh my.mac.lan << EOF &
+    set -e
+    caffeinate -u -t 1
+    osascript -e 'tell application "system events" to keystroke "$(gpg --decrypt $HOME/.ssh/secrets/macpass.gpg 2>/dev/null)"'
+    osascript -e 'tell application "system events" to keystroke return'
+    /Users/iliyan/dev/workpc_tmux.sh
+EOF
+}
+
+# lock macbook
+[ "$HOSTNAME" == "iliyan-arch-work-no" ] && { lock_mac;tmux kill-session -t monitorctopi; }
+
 # lock the screen
 i3lock -i "$tmpbg" -n
 
 # restart i3
 i3-msg restart
+
+# unlock macbook
+if [ "$HOSTNAME" == "iliyan-arch-work-no" ]; then 
+    unlock_mac &
+fi
 
 # start playing again
 if [ "$playerlaststate" = "" ]; then

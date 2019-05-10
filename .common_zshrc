@@ -3,7 +3,6 @@ export ZSH_CUSTOM=$HOME/dev/i3wmonarch/oh-my-zsh/custom
 ZSH_THEME="agnoster-light"
 
 plugins=()
-
 export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 fpath=($HOME/dev/i3wmonarch/.zsh-completions $fpath)
 DISABLE_AUTO_UPDATE="true"
@@ -32,4 +31,4 @@ fi
 alias gl='git log --stat'
 alias glp='git log -p'
 alias snmap='nmap -T5 -sP'
-alias node-kill='docker container rm -f $(docker container ps -a -q --filter ancestor=node:latest --format="{{.ID}}")'
+alias docker-prune="docker system prune && docker volume prune"

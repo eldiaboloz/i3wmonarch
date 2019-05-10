@@ -40,3 +40,9 @@ alias stod="stod(){date '+%Y-%m-%d %H:%M:%S' -d \"@\${1}\"; unset -f stod;};stod
 if [ -f "$HOME/dev/i3wmonarch/.profile" ]; then
     source "$HOME/dev/i3wmonarch/.profile"
 fi
+
+# setup go ...
+GOCACHE="$HOME/.cache/go-build"
+GOPATH="$HOME/go"
+PATH="$GOPATH/bin:$PATH" 
+

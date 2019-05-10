@@ -5,11 +5,11 @@
 [[ "$(basename "$0")" == *_favourite* ]] && wsong="playlist Favorites" || wsong="listall"
 
 # choose song from whole specifed location
-filename=$(mpc -f '(%time%) %file%' $wsong | fzf --reverse --border --preview="$HOME/bin/get_song_info {}" | cut -d ' ' -f2-)
-[ -z "$filename" ] && exit 1
+songs=$(mpc -f '(%time%) %file%' $wsong | fzf --multi --reverse --border --preview="$HOME/bin/get_song_info {}" | cut -d ' ' -f2-)
+[ -z "$songs" ] && exit 1
 
 # add the song to the current playlist
-mpc insert "$filename"
+echo "$songs" | xargs -d '\n' -I{} mpc insert "{}"
 
 # if we only want to queue next song
 [[ "$(basename "$0")" == *_queue ]] && exit 0

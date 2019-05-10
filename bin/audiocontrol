@@ -1,13 +1,17 @@
 #!/bin/bash
+
 case $1 in
 inc)
-pactl set-sink-volume @DEFAULT_SINK@ +5%
+    # max volume
+    [ ! -z "$2" ] && [ "$(ponymix get-volume)" -ge 50 ] && exit
+    pactl set-sink-volume @DEFAULT_SINK@ +5%
 ;;
 dec)
-pactl set-sink-volume @DEFAULT_SINK@ -5%
+    [ ! -z "$2" ] && [ "$(ponymix get-volume)" -le 20 ] && exit
+    pactl set-sink-volume @DEFAULT_SINK@ -5%
 ;;
 mute)
-pactl set-sink-mute @DEFAULT_SINK@ toggle
+    pactl set-sink-mute @DEFAULT_SINK@ toggle
 ;;
 esac
 sleep 0.1
