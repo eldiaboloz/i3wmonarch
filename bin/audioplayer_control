@@ -8,6 +8,8 @@ case $1 in
 "next") mpc next;;
 "seeki") mpc seek +10;;
 "seekd") mpc seek -10;;
+"voli") mpc volume +10;;
+"vold") mpc volume -10;;
 "seeki60") mpc seek +60;;
 "seekd60") mpc seek -60;;
 esac
