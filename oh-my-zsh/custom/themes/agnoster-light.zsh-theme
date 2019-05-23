@@ -86,7 +86,7 @@ prompt_context() {
 
 # Git: branch/detached head, dirty status
 prompt_git() {
-
+  command -v git  > /dev/null 2>&1 || return
   local PL_BRANCH_CHAR
   () {
     local LC_ALL="" LC_CTYPE="en_US.UTF-8"
@@ -128,6 +128,7 @@ prompt_git() {
 }
 
 prompt_hg() {
+  command -v hq  > /dev/null 2>&1 || return
   local rev status
   if $(hg id >/dev/null 2>&1); then
     if $(hg prompt >/dev/null 2>&1); then

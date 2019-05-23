@@ -1,5 +1,7 @@
 #!/bin/bash
-mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | nc localhost 6600)
+# temp fix for stuck ncat
+pkill -f '^ncat -n -w 1 127.0.0.1 6600$'
+mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | ncat -n -w 1 127.0.0.1 6600)
 if [[ $? != 0 ]]; then
     exit
 fi
@@ -29,10 +31,10 @@ echo -n "$shortst"
 songtotal=$(echo "$mpcdata" | grep "duration:" | head -n 1 | cut -d ' ' -f2- | cut -d '.' -f1)
 songcurrent=$(echo "$mpcdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
 
-if [ -z "$songtotal" ]; then
-    cursong=$(echo "$mpcdata" | grep "Title:" | cut -d ' ' -f2-)
-else
-    cursong=$(echo "$mpcdata" | grep "file:" | cut -d ' ' -f2-)
+cursong="$(echo "$mpcdata" | grep -E "^Artist:" | cut -d ' ' -f2- | tr -d '\n';echo -n " - "; echo "$mpcdata" | grep -E "^Title:" | cut -d ' ' -f2- | tr -d '\n')"
+[[ "$cursong" == " - " ]] && cursong=$(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2-)
+
+if [ ! -z "$songtotal" ]; then
     songtimes=$(printf '%02d:%02d / %02d:%02d' $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60)))
 fi
 
