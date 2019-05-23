@@ -14,7 +14,7 @@ case $BLOCK_BUTTON in
     5) ~/dev/i3wmonarch/bin/audioplayer_control seekd 2>/dev/null 1>&2;;
 esac
 
-curmode=$(echo "$mpcdata" | grep "state:" | cut -d ' ' -f2-) 
+curmode=$(echo "$mpcdata" | grep -E "^state:" | cut -d ' ' -f2-) 
 shortst=""
 case $curmode in
     stop)
@@ -28,11 +28,15 @@ case $curmode in
         ;;
 esac
 echo -n "$shortst"
-songtotal=$(echo "$mpcdata" | grep "duration:" | head -n 1 | cut -d ' ' -f2- | cut -d '.' -f1)
-songcurrent=$(echo "$mpcdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
+songtotal=$(echo "$mpcdata" | grep -E "^duration:" | head -n 1 | cut -d ' ' -f2- | cut -d '.' -f1)
+songcurrent=$(echo "$mpcdata" | grep -E "^elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
 
-cursong="$(echo "$mpcdata" | grep -E "^Artist:" | cut -d ' ' -f2- | tr -d '\n';echo -n " - "; echo "$mpcdata" | grep -E "^Title:" | cut -d ' ' -f2- | tr -d '\n')"
-[[ "$cursong" == " - " ]] && cursong=$(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2-)
+cursong="$(echo "$mpcdata" | grep -E "^Artist:" | cut -d ' ' -f2- | tr -d '\n')";
+cursong="${cursong} - $(echo "$mpcdata" | grep -E "^Title:" | cut -d ' ' -f2- | tr -d '\n')";
+cursong="${cursong} ( $(echo "$mpcdata" | grep -E "^Album:" | cut -d ' ' -f2- | tr -d '\n')";
+cursong="${cursong} | $(echo "$mpcdata" | grep -E "^Date:" | cut -d ' ' -f2- | tr -d '\n') )";
+
+[[ "$cursong" == " -  (  |  )" ]] && cursong=$(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2-)
 
 if [ ! -z "$songtotal" ]; then
     songtimes=$(printf '%02d:%02d / %02d:%02d' $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60)))
