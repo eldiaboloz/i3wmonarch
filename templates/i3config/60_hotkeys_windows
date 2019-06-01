@@ -1,0 +1,43 @@
+# move window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# modify layout
+bindsym $mod+v split v
+bindsym $mod+h split h
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+a focus parent
+
+# modify window property
+bindsym $mod+Shift+w sticky toggle 
+bindsym $mod+Mod1+space focus mode_toggle
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+f fullscreen toggle
+
+bindsym --release $mod+Shift+Control+Menu exec --no-startup-id "fix_window_mpv"
+
+# focus window
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+	bindsym Left resize shrink width 10 px or 10 ppt
+	bindsym Down resize grow height 10 px or 10 ppt
+	bindsym Up resize shrink height 10 px or 10 ppt
+	bindsym Right resize grow width 10 px or 10 ppt
+
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym $mod+m bar mode invisible
+bindsym $mod+Shift+m bar mode dock

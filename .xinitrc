@@ -34,8 +34,8 @@ fi
 # init all displays
 xrandr --auto
 # load setup script when starting X server based on hostname
-if [ -f "$HOME/dev/i3wmonarch/.hosts/$(hostname).once" ]; then
-    source "$HOME/dev/i3wmonarch/.hosts/$(hostname).once"
+if [ -f "$HOME/dev/i3wmonarch/.hosts/$(hostname)/xinit" ]; then
+    source "$HOME/dev/i3wmonarch/.hosts/$(hostname)/xinit"
 fi
 
 # disable beep
@@ -71,8 +71,10 @@ parcellite &
 # bluetooth applet
 blueman-applet 1>/dev/null 2>&1 &
 
-I3CONFIGNAME=${I3CONFIGNAME:-"config"}
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
-exec i3 --config $HOME/.config/i3/${I3CONFIGNAME}
+
+$HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.sh
+
+exec i3 --config $HOME/.config/i3/config

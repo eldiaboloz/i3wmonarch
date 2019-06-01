@@ -1,0 +1,31 @@
+bindsym $mod+Menu exec --no-startup-id "screenshot"
+bindsym --release $mod+Shift+Menu exec --no-startup-id "screenshot 1"
+bindsym --release $mod+c exec --no-startup-id 'xdotool_paste_chromium'
+
+bindsym $mod+Escape exec --no-startup-id toggle_xmodmap
+bindsym $mod+grave exec --no-startup-id toggle_xmodmap
+bindsym $mod+F10 exec --no-startup-id toggle_xmodmap_vi
+
+bindsym $mod+b exec --no-startup-id pkill notify-osd
+
+bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
+
+# open normal term
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
+
+# open floating term
+bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --role="floatme"
+
+bindsym Mod1+Control+L exec --no-startup-id monitors_off_lock
+bindsym Mod1+Control+Shift+L exec --no-startup-id monitors_off_lock 1
+
+bindsym $mod+Shift+q kill
+bindsym $mod+d exec --no-startup-id rofi -show run 
+bindsym $mod+Shift+d exec --no-startup-id rofi -show window
+bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
+
+bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/git_pull_svn_rebase_work_float.sh" --role="floatme"
+bindsym $mod+Mod1+L exec --no-startup-id xfce4-terminal -e "gitcommitpush 1" --role="floatme"
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"

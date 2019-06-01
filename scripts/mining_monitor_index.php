@@ -1,1 +1,0 @@
-mining/monitor_index.php

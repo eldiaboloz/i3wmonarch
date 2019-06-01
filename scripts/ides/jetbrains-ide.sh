@@ -49,7 +49,8 @@ case "$jname" in
         jexec=datagrip
     ;;
     *)
-        echo "Unknown IDE!" 1>&2
+        chooseide="$(find "$(dirname $0)" -type l | grep -v "jetbrains-de" | fzf)"
+        [ ! -z "$chooseide" ] && exec "$chooseide"
         exit 1
     ;;
 esac

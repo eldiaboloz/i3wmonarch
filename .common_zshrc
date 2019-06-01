@@ -3,7 +3,6 @@ export ZSH_CUSTOM=$HOME/dev/i3wmonarch/oh-my-zsh/custom
 ZSH_THEME="agnoster-light"
 
 plugins=()
-export PATH="/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
 fpath=($HOME/dev/i3wmonarch/.zsh-completions $fpath)
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh

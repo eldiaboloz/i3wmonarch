@@ -1,2 +1,0 @@
-#!/bin/bash
-WINEPREFIX=/work/navicat WINEARCH=win32 wine /work/navicat/drive_c/Program\ Files/PremiumSoft/Navicat\ Premium/navicat.exe

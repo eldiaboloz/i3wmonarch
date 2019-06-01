@@ -1,9 +1,0 @@
-#!/bin/bash
-
-mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | nc localhost 6600)
-if [[ $? != 0 ]]; then
-    exit
-fi
-
-echo LAST_SONG_SEEK=$(echo "$mpcdata" | grep "^elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1) > $HOME/dev/i3wmonarch/temp/mpc_last_song
-echo LAST_SONG_POS=$(echo "$mpcdata" | grep "^Id:" | cut -d ' ' -f2- | cut -d '.' -f1) >> $HOME/dev/i3wmonarch/temp/mpc_last_song

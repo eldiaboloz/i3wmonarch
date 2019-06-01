@@ -16,11 +16,8 @@ dirs=(\
 
 links=(\
     "/" "$HOME/dev/i3wmonarch" \
-    "/bin" "$HOME/bin" \
     "/.Xmodmap" "$HOME/.Xmodmap" \
     "/.XmodmapFnEscape" "$HOME/.XmodmapFnEscape" \
-    "/i3config" "$HOME/.config/i3/config" \
-    "/i3blocks" "$HOME/.i3blocks" \
     "/.vimrc" "$HOME/.vimrc" \
     "/.xinitrc" "$HOME/.xinitrc" \
     "/.xfce4_terminalrc" "$HOME/.config/xfce4/terminal/terminalrc" \

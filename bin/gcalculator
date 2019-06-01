@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
-exec xfce4-terminal -e qalc --role="calculator"
+
+if [ ! -z "$DISPLAY" ]; then
+    exec xfce4-terminal -e qalc --role="calculator"
+else
+    exec qalc
+fi
