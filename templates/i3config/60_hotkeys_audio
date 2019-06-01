@@ -1,54 +1,54 @@
-bindsym XF86AudioRaiseVolume exec --no-startup-id audiocontrol inc 1
-bindsym XF86AudioLowerVolume exec --no-startup-id audiocontrol dec 1
-bindsym XF86AudioMute exec --no-startup-id audiocontrol mute
+bindsym XF86AudioRaiseVolume exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol inc 1
+bindsym XF86AudioLowerVolume exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol dec 1
+bindsym XF86AudioMute exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol mute
 bindsym Control+XF86AudioPlay exec --no-startup-id youtube_currentsong
 
-bindsym Mod1+$mod+bracketright exec --no-startup-id audiocontrol inc
-bindsym Mod1+$mod+bracketleft exec --no-startup-id audiocontrol dec
+bindsym Mod1+$mod+bracketright exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol inc
+bindsym Mod1+$mod+bracketleft exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol dec
 
-bindsym Mod5+$mod+bracketright exec --no-startup-id audiocontrol inc
-bindsym Mod5+$mod+bracketleft exec --no-startup-id audiocontrol dec
+bindsym Mod5+$mod+bracketright exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol inc
+bindsym Mod5+$mod+bracketleft exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audiocontrol dec
 
 # audioplayer controls
-bindsym XF86AudioPlay exec --no-startup-id audioplayer_control toggle
-bindsym XF86AudioPause exec --no-startup-id audioplayer_control pause
-bindsym XF86AudioNext exec --no-startup-id audioplayer_control next
-bindsym XF86AudioPrev exec --no-startup-id audioplayer_control prev
-bindsym XF86AudioStop exec --no-startup-id audioplayer_control stop
+bindsym XF86AudioPlay exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control toggle
+bindsym XF86AudioPause exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control pause
+bindsym XF86AudioNext exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control next
+bindsym XF86AudioPrev exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control prev
+bindsym XF86AudioStop exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control stop
 
 # toggle pause
-bindsym $mod+p exec --no-startup-id audioplayer_control toggle
+bindsym $mod+p exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control toggle
 # prev/next
-bindsym $mod+bracketleft exec --no-startup-id audioplayer_control prev
-bindsym $mod+bracketright exec --no-startup-id audioplayer_control next
+bindsym $mod+bracketleft exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control prev
+bindsym $mod+bracketright exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control next
 # seek -/+
-bindsym $mod+Shift+bracketleft exec --no-startup-id audioplayer_control seekd
-bindsym $mod+Shift+bracketright exec --no-startup-id audioplayer_control seeki
+bindsym $mod+Shift+bracketleft exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control seekd
+bindsym $mod+Shift+bracketright exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control seeki
 
-bindsym Shift+XF86AudioPrev exec --no-startup-id audioplayer_control seekd
-bindsym Shift+XF86AudioNext exec --no-startup-id audioplayer_control seeki
+bindsym Shift+XF86AudioPrev exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control seekd
+bindsym Shift+XF86AudioNext exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control seeki
 
-bindsym $mod+Control+Shift+bracketleft exec --no-startup-id audioplayer_control seekd60
-bindsym $mod+Control+Shift+bracketright exec --no-startup-id audioplayer_control seeki60
+bindsym $mod+Control+Shift+bracketleft exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control seekd60
+bindsym $mod+Control+Shift+bracketright exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control seeki60
 
 # control audio player volume
-bindsym Control+Mod1+$mod+bracketright exec --no-startup-id audioplayer_control voli
-bindsym Control+Mod1+$mod+bracketleft exec --no-startup-id audioplayer_control vold
+bindsym Control+Mod1+$mod+bracketright exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control voli
+bindsym Control+Mod1+$mod+bracketleft exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_control vold
 
 # choose from library
-bindsym $mod+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song --role="floatme"
+bindsym $mod+o exec --no-startup-id xfce4-terminal -e $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_choose_song --role="floatme"
 # choose from favourites
-bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite --role="floatme"
+bindsym $mod+Shift+o exec --no-startup-id xfce4-terminal -e $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_choose_song_favourite --role="floatme"
 # queue from library
-bindsym $mod+Control+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_queue --role="floatme"
+bindsym $mod+Control+o exec --no-startup-id xfce4-terminal -e $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_choose_song_queue --role="floatme"
 # queue from favourites
-bindsym $mod+Control+Shift+o exec --no-startup-id xfce4-terminal -e audioplayer_choose_song_favourite_queue --role="floatme"
+bindsym $mod+Control+Shift+o exec --no-startup-id xfce4-terminal -e $HOME/dev/i3wmonarch/scripts/multimedia/audioplayer_choose_song_favourite_queue --role="floatme"
 # add current song to favourties
-bindsym $mod+Shift+f exec --no-startup-id add_current_song_to_favourtes
+bindsym $mod+Shift+f exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/add_current_song_to_favourtes
 
 # try to open current song in youtube
-bindsym $mod+Shift+y exec --no-startup-id youtube_currentsong
+bindsym $mod+Shift+y exec --no-startup-id $HOME/dev/i3wmonarch/scripts/multimedia/youtube_currentsong
 
 #start audioplayer
-bindsym $mod+Shift+p exec start_audioplayer
-bindsym XF86Tools exec start_audioplayer
+bindsym $mod+Shift+p exec $HOME/dev/i3wmonarch/scripts/multimedia/start_audioplayer
+bindsym XF86Tools exec $HOME/dev/i3wmonarch/scripts/multimedia/start_audioplayer
