@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+set -e
+
+chromewid="$(i3-msg -t get_tree | jq '..|.?|select(.nodes)|select(.window_properties.class)|select(.window_properties.class=="Chromium")|select(.window_properties.window_role=="browser").id' | head -n 1)"
+
+[ -z "$chromewid" ] && exit 1
+
+i3-msg "[con_id=\"${chromewid}\"] focus"
+
+xdotool type --clearmodifiers "$(xclip -out -selection clipboard)"

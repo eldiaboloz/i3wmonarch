@@ -12,7 +12,7 @@ fi
 PATH="$HOME/dev/i3wmonarch/bin:/work/dev/bin:$HOME/bin:$PATH"
 
 if [ ! -z "$DISPLAY" ]; then
-    PATH="$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$PATH"
+    PATH="$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$HOME/.local/bin:$PATH"
 fi
 
 # load host specific init script

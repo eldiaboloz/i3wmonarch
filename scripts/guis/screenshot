@@ -1,12 +1,36 @@
 #!/bin/bash
-# include nanosecond in filename
-filename=$(date +%Y_%m_%d_%H_%M_%S_%N)
-if [[ "$#" -eq 0 ]]; then
-	scrot ~/Pictures/${filename}.png
+
+set -e
+
+# check for tools
+command -v scrot > /dev/null 2>&1 || { echo "need scrot!" 1>&2; exit 1; }
+command -v maim > /dev/null 2>&1 || { echo "need maim!" 1>&2; exit 1; }
+
+# @TODO: maybe use $XDG_CONFIG_HOME
+[ -f "$(dirname "$0")/.screenshot" ] && source "$(dirname "$0")/.screenshot"
+
+# target directory
+TARGET_DIR=${TARGET_DIR:-$HOME/Pictures/Screenshots}
+
+# filename generation command - not the safest way
+filename=$(${NAME_CMD:-date +%Y_%m_%d_%H_%M_%S_%N})
+
+if [ -z "$1" ]; then
+	scrot "${TARGET_DIR}/${filename}.png"
 	mode="full"
 else
-	maim -s -p 0 -c 0.96,0.5,0.09 ~/Pictures/${filename}.png
+	maim -s -p 0 -c 0.96,0.5,0.09 "${TARGET_DIR}/${filename}.png"
 	mode="partial"
 fi
 
-notify-send "Screenshot $mode" "~/Pictures/${filename}.png"
+if [ ! -z "$2" ]; then
+    if [ ! -z "$UPLOAD_CMD" ]; then
+        "$UPLOAD_CMD" "${TARGET_DIR}/${filename}.png"
+        if [ ! -z "$UPLOAD_URL" ]; then
+            echo "$UPLOAD_URL/${filename}.png" | xclip -in -selection clipboard
+        fi
+    fi
+fi
+
+NOTIFY=${SS_NOTIFY:-yes}
+[[ "$NOTIFY" == "yes" ]] && notify-send "Screenshot $mode" "${TARGET_DIR}/${filename}.png"
