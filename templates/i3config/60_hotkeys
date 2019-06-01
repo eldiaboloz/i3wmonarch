@@ -24,7 +24,7 @@ bindsym $mod+d exec --no-startup-id rofi -show run
 bindsym $mod+Shift+d exec --no-startup-id rofi -show window
 bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
 
-bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/git_pull_svn_rebase_work_float.sh" --role="floatme"
+bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/scm/git_pull_svn_rebase_work_float.sh" --role="floatme"
 bindsym $mod+Mod1+L exec --no-startup-id xfce4-terminal -e "gitcommitpush 1" --role="floatme"
 
 bindsym $mod+Shift+r restart
