@@ -18,7 +18,7 @@ bindsym $mod+Mod1+space focus mode_toggle
 bindsym $mod+Shift+space floating toggle
 bindsym $mod+f fullscreen toggle
 
-bindsym --release $mod+Shift+Control+Menu exec --no-startup-id "fix_window_mpv"
+bindsym --release $mod+Shift+Control+Menu exec --no-startup-id "$HOME/dev/i3wmonarch/scripts/multimedia/fix_window_mpv"
 
 # focus window
 bindsym $mod+Left focus left

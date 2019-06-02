@@ -1,10 +1,10 @@
-bindsym $mod+Menu exec --no-startup-id "screenshot"
-bindsym --release $mod+Shift+Menu exec --no-startup-id "screenshot 1"
-bindsym --release $mod+c exec --no-startup-id 'xdotool_paste_chromium'
+bindsym $mod+Menu exec --no-startup-id "$HOME/dev/i3wmonarch/scripts/guis/screenshot"
+bindsym --release $mod+Shift+Menu exec --no-startup-id "$HOME/dev/i3wmonarch/scripts/guis/screenshot 1"
+bindsym --release $mod+c exec --no-startup-id '$HOME/dev/i3wmonarch/scripts/i3wm/xdotool_paste_chromium'
 
-bindsym $mod+Escape exec --no-startup-id toggle_xmodmap
-bindsym $mod+grave exec --no-startup-id toggle_xmodmap
-bindsym $mod+F10 exec --no-startup-id toggle_xmodmap_vi
+bindsym $mod+Escape exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/toggle_xmodmap
+bindsym $mod+grave exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/toggle_xmodmap
+bindsym $mod+F10 exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/toggle_xmodmap_vi
 
 bindsym $mod+b exec --no-startup-id pkill notify-osd
 
@@ -16,8 +16,8 @@ bindsym $mod+Return exec --no-startup-id xfce4-terminal
 # open floating term
 bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --role="floatme"
 
-bindsym Mod1+Control+L exec --no-startup-id monitors_off_lock
-bindsym Mod1+Control+Shift+L exec --no-startup-id monitors_off_lock 1
+bindsym Mod1+Control+L exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/monitors_off_lock
+bindsym Mod1+Control+Shift+L exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/monitors_off_lock 1
 
 bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run 
@@ -29,3 +29,7 @@ bindsym $mod+Mod1+L exec --no-startup-id xfce4-terminal -e "gitcommitpush 1" --r
 
 bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/set_laptop_brightness "100"
+bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/set_laptop_brightness "-100"
+

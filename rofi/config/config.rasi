@@ -3,7 +3,8 @@ configuration {
 	width: 800;
 	lines: 10;
 	columns: 1;
-	font: "DejaVu Sans Mono for Powerline 12";
+	font: "mono 12";
+    font: "DejaVu Sans Mono for Powerline 12";
 /*	bw: 1; */
 /*	location: 0; */
 /*	padding: 5;*/

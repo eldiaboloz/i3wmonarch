@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+value=${1:-"-100"}
+devname=${2:-"intel_backlight"}
+current="$(cat /sys/class/backlight/$devname/brightness)"
+maxval="$(cat /sys/class/backlight/$devname/max_brightness)"
+minval="100"
+newval=$(bc <<< "$current+$value")
+(( "$newval" > "$maxval" )) && newval="$maxval"
+(( "$newval" < "$minval" )) && newval="$minval"
+
+echo "$newval" > "/sys/class/backlight/$devname/brightness"
+echo "newval is : $newval"

@@ -3,7 +3,7 @@ LANG=bg_BG.UTF-8
 thestr=" `date '+ %a %d %b %Y %H:%M:%S'`"
 full="$thestr"
 short="$thestr"
-color=""
+color="#FFFFFF"
 status=0
 
 case $BLOCK_BUTTON in
