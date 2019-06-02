@@ -26,5 +26,5 @@ done
 
 sed -i "s#{{%leftout%}}#${I3WM_LEFT_OUT}#g" "$HOME/.config/i3/config"
 sed -i "s#{{%rightout%}}#${I3WM_RIGHT_OUT}#g" "$HOME/.config/i3/config"
-sed -i "s#{{%rightout%}}#${I3WM_I3BLOCKS_SINGLE}#g" "$HOME/.config/i3/config"
+sed -i "s#{{%single_top_bar%}}#${I3WM_I3BLOCKS_SINGLE}#g" "$HOME/.config/i3/config"
 
