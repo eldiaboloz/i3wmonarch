@@ -1,5 +1,5 @@
 #!/bin/bash
-path="$HOME/dev/i3wmonarch/scripts/start_programs_at_$(hostname).sh"
+path="$HOME/dev/i3wmonarch/scripts/i3wm/start_programs_at_$(hostname).sh"
 if [ -f "$path" ]; then
 	/bin/bash "$path"
 fi
