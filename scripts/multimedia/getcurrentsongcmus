@@ -5,11 +5,11 @@ if [[ $? != 0 ]]; then
 fi
 case $BLOCK_BUTTON in
     # 1-2-3 left-middle-right mouse button
-    1) ~/dev/i3wmonarch/bin/audioplayer_control pause;;
-    2) ~/dev/i3wmonarch/bin/youtube_currentsong > /dev/null;;
-    3) ~/dev/i3wmonarch/bin/audioplayer_control next;;
-    4) ~/dev/i3wmonarch/bin/audioplayer_control seeki;;
-    5) ~/dev/i3wmonarch/bin/audioplayer_control seekd;;
+    1) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control pause;;
+    2) ~/dev/i3wmonarch/scripts/multimedia/youtube_currentsong > /dev/null;;
+    3) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control next;;
+    4) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control seeki;;
+    5) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control seekd;;
 esac
 
 curmode=$(echo "$cmusdata" | sed -n 1p | cut -d ' ' -f2-)

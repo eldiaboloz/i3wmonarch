@@ -1,3 +1,4 @@
+# vim: set filetype=sh
 export ZSH=$HOME/.oh-my-zsh
 export ZSH_CUSTOM=$HOME/dev/i3wmonarch/oh-my-zsh/custom
 ZSH_THEME="agnoster-light"
@@ -6,28 +7,42 @@ plugins=()
 fpath=($HOME/dev/i3wmonarch/.zsh-completions $fpath)
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
-
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.profile
-
-alias fix_kbd='setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll";xmodmap ~/.Xmodmap'
-
-alias humble='cat /storage/Dropbox/humble_bundle_extra_keys.txt | sed -n "1~3p"'
-alias humble_e='$EDITOR /storage/Dropbox/humble_bundle_extra_keys.txt'
-alias chkp='namei -om $(pwd)'
-#alias rainbowstream='docker run -it --rm -v /etc/localtime:/etc/localtime -v $HOME/.rainbowstream/:/root jess/rainbowstream'
-alias gpgc='gpg --cipher-algo AES256 --armor -c'
-alias gpgd='gpg --decrypt'
-alias ctop='([ -z "$(docker container ps -a -q -f "name=ctop\$")" ] && docker container run -it --name ctop -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest ) || (docker container start ctop && docker container attach ctop)'
-alias ctopi='([ -z "$(docker container ps -a -q -f "name=ctopi\$")" ] && docker container run -it --name ctopi -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest -i ) || (docker container start ctopi && docker container attach ctopi)'
-alias ryzen='vim /storage/Dropbox/ryzen.txt'
-alias dce='docker container exec -i -t'
-alias dcr='docker container run -i -t'
-alias cdi3='cd $HOME/dev/i3wmonarch'
 if [ -f "$HOME/dev/i3wmonarch/.zshrc" ]; then
     source "$HOME/dev/i3wmonarch/.zshrc"
 fi
+
+alias fix_kbd='setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll";xmodmap ~/.Xmodmap'
+alias cdi3='cd $HOME/dev/i3wmonarch'
+alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
+
+alias humble='cat /storage/Dropbox/humble_bundle_extra_keys.txt | sed -n "1~3p"'
+alias humble_e='$EDITOR /storage/Dropbox/humble_bundle_extra_keys.txt'
+
+alias gpgc='gpg --cipher-algo AES256 --armor -c'
+alias gpgd='gpg --decrypt'
+
+alias ctop='([ -z "$(docker container ps -a -q -f "name=ctop\$")" ] && docker container run -it --name ctop -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest ) || (docker container start ctop && docker container attach ctop)'
+alias ctopi='([ -z "$(docker container ps -a -q -f "name=ctopi\$")" ] && docker container run -it --name ctopi -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest -i ) || (docker container start ctopi && docker container attach ctopi)'
+alias dce='docker container exec -i -t'
+alias dcr='docker container run -i -t'
+
+
 alias gl='git log --stat'
 alias glp='git log -p'
+
 alias snmap='nmap -T5 -sP'
-alias docker-prune="docker system prune && docker volume prune"
+
+alias lsal="ls --color=never -al"
+
+alias prjup="$HOME/dev/i3wmonarch/scripts/scm/git_push_svn_rebase_work.sh"
+alias gitdc="git diff --cached"
+alias gitd="git diff"
+alias gitco="git checkout"
+
+alias stod="stod(){date '+%Y-%m-%d %H:%M:%S' -d \"@\${1}\"; unset -f stod;};stod"
+
+alias upgrade-drone='sh -c "set -e;export GO111MODULE=on; go install -v github.com/drone/drone/cmd/drone-agent; go install -v github.com/drone/drone/cmd/drone-controller; go install -v github.com/drone/drone/cmd/drone-server;export GO111MODULE=off; go install -v ~/go/src/github.com/drone/drone-cli/drone"'
+
+alias clean-docker="docker system prune && docker volume prune"
+alias clean-datagrip='find $HOME/.DataGrip* -type f -path "*/config/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'

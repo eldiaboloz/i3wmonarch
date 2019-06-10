@@ -13,8 +13,8 @@ convert "$tmpbg" "$icon" -geometry +2880+540 -composite -matte "$tmpbg"
 
 # pause audioplayer and save state
 if [ "$keepmusic" -eq 0 ]; then
-    playerlaststate="$(getcurrentsongmpc | sed -n 1p | cut -d ' ' -f1)"
-    audioplayer_control pause
+    playerlaststate="$(~/dev/i3wmonarch/scripts/multimedia/getcurrentsongmpc | sed -n 1p | cut -d ' ' -f1)"
+    ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control pause
 fi
 # reset keyboard layout
 ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set 0
@@ -60,6 +60,6 @@ fi
 
 # start playing again
 if [ "$playerlaststate" = "" ]; then
-    audioplayer_control play
+    ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control play
 fi
 

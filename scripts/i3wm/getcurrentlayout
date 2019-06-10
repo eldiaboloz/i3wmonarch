@@ -2,7 +2,7 @@
 case $BLOCK_BUTTON in
         # 1-2-3 left-middle-right mouse button
         1) ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set +1;;
-        2) toggle_xmodmap;;
+        2) ~/dev/i3wmonarch/scripts/i3wm/toggle_xmodmap;;
 	3) ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set -1;;
 esac
 current=`xmodmap -pke | grep "keycode   9 = Escape"`

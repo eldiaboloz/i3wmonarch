@@ -7,11 +7,11 @@ if [[ $? != 0 ]]; then
 fi
 case $BLOCK_BUTTON in
     # 1-2-3 left-middle-right mouse button
-    1) ~/dev/i3wmonarch/bin/audioplayer_control toggle 2>/dev/null 1>&2;;
-    2) ~/dev/i3wmonarch/bin/youtube_currentsong 2>/dev/null 1>&2 ;;
-    3) ~/dev/i3wmonarch/bin/audioplayer_control next 2>/dev/null 1>&2;;
-    4) ~/dev/i3wmonarch/bin/audioplayer_control seeki 2>/dev/null 1>&2;;
-    5) ~/dev/i3wmonarch/bin/audioplayer_control seekd 2>/dev/null 1>&2;;
+    1) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control toggle 2>/dev/null 1>&2;;
+    2) ~/dev/i3wmonarch/scripts/multimedia/youtube_currentsong 2>/dev/null 1>&2 ;;
+    3) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control next 2>/dev/null 1>&2;;
+    4) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control seeki 2>/dev/null 1>&2;;
+    5) ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control seekd 2>/dev/null 1>&2;;
 esac
 
 curmode=$(echo "$mpcdata" | grep -E "^state:" | cut -d ' ' -f2-) 

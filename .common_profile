@@ -9,11 +9,7 @@ fi
 
 # PATH setup
 
-PATH="$HOME/dev/i3wmonarch/bin:/work/dev/bin:$HOME/bin:$HOME/.local/bin:$PATH"
-
-if [ ! -z "$DISPLAY" ]; then
-    PATH="$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$PATH"
-fi
+PATH="$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$HOME/dev/i3wmonarch/bin:/work/dev/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 
 # load host specific init script
 if [ -f "$HOME/dev/i3wmonarch/.hosts/$HOST/init" ]; then
@@ -25,18 +21,6 @@ export TERMINAL=xfce4-terminal
 
 # env for php cronjobs
 export APPLICATION_ENV="development"
-
-alias lsal="ls --color=never -al"
-alias greps="pgrep -fa"
-alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-# some alias helpers for work setup git-svn
-alias prjup="$HOME/dev/i3wmonarch/scripts/scm/git_push_svn_rebase_work.sh"
-alias prjsync="$HOME/dev/i3wmonarch/scripts/scm/git_pull_svn_rebase_work.sh"
-alias gitdc="git diff --cached"
-alias gitd="git diff"
-alias gitco="git checkout"
-alias stod="stod(){date '+%Y-%m-%d %H:%M:%S' -d \"@\${1}\"; unset -f stod;};stod"
-
 if [ -f "$HOME/dev/i3wmonarch/.profile" ]; then
     source "$HOME/dev/i3wmonarch/.profile"
 fi
@@ -45,4 +29,3 @@ fi
 GOCACHE="$HOME/.cache/go-build"
 GOPATH="$HOME/go"
 PATH="$GOPATH/bin:$PATH" 
-
