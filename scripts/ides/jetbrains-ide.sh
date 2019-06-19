@@ -49,32 +49,32 @@ case "$jname" in
         jexec=datagrip
     ;;
     *)
-        chooseide="$(find "$(dirname $0)" -type l | grep -v "jetbrains-de" | fzf)"
-        [ ! -z "$chooseide" ] && exec "$chooseide"
-        exit 1
+        chooseide=$(cd "$jfolder";find "." -mindepth 5 -maxdepth 5 -type f -regex '.*/[0-9]+\.[0-9]+\.[0-9]+/bin/.*.sh$' | grep -v 'inspect.sh\|format.sh' | fzf)
+        [ -z "$chooseide" ] && exit 1
+        jshfile="$jfolder/$chooseide"
     ;;
 esac
 
-# force channel to use
-[[ "$jname" == *_ch0* ]] && jch="0"
-[[ "$jname" == *_ch1* ]] && jch="1"
-[[ "$jname" == *_ch2* ]] && jch="2"
+if [ -z "$jshfile" ]; then
+    # force channel to use
+    [[ "$jname" == *_ch0* ]] && jch="0"
+    [[ "$jname" == *_ch1* ]] && jch="1"
+    [[ "$jname" == *_ch2* ]] && jch="2"
+    # folder where IDE is installed
+    jfolder="${jfolder}/ch-${jch}"
 
-# folder where IDE is installed
-jfolder="${jfolder}/ch-${jch}"
+    # check if channel exists
+    [ ! -d "$jfolder" ] && { echo "no such channel!" 1>&2;exit 1;}
 
-# check if channel exists
-[ ! -d "$jfolder" ] && { echo "no such channel!" 1>&2;exit 1;}
+    # by default select latest version from channel
+    [[ "$jname" == *_r ]] && jord="" || jord="-r"
 
-# by default select latest version from channel
-[[ "$jname" == *_r ]] && jord="" || jord="-r"
+    # find the installed version 
+    jver=$(find "${jfolder}" -mindepth 1 -maxdepth 1 -type d | xargs -I{} basename "{}"| grep -v '.plugins' |  sort $jord | sed -n 1p)
 
-# find the installed version 
-jver=$(find "${jfolder}" -mindepth 1 -maxdepth 1 -type d | xargs -I{} basename "{}"| sort $jord | sed -n 1p)
-
-
-# locate IDE sh file first
-jshfile=$(realpath "$jfolder/$jver/bin/$jexec.sh")
+    # locate IDE sh file first
+    jshfile=$(realpath "$jfolder/$jver/bin/$jexec.sh")
+fi
 
 # .sh file was not found
 if [ -z "$jshfile" ]; then
@@ -83,7 +83,7 @@ if [ -z "$jshfile" ]; then
 fi
 
 # vm options file
-vmopts="${jfolder}/${jver}.vmoptions"
+vmopts="$(echo "$jshfile" | rev | cut -d '/' -f3- | rev).vmoptions"
 
 if ! { [ -f "$vmopts" ] \
     && [ "156e11c397ed8b5406dd45861cecadb1a3b29b6d" == "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; }; then
@@ -117,7 +117,7 @@ if [ "$#" -eq 0 ]; then
 else
     sleep 1
 fi
-if [ "$jexec" == "datagrip" ]; then
+if [[ "$jshfile" == "*datagrip.sh*" ]]; then
     i3-msg "workspace 2; layout stacked" >/dev/null 2>&1
 else
     i3-msg "workspace 1; layout stacked" >/dev/null 2>&1

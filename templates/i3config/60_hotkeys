@@ -33,3 +33,4 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym XF86MonBrightnessUp exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/set_laptop_brightness "100"
 bindsym XF86MonBrightnessDown exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/set_laptop_brightness "-100"
 
+bindsym Control+Shift+b --release exec --no-startup-id $HOME/dev/i3wmonarch/scripts/i3wm/sort_clipboard.sh 1

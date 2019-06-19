@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+bindirs="$(echo $PATH | tr ":" "\n" | grep -e "^$HOME/dev/i3wmonarch" -e "^/work/dev/bin\$" | tr '\n' ' ')"
+
+gen_list() {
+    find \
+        $(echo "$bindirs" | xargs -d '\n' -I{} echo "{}" | tr '\n' ' ') \
+        -mindepth 1 \
+        -maxdepth 1 \
+        -type f \
+        -executable \
+        -not \
+        -name "BotFramework-Emulator*"
+}
+if [ "$#" -ge 1 ]; then
+    list="$(gen_list)"
+    for x in "$@"; do
+        if [ ! -f "$x" ]; then
+            found=""
+            x="$(basename "$x")"
+            for y in $bindirs; do
+                if [ -f "$y/$x" ]; then
+                    found="yes"
+                    x="$y/$x"
+                    break
+                fi
+            done
+            [ -z "$found" ] && { echo "#catwh_file:$x is not a regular file! skipping" 1>&2;continue; }
+        fi
+        echo "#catwh_file:$x"
+        cat "$x"
+    done
+else
+    if [[ -t "1" && "$(ps -o stat= -p $$)" == "S+" ]]; then
+        # output selected with fzf to terminal
+        gen_list | fzf --multi --reverse --border | xargs -I{} sh -c "echo '#catwh_file:{}';cat \"{}\""
+    else
+        # output list
+        gen_list | sed -r -e 's#(/.*/)##g'
+        gen_list
+    fi
+fi

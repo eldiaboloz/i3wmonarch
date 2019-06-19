@@ -62,3 +62,5 @@ endif
 
 set undodir=~/.vim/undodir
 set undofile " Maintain undo history between session
+
+autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2

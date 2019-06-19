@@ -1,0 +1,3 @@
+#compdef catwh
+
+_alternative "files:files:($(catwh|cat -))"
