@@ -46,3 +46,6 @@ alias upgrade-drone='sh -c "set -e;export GO111MODULE=on; go install -v github.c
 
 alias clean-docker="docker system prune && docker volume prune"
 alias clean-datagrip='find $HOME/.DataGrip* -type f -path "*/config/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'
+command_not_found_handler() {
+    echo "$1"
+}

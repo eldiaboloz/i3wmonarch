@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+edit_files() {
+    vim $(CATWH_PATH_ONLY=yes catwh "$@")
+}
+
+if [ "$#" -ge 1 ]; then
+    edit_files "$@"
+else
+    filestoedit=$(CATWH_PATH_ONLY=yes catwh "$@" | fzf --multi --reverse --border)
+    [ ! -z "$filestoedit" ] && edit_files $filestoedit
+fi

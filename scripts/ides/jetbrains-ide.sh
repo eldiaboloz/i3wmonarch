@@ -117,7 +117,8 @@ if [ "$#" -eq 0 ]; then
 else
     sleep 1
 fi
-if [[ "$jshfile" == "*datagrip.sh*" ]]; then
+
+if [[ "$jshfile" == *datagrip.sh* ]]; then
     i3-msg "workspace 2; layout stacked" >/dev/null 2>&1
 else
     i3-msg "workspace 1; layout stacked" >/dev/null 2>&1

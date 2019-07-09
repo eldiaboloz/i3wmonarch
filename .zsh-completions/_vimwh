@@ -1,0 +1,3 @@
+#compdef vimwh
+
+_alternative "files:files:($(CATWH_PATH_ONLY=yes catwh|cat -))"

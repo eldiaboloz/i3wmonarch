@@ -12,8 +12,8 @@ gen_list() {
         -not \
         -name "BotFramework-Emulator*"
 }
-if [ "$#" -ge 1 ]; then
-    list="$(gen_list)"
+
+show_list() {
     for x in "$@"; do
         if [ ! -f "$x" ]; then
             found=""
@@ -27,16 +27,27 @@ if [ "$#" -ge 1 ]; then
             done
             [ -z "$found" ] && { echo "#catwh_file:$x is not a regular file! skipping" 1>&2;continue; }
         fi
-        echo "#catwh_file:$x"
-        cat "$x"
+        if [[ "$CATWH_PATH_ONLY" == "yes" ]]; then
+            echo "$x"
+        else
+            echo "#file://$x"
+            cat "$x"
+        fi
     done
+
+}
+if [ "$#" -ge 1 ]; then
+    # do not escape list
+    show_list $@
 else
     if [[ -t "1" && "$(ps -o stat= -p $$)" == "S+" ]]; then
         # output selected with fzf to terminal
-        gen_list | fzf --multi --reverse --border | xargs -I{} sh -c "echo '#catwh_file:{}';cat \"{}\""
+        # do not escape list
+        show_list $(gen_list | fzf --multi --reverse --border)
     else
-        # output list
+        # only filenames
         gen_list | sed -r -e 's#(/.*/)##g'
+        # full path list
         gen_list
     fi
 fi
