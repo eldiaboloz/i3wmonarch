@@ -1,28 +1,28 @@
 #"xbindkeys_show" 
 #  control+shift + q
 #prev
-"handle_mouse_extra.sh 1"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 1"
   m:0x0 + b:8
 #next
-"handle_mouse_extra.sh 2"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 2"
   m:0x0 + b:9
 # prev workspace
-"handle_mouse_extra.sh 3"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 3"
   Mod4 + b:8
 # next workspace
-"handle_mouse_extra.sh 4"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 4"
   Mod4 + b:9
 # move to prev workspace
-"handle_mouse_extra.sh 5"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 5"
   Mod4 + Shift + b:8
 # move to next workspace
-"handle_mouse_extra.sh 6"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 6"
   Mod4 + Shift + b:9
 # horizonatl scroll 
-"handle_mouse_extra.sh 7"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 7"
   m:0x0 + b:6
 # horizontal scroll
-"handle_mouse_extra.sh 8"
+"$HOME/dev/i3wmonarch/scripts/i3wm/handle_mouse_extra.sh 8"
   m:0x0 + b:7
 
 
