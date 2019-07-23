@@ -48,8 +48,12 @@ case "$jname" in
         jfolder="${jfolder}/datagrip"
         jexec=datagrip
     ;;
+    android*|studio*)
+        jfolder="${jfolder}/AndroidStudio"
+        jexec=studio.sh
+    ;;
     *)
-        chooseide=$(cd "$jfolder";find "." -mindepth 5 -maxdepth 5 -type f -regex '.*/[0-9]+\.[0-9]+\.[0-9]+/bin/.*.sh$' | grep -v 'inspect.sh\|format.sh' | fzf)
+        chooseide=$(cd "$jfolder";find "." -mindepth 5 -maxdepth 5 -type f -regex '.*/[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' | grep -v 'inspect.sh\|format.sh' | sort | fzf)
         [ -z "$chooseide" ] && exit 1
         jshfile="$jfolder/$chooseide"
     ;;
