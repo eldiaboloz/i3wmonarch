@@ -5,3 +5,5 @@
 /.profile
 /.local
 /.idea
+/systemd/user/php-tasker-bridge.service
+/systemd/user/default.target.wants
