@@ -49,3 +49,5 @@ alias clean-datagrip='find $HOME/.DataGrip* -type f -path "*/config/consoles/db/
 command_not_found_handler() {
     echo "$1"
 }
+alias systemctl='systemctl --user'
+alias journalctl='journalctl --user'

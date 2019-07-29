@@ -38,6 +38,7 @@ links=(\
     "/github.com/robbyrussell/oh-my-zsh" "$HOME/.oh-my-zsh" \
     "/rofi/config/" "$HOME/.config/rofi" \
     "/rofi/themes/" "$HOME/.local/share/rofi/themes" \
+    "/systemd" "$HOME/.config/systemd" \
 )
 
 dcnt="${#dirs[@]}"

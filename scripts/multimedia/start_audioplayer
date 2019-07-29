@@ -10,8 +10,8 @@ if [ ! -f "$favsfile" ]; then
     ln -s -v "$HOME/Dropbox/mpd/Favorites.m3u" "${favsfile}"
 fi
 
-# start player if not started
-mpc -q 2>/dev/null || mpd $HOME/dev/i3wmonarch/.mpd/mpd.conf
+# start mpd service
+systemctl --user start mpd.service
 
 get_con_id() {
     i3-msg -t get_tree | jq '..|.?|select(.nodes)|select(.window_properties.window_role)|select(.window_properties.window_role=="termaudioplayer")|.id'|head -n1

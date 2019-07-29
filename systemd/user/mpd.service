@@ -1,0 +1,10 @@
+[Unit]
+Description=mpd Service
+
+[Service]
+Restart=on-failure
+ExecStart=sh -c 'exec /usr/bin/mpd --no-daemon $HOME/dev/i3wmonarch/.mpd/mpd.conf'
+RestartSec=10
+
+[Install]
+WantedBy=default.target
