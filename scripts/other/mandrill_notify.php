@@ -76,7 +76,7 @@ function gen_payload()
             "text" => $params['text'],
             "subject" => $params['subject'],
             "from_email" => $params['mandrill_email_from'],
-            "from_name" => 'Mandrill notify - ' . $params['mandrill_email_name'],
+            "from_name" => $params['mandrill_email_name'],
             "to" => $recipients,
             "headers" => [ "Reply-To" => $params['mandrill_email_from'] ],
             "important" => false,
