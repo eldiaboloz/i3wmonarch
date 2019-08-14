@@ -10,5 +10,6 @@
     "php.suggest.basic": false,
     "workbench.startupEditor": "newUntitledFile",
     "files.autoGuessEncoding": false,
-    "explorer.confirmDelete": false
+    "explorer.confirmDelete": false,
+    "editor.renderWhitespace": "all"
 }
