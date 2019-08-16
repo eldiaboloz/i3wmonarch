@@ -5,7 +5,7 @@ dirs=(\
     "$HOME/dev" \
     "$HOME/.config/xfce4/terminal" \
     "$HOME/.config/htop" \
-    "$HOME/.config/Code/User" \
+    "$HOME/.config/Code - OSS/User" \
     "$HOME/.config/i3" \
     "$HOME/.config/parcellite" \
     "$HOME/.config/gsimplecal" \
@@ -25,8 +25,8 @@ links=(\
     "/.gsimplecal_config" "$HOME/.config/gsimplecal/config" \
     "/.xbindkeysrc" "$HOME/.xbindkeysrc" \
     "/.htoprc" "$HOME/.config/htop/htoprc" \
-    "/.vscode.settings.json" "$HOME/.config/Code/User/settings.json" \
-    "/.vscode.keybindings.json" "$HOME/.config/Code/User/keybindings.json" \
+    "/.vscode.settings.json" "$HOME/.config/Code - OSS/User/settings.json" \
+    "/.vscode.keybindings.json" "$HOME/.config/Code - OSS/User/keybindings.json" \
     "/.tmux.conf" "$HOME/.tmux.conf" \
     "/.zlogin" "$HOME/.zlogin" \
     "/.zlogout" "$HOME/.zlogout" \
