@@ -155,7 +155,12 @@ function cloudflare_get_dns_record_id(& $params)
             throw new Exception('DNS record fetch failed!');
         }
         foreach ($data['result'] as $dnsRecord) {
-            if ($dnsRecord['name'] === $params['host'] . '.' . $params['domain']) {
+            if($params['host']==='@'){
+                $target = $params['domain'];
+            }else{
+                $target = $params['host'] . '.' . $params['domain'];
+            }
+            if ($dnsRecord['name'] === $target) {
                 $params['dns_record_id'] = $dnsRecord['id'];
                 break;
             }
