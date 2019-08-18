@@ -20,10 +20,18 @@ if (need_action($params)) {
 }
 exit;
 
+function determine_fqdn($host,$domain){
+    if($host==='@') {
+        $fqdn = $domain;
+    } else {
+        $fqdn = $host . '.' . $domain;
+    }
+    return $fqdn;
+}
 
 function need_action(& $params)
 {
-    $lastIpData = dns_get_record($params['host'] . '.' . $params['domain'] . '.', DNS_A);
+    $lastIpData = dns_get_record(determine_fqdn($params['host'],$params['domain']) . '.', DNS_A);
     $lastIp = $lastIpData[0]['ip'];
     if (!isset($params['current_ip'])) {
         $params['current_ip'] = shell_exec("ip route get 1 | grep -Po '(?<=src )(\d{1,3}.){4}' | tr -d '[:space:]'");
@@ -155,12 +163,7 @@ function cloudflare_get_dns_record_id(& $params)
             throw new Exception('DNS record fetch failed!');
         }
         foreach ($data['result'] as $dnsRecord) {
-            if($params['host']==='@'){
-                $target = $params['domain'];
-            }else{
-                $target = $params['host'] . '.' . $params['domain'];
-            }
-            if ($dnsRecord['name'] === $target) {
+            if ($dnsRecord['name'] === determine_fqdn($params['host'],$params['domain'])) {
                 $params['dns_record_id'] = $dnsRecord['id'];
                 break;
             }
@@ -178,7 +181,7 @@ function cloudflare_update_record_id(& $params)
 {
     $params['payload'] = json_encode([
         'type' => 'A',
-        'name' => $params['host'] . '.' . $params['domain'],
+        'name' => determine_fqdn($params['host'],$params['domain']),
         'content' => $params['current_ip']
     ]);
     cloudflare_get_dns_record_id($params);
