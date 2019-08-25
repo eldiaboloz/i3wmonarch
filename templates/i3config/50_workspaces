@@ -2,8 +2,8 @@
 set $ws1 "1"
 set $ws2 "2"
 set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5 "
+set $ws4 "4🦊"
+set $ws5 "5 🦊"
 set $ws6 "6"
 set $ws7 "7"
 set $ws8 "8"
@@ -34,6 +34,16 @@ assign [class="^discord$"] $ws3
 assign [class="^Thunderbird$"] $ws3
 # viber
 assign [class="^ViberPC$"] $ws3
+# firefox
+assign [class="^firefox$"] $ws4
+# firefox
+assign [class="^firefox-alt$"] $ws4
+# firefox
+assign [class="^firefox-dev$"] $ws4
+# firefox
+assign [class="^firefox-default$"] $ws4
+# firefox
+assign [class="^firefox-main$"] $ws5
 # chromium
 assign [class="^Chromium$"] $ws5
 # audioplayer in terminal

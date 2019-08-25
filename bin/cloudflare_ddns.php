@@ -32,7 +32,7 @@ function determine_fqdn($host,$domain){
 function need_action(& $params)
 {
     $lastIpData = dns_get_record(determine_fqdn($params['host'],$params['domain']) . '.', DNS_A);
-    $lastIp = $lastIpData[0]['ip'];
+    $lastIp = isset($lastIpData[0]['ip'])?$lastIpData[0]['ip']:'';
     if (!isset($params['current_ip'])) {
         $params['current_ip'] = shell_exec("ip route get 1 | grep -Po '(?<=src )(\d{1,3}.){4}' | tr -d '[:space:]'");
     }

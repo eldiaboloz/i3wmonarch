@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ "$(basename "$0")" == *"firefox-"* ]]; then
+  pname=$(basename "$0" | sed -e 's/^firefox-//')
+else
+  pname="default"
+fi
+
+exec firefox -P "${pname}" --class "firefox-${pname}" "$@"
