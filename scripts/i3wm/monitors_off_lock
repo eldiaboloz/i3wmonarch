@@ -6,7 +6,7 @@ keepmusic=${1:-"0"}
 # take screenshot and use it as background
 icon="$HOME/.xlock/icon.png"
 tmpbg='/tmp/screen.png'
-scrot "$tmpbg"
+scrot -o "$tmpbg"
 convert "$tmpbg" -scale 20% -scale 500% "$tmpbg"
 convert "$tmpbg" "$icon" -geometry +960+540 -composite -matte "$tmpbg"
 convert "$tmpbg" "$icon" -geometry +2880+540 -composite -matte "$tmpbg"
@@ -51,7 +51,7 @@ EOF
 i3lock -i "$tmpbg" -n
 
 # restart i3
-i3-msg restart
+#i3-msg restart
 
 # unlock macbook
 if [ "$HOSTNAME" == "iliyan-arch-work-no" ]; then 

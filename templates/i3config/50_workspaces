@@ -24,14 +24,16 @@ set $ws10 "10"
 #
 # DB IDEs on $ws2
 assign [class="^jetbrains-datagrip$"] $ws2
-# JB IDEs 
+# JB IDEs
 assign [class="^jetbrains-(phpstorm|pycharm|goland|webstorm|rider|clion|idea|rubymine|pycharm-ce|idea-ce|studio)$"] $ws1
-# skype 
+# skype
 assign [class="^skypeforlinux$"] $ws3
-# discord 
+# discord
 assign [class="^discord$"] $ws3
-# Thunderbird 
+# Thunderbird
 assign [class="^Thunderbird$"] $ws3
+# Sylpheed
+assign [class="^Sylpheed$"] $ws3
 # viber
 assign [class="^ViberPC$"] $ws3
 # firefox

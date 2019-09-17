@@ -76,6 +76,27 @@
                }
             ],
             "type": "con"
+        },
+        {
+            "border": "pixel",
+            "current_border_width": 0,
+            "floating": "auto_off",
+            "geometry": {
+               "height": 1051,
+               "width": 960,
+               "x": 0,
+               "y": 0
+            },
+            "name": "Mozilla Thunderbird",
+            "percent": 0.5,
+            "swallows": [
+               {
+                "class": "^Thunderbird$",
+                "instance": "^Mail$",
+                "window_role": "^3pane$"
+               }
+            ],
+            "type": "con"
         }
     ]
 }

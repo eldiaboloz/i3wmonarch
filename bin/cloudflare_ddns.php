@@ -11,7 +11,11 @@ mb_internal_encoding('UTF-8');
 set_error_handler("exception_error_handler");
 
 $params = get_opts_custom();
-
+if (!empty($params['new'])) {
+    // print response
+    echo create_new_record($params) . PHP_EOL;
+    exit;
+}
 if (need_action($params)) {
     fwrite(STDERR, 'Updating... ' . PHP_EOL);
     cloudflare_update_record_id($params);
@@ -20,8 +24,9 @@ if (need_action($params)) {
 }
 exit;
 
-function determine_fqdn($host,$domain){
-    if($host==='@') {
+function determine_fqdn($host, $domain)
+{
+    if ($host === '@') {
         $fqdn = $domain;
     } else {
         $fqdn = $host . '.' . $domain;
@@ -31,8 +36,8 @@ function determine_fqdn($host,$domain){
 
 function need_action(& $params)
 {
-    $lastIpData = dns_get_record(determine_fqdn($params['host'],$params['domain']) . '.', DNS_A);
-    $lastIp = isset($lastIpData[0]['ip'])?$lastIpData[0]['ip']:'';
+    $lastIpData = dns_get_record(determine_fqdn($params['host'], $params['domain']) . '.', DNS_A);
+    $lastIp = isset($lastIpData[0]['ip']) ? $lastIpData[0]['ip'] : '';
     if (!isset($params['current_ip'])) {
         $params['current_ip'] = shell_exec("ip route get 1 | grep -Po '(?<=src )(\d{1,3}.){4}' | tr -d '[:space:]'");
     }
@@ -73,6 +78,12 @@ function get_opts_custom()
         $longOptSpec[] = $optSpec[1] . $reqSpec[$optSpec[2]];
         $mapper[$optSpec[1]] = $optSpec[0];
     }
+    $longOptSpec[] = 'r_type' . ':';
+    $longOptSpec[] = 'r_value' . ':';
+    $longOptSpec[] = 'r_priority' . ':';
+    $longOptSpec[] = 'r_ttl' . ':';
+    $longOptSpec[] = 'r_proxied' . ':';
+    $longOptSpec[] = 'new' . ':';
     $params = getopt($shortOptSpec, $longOptSpec);
     foreach ($mapper as $longOptName => $shortOptName) {
         // exit if both are passed
@@ -96,7 +107,7 @@ function get_opts_custom()
     return $params;
 }
 
-function cloudflare_request($params, $endpoint, $isUpdate = false)
+function cloudflare_request($params, $endpoint, $method = 'GET')
 {
     // TODO: updating data
     $url = 'https://api.cloudflare.com/client/v4/' . $endpoint . '/';
@@ -109,9 +120,9 @@ function cloudflare_request($params, $endpoint, $isUpdate = false)
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
     curl_setopt($ch, CURLOPT_TIMEOUT, 60);
 
-    if ($isUpdate) {
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $params['payload']);
-        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "PUT");
+    if ($method !== 'GET') {
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($params['payload']));
+        curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "$method");
     }
     $headers = [
         'Content-Type: application/json',
@@ -119,7 +130,7 @@ function cloudflare_request($params, $endpoint, $isUpdate = false)
     if (isset($params['dns_cloudflare_api_token'])) {
         $headers[] = 'Authorization: Bearer ' . $params['dns_cloudflare_api_token'];
     } else {
-        $headers[] = 'X-Auth-Email: : ' . $params['dns_cloudflare_email'];
+        $headers[] = 'X-Auth-Email: ' . $params['dns_cloudflare_email'];
         $headers[] = 'X-Auth-Key: ' . $params['dns_cloudflare_api_key'];
     }
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -163,7 +174,10 @@ function cloudflare_get_dns_record_id(& $params)
             throw new Exception('DNS record fetch failed!');
         }
         foreach ($data['result'] as $dnsRecord) {
-            if ($dnsRecord['name'] === determine_fqdn($params['host'],$params['domain'])) {
+            if (
+                $dnsRecord['name'] === determine_fqdn($params['host'], $params['domain'])
+                && $dnsRecord['type'] === 'A'
+            ) {
                 $params['dns_record_id'] = $dnsRecord['id'];
                 break;
             }
@@ -181,14 +195,14 @@ function cloudflare_update_record_id(& $params)
 {
     $params['payload'] = json_encode([
         'type' => 'A',
-        'name' => determine_fqdn($params['host'],$params['domain']),
+        'name' => determine_fqdn($params['host'], $params['domain']),
         'content' => $params['current_ip']
     ]);
     cloudflare_get_dns_record_id($params);
     $data = cloudflare_request(
         $params,
         'zones/' . $params['zone_id'] . '/dns_records/' . $params['dns_record_id']
-        , true
+        , 'PUT'
     );
     if (!(isset($data['success']) && $data['success'] === true)) {
         fwrite(STDERR, print_r($data, true) . PHP_EOL);
@@ -196,4 +210,24 @@ function cloudflare_update_record_id(& $params)
         throw new Exception('DNS record update failed!');
     }
     return true;
+}
+
+function create_new_record(&$params)
+{
+    cloudflare_get_zone_id($params);
+    $params['payload'] = [
+        'type' => $params['r_type'],
+        'name' => determine_fqdn($params['host'], $params['domain']),
+        'content' => $params['r_value'],
+    ];
+    $options = ['proxied' => [false, 'bool'], 'ttl' => [1, 'int'], 'priority' => [null, 'int']];
+    foreach ($options as $optKey => $optData) {
+        if (isset($params['r_' . $optKey])) {
+            $params['payload'][$optKey] = call_user_func_array($optData[1] . 'val', [$params['r_' . $optKey]]);
+        } elseif ($optData[0] !== 0) {
+            $params['payload'][$optKey] = $optData[0];
+        }
+    }
+    $req = cloudflare_request($params, 'zones/' . $params['zone_id'] . '/dns_records', 'POST');
+    return $req;
 }

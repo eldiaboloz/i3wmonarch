@@ -8,9 +8,10 @@ nohup code > /dev/null 2>&1 &
 nohup skypeforlinux > /dev/null 2>&1 &
 nohup viber >/dev/null 2>&1 &
 nohup $HOME/dev/i3wmonarch/scripts/multimedia/start_audioplayer >/dev/null 2>&1 &
-#nohup $HOME/dev/i3wmonarch/scripts/guis/thunderbird >/dev/null 2>&1 &
+nohup $HOME/dev/i3wmonarch/scripts/guis/mail-client >/dev/null 2>&1 &
 nohup chromium >/dev/null 2>&1 &
+nohup $HOME/dev/i3wmonarch/scripts/guis/firefox-main >/dev/null 2>&1 &
+nohup $HOME/dev/i3wmonarch/scripts/guis/firefox-alt >/dev/null 2>&1 &
 nohup jetbrains-toolbox >/dev/null 2>&1 &
 sleep 2 
 nohup $HOME/iliyan/dev/i3wmonarch/scripts/multimedia/audioplayer_control play >/dev/null 2>&1 &
-

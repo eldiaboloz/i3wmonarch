@@ -2,6 +2,6 @@
 
 export LANG=bg_BG.UTF-8
 
-my_client=${MY_MAIL_CLIENT:-/usr/bin/sylpheed}
+my_client=${MY_MAIL_CLIENT:-/usr/bin/thunderbird}
 
 exec -- ${my_client} "$@"

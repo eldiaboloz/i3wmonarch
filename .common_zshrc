@@ -7,7 +7,10 @@ plugins=()
 fpath=($HOME/dev/i3wmonarch/.zsh-completions $fpath)
 DISABLE_AUTO_UPDATE="true"
 source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] \
+  && source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
 if [ -f "$HOME/dev/i3wmonarch/.zshrc" ]; then
     source "$HOME/dev/i3wmonarch/.zshrc"
 fi
@@ -52,3 +55,5 @@ command_not_found_handler() {
 alias systemctl='systemctl --user'
 alias journalctl='journalctl --user'
 alias bw='node /work/dev/bitwarden-cli/build/bw.js'
+# fix KP_Enter
+bindkey -s "^[OM" "^M"
