@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+set -e
+
+while getopts ":h::l:r:d:" OPTION; do
+  case "$OPTION" in
+    h)sshname="$OPTARG";;
+    l)local_target="$OPTARG";;
+    r)remote_target="$OPTARG";;
+    d)direction="${OPTARG^^}";;
+    esac
+done
+
+print_usage() {
+  [ ! -z "$1" ] && echo "Error: $1" 2>&1
+  echo -e "Usage: \n -h \"ssh host\" \n -l \"(local_ip:)local_port\" \n -r \"(remote_ip:)remote_port\" \n (-d \"one of L,R,D,X\") \n (arg ...)" 1>&2
+  exit "${2:-0}"
+}
+
+[ "$#" -eq 0 ] && print_usage
+
+# remove parsed opts
+shift $((OPTIND - 1))
+
+: ${direction:=L}
+
+[ ! -z "$sshname" ] \
+  || print_usage "h(ost) is empty!" 1
+
+[[ "$direction" =~ ^[L,R,D,X]$ ]] \
+  || print_usage "d(irection) is not one of 'D,R,L,X' but '${direction}'!" 1
+
+[[ "$local_target" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]{1,5}$ ]] \
+  || [[ "$local_target" =~ ^[0-9]{1,5}$ ]] \
+  || print_usage "l(ocal_target) is not a valid target in format (IP:)port but '${local_target}'!" 1
+
+[ -z "$remote_target" ] \
+  || [[ "$remote_target" =~ ^[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}:[0-9]{1,5}$ ]] \
+  || [[ "$remote_target" =~ ^[0-9]{1,5}$ ]] \
+  || print_usage "r(emote_target) is not a valid target in format (IP:)port but '${remote_target}'!" 1
+
+socfile="/tmp/.sshtunnel_${sshname}_${local_target}_${remote_target}"
+if [ ! -e "$socfile" ]; then
+  local_remote_ports="${local_target}"
+  [ ! -z "$remote_target" ] && local_remote_ports="${local_remote_ports}:${remote_target}"
+  ssh -4 -"${direction}" "${local_remote_ports}" -f -N -M -S "${socfile}" "${sshname}" "$@"
+else
+  ssh -S "$socfile" -O exit "$remote_target" 
+fi

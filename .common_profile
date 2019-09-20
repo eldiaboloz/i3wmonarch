@@ -28,4 +28,4 @@ fi
 # setup go ...
 GOCACHE="$HOME/.cache/go-build"
 GOPATH="$HOME/go"
-PATH="$GOPATH/bin:$PATH" 
+PATH="$GOPATH/bin:$PATH"

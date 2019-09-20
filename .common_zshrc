@@ -54,6 +54,6 @@ command_not_found_handler() {
 }
 alias systemctl='systemctl --user'
 alias journalctl='journalctl --user'
-alias bw='node /work/dev/bitwarden-cli/build/bw.js'
+alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
 # fix KP_Enter
 bindkey -s "^[OM" "^M"

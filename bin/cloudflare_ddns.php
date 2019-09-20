@@ -193,11 +193,11 @@ function cloudflare_get_dns_record_id(& $params)
 
 function cloudflare_update_record_id(& $params)
 {
-    $params['payload'] = json_encode([
+    $params['payload'] = [
         'type' => 'A',
         'name' => determine_fqdn($params['host'], $params['domain']),
         'content' => $params['current_ip']
-    ]);
+    ];
     cloudflare_get_dns_record_id($params);
     $data = cloudflare_request(
         $params,
