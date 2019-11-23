@@ -1,0 +1,18 @@
+bar {
+	bindsym button4 nop
+	bindsym button5 nop
+	strip_workspace_numbers yes
+	separator_symbol "  "
+	status_command i3blocks -c ~/dev/i3wmonarch/i3blocks/a300_top.conf
+	position          top
+	font pango:DejaVu Sans Mono for Powerline 14, Icons 14, FontAwesome 14
+
+	id bar-1
+	output $leftout
+	tray_output $leftout
+	colors {
+		focused_workspace #96a900 #859900 #fdf6e3
+		inactive_workspace #369be2 #269be2 #ffffff
+		active_workspace #96a900 #266E9E #fdf6e3
+	}
+}
