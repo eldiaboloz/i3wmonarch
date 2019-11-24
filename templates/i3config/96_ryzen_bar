@@ -5,7 +5,7 @@ bar {
 	separator_symbol "  "
 	status_command i3blocks -c ~/dev/i3wmonarch/i3blocks/ryzen_top.conf
 	position          top
-	font pango:DejaVu Sans Mono for Powerline 14, Icons 14, FontAwesome 14
+	font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
 
 	id bar-1
 	output $leftout
