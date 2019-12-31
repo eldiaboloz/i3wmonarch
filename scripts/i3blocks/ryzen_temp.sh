@@ -1,5 +1,6 @@
 #!/bin/bash
-cputemp=$(($(cat /sys/class/hwmon/hwmon0/temp1_input)/1000))
+# get the highest temp from it87 sensor
+cputemp=$(($(cat /sys/devices/platform/it87.*/hwmon/hwmon*/temp*_input | sort -r | sed -n 1p)/1000))
 
 echo "CPU: $cputemp °C"
 echo "CPU: $cputemp °C"
