@@ -5,7 +5,7 @@ set -e
 [ -f "$HOME/dev/i3wmonarch/.hosts/$HOSTNAME/i3config" ] && source "$HOME/dev/i3wmonarch/.hosts/$HOSTNAME/i3config"
 
 [ -z "$I3WM_CONFIGS" ] && \
-    I3WM_CONFIGS=00_header 40_windows 50_workspaces 60_hotkeys 60_hotkeys_audio 60_hotkeys_windows 60_hotkeys_workspaces 97_single_top_bar
+    I3WM_CONFIGS="00_header 40_windows 50_workspaces 60_hotkeys 60_hotkeys_audio 60_hotkeys_windows 60_hotkeys_workspaces 97_single_top_bar"
 
 [ -z "$I3WM_I3BLOCKS_SINGLE" ] && \
     I3WM_I3BLOCKS_SINGLE=$HOME/dev/i3wmonarch/i3blocks/single.conf

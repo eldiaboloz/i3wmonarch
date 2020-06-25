@@ -160,6 +160,9 @@ function cloudflare_get_zone_id(&$params)
             throw new Exception('Empty Zone Id!');
         }
     }
+    if(!empty($params['debug'])){
+      fwrite(STDERR,print_r($params['zone_id'],true).PHP_EOL);
+    }
     return $params['zone_id'];
 }
 
@@ -187,6 +190,9 @@ function cloudflare_get_dns_record_id(& $params)
             fwrite(STDERR, print_r($params, true) . PHP_EOL);
             throw new Exception('Empty DNS Record Id!');
         }
+    }
+    if(!empty($params['debug'])){
+      fwrite(STDERR,print_r($params['dns_record_id'],true).PHP_EOL);
     }
     return $params['dns_record_id'];
 }

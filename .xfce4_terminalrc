@@ -40,4 +40,5 @@ MiscSlimTabs=FALSE
 MiscNewTabAdjacent=FALSE
 MiscSearchDialogOpacity=100
 MiscShowUnsafePasteDialog=TRUE
+ShortcutsNoHelpkey=TRUE
 

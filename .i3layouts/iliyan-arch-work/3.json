@@ -72,7 +72,7 @@
             "swallows": [
                {
                 "class": "^ViberPC$",
-                "instance": "^Viber$"
+                "instance": "^viber$"
                }
             ],
             "type": "con"

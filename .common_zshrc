@@ -48,12 +48,15 @@ alias stod="stod(){date '+%Y-%m-%d %H:%M:%S' -d \"@\${1}\"; unset -f stod;};stod
 alias upgrade-drone='sh -c "set -e;export GO111MODULE=on; go install -v github.com/drone/drone/cmd/drone-agent; go install -v github.com/drone/drone/cmd/drone-controller; go install -v github.com/drone/drone/cmd/drone-server;export GO111MODULE=off; go install -v ~/go/src/github.com/drone/drone-cli/drone"'
 
 alias clean-docker="docker system prune && docker volume prune"
-alias clean-datagrip='find $HOME/.DataGrip* -type f -path "*/config/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'
+alias clean-datagrip='find $HOME/.config/JetBrains/DataGrip* -type f -path "*/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'
 command_not_found_handler() {
     echo "$1"
 }
 alias systemctl='systemctl --user'
 alias journalctl='journalctl --user'
 alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
+
+alias digs='dig +short'
+
 # fix KP_Enter
 bindkey -s "^[OM" "^M"
