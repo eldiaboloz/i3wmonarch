@@ -24,7 +24,7 @@ case "$jname" in
     ;;
     phpstorm*)
         # prefer EAP builds for phpstorm ( installed on ch-1 )
-        jch=1
+#        jch=1
         jfolder="${jfolder}/PhpStorm"
         jexec=phpstorm
     ;;
@@ -113,18 +113,29 @@ cat > "$vmopts" << EOF
 EOF
 fi
 
-# start the executable
+if [ "$#" -ne 0 ]; then
+  # pass all args run command and exit
+  "$jshfile" "$@"
+  exit
+fi
+
+# start IDE
 nohup "$jshfile" "$@" >/dev/null 2>&1 &
 
-if [ "$#" -eq 0 ]; then
-    sleep 3
-else
+# focus IDE
+for i in $(seq 0 4); do
+  conid="$(
+  i3-msg -t get_tree \
+    | jq '..|.?|select(.nodes)|select(.window_properties.class)|select(.window_properties.class=="jetbrains-'"${jexec}"'")|.id'\
+    |head -n1
+      )"
+  if [ ! -z "${conid}" ]; then
+    # found IDE window - switch to it
+    i3-msg "[con_id=\"${conid}\"] focus"
+    # stop cycle
+    break
+  else
+    # sleep
     sleep 1
-fi
-
-if [[ "$jshfile" == *datagrip.sh* ]]; then
-    i3-msg "workspace 2; layout stacked" >/dev/null 2>&1
-else
-    i3-msg "workspace 1; layout stacked" >/dev/null 2>&1
-fi
-
+  fi
+done

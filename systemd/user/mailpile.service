@@ -1,0 +1,12 @@
+[Unit]
+Description=Mailpile service
+After=network.target
+
+[Service]
+Restart=on-failure
+ExecStart=/work/dev/mailpile/mp-virtualenv/bin/python /work/dev/mailpile/mp --www=0.0.0.0:30000/ --wait
+Environment=MAILPILE_IGNORE_BINARIES=Tor
+WorkingDirectory=/work/dev/mailpile
+
+[Install]
+WantedBy=default.target
