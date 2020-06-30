@@ -113,7 +113,7 @@ cat > "$vmopts" << EOF
 EOF
 fi
 
-if [ "$#" -ne 0 ]; then
+if [ "$#" -ge 2 ] && [ "$1" != "--line" ]; then
   # pass all args run command and exit
   "$jshfile" "$@"
   exit
@@ -131,7 +131,9 @@ for i in $(seq 0 4); do
       )"
   if [ ! -z "${conid}" ]; then
     # found IDE window - switch to it
-    i3-msg "[con_id=\"${conid}\"] focus"
+    i3-msg "[con_id=\"${conid}\"] focus" >/dev/null 2>&1
+    # set layout to stacked
+    i3-msg "layout stacked" >/dev/null 2>&1
     # stop cycle
     break
   else
