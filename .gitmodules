@@ -19,3 +19,6 @@
 [submodule "github.com/robbyrussell/oh-my-zsh"]
 	path = github.com/robbyrussell/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "totp"]
+	path = totp
+	url = ../totp-cli.git
