@@ -63,7 +63,7 @@ if !isdirectory($HOME."/.vim/undo-dir")
     call mkdir($HOME."/.vim/undo-dir", "", 0700)
 endif
 
-set undodir=~/.vim/undodir
+set undodir=~/.vim/undo-dir
 set undofile " Maintain undo history between session
 
 autocmd Filetype yaml setlocal tabstop=2 shiftwidth=2 softtabstop=2

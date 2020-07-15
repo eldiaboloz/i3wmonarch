@@ -1,9 +1,25 @@
 #!/usr/bin/env bash
 
+set -euf -o pipefail
+
+# profile name
 if [[ "$(basename "$0")" == "firefox-"* ]]; then
   pname=$(basename "$0" | sed -e 's/^firefox-//')
 else
   pname="default"
 fi
 
+# full path to profile folder
+ppath="$HOME/.mozilla/firefox/prof.${pname}"
+
+# make sure the profile is created
+firefox -CreateProfile "$pname $ppath"
+
+# create symlink with customized user.js file
+if [ -f "$HOME/.ssh/secrets/firefox/user.js/$pname" ]; then
+  [ ! -f "$ppath/user.js" ] && [ ! -L "$ppath/user.js" ] && \
+    ln -vfs "$HOME/.ssh/secrets/firefox/user.js/$pname" "$ppath/user.js"
+fi
+
+# exec firefox
 exec firefox -P "${pname}" --class "firefox-${pname}" "$@"

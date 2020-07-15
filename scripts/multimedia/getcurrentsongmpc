@@ -1,6 +1,6 @@
 #!/bin/bash
 # temp fix for stuck ncat
-pkill -f '^ncat -n -w 1 127.0.0.1 6600$'
+#pkill -f '^ncat -n -w 1 127.0.0.1 6600$'
 mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | ncat -n -w 1 127.0.0.1 6600)
 if [[ $? != 0 ]]; then
     exit
@@ -43,6 +43,7 @@ if [ ! -z "$songtotal" ]; then
 fi
 
 maxlen="${curcmussonglenlimit:-35}"
+maxlen=155
 curslen=${#cursong}
 if [ "$curslen" -gt "$maxlen" ]; then
  delta=$((($(date +%-S))%($curslen-$maxlen+1)))
