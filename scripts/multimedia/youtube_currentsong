@@ -17,5 +17,5 @@ else
     # there is no song id so try our luck
     chromium "http://www.google.com/search?btnI=Search&q=youtube+$(mpc -f '%file%' | sed -n 1p | tr ' ' '+')" > /dev/null 2>&1 &
 fi
-i3-msg "workspace 5 "
+i3-msg "workspace 5 🦊"
 
