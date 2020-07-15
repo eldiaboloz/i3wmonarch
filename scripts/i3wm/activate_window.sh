@@ -19,7 +19,7 @@ retry="${3-}"
 
 for i in $(seq 0 ${retry:-0}); do
   conid="$(get_con_id "$class")"
-  if [ ! -z "${conid}" ]; then
+  if [ -n "${conid}" ]; then
     # found window - switch to it
     i3-msg "[con_id=\"${conid}\"] focus" >/dev/null 2>&1
     # set layout
