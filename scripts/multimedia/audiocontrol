@@ -1,18 +1,36 @@
 #!/bin/bash
 
-case $1 in
-inc)
-    # max volume
-    [ ! -z "$2" ] && [ "$(ponymix get-volume)" -ge 50 ] && exit
-    pactl set-sink-volume @DEFAULT_SINK@ +5%
-;;
-dec)
-    [ ! -z "$2" ] && [ "$(ponymix get-volume)" -le 20 ] && exit
-    pactl set-sink-volume @DEFAULT_SINK@ -5%
-;;
-mute)
-    pactl set-sink-mute @DEFAULT_SINK@ toggle
-;;
+step=${BLOCK_INSTANCE:-5}
+
+case ${1:-$BLOCK_BUTTON} in
+inc | 4)
+  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -ge 50 ] && exit
+  ponymix increase $step >/dev/null 2>&1
+  pkill -RTMIN+1 i3blocks
+  ;;
+dec | 5)
+  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -le 20 ] && exit
+  ponymix decrease $step >/dev/null 2>&1
+  pkill -RTMIN+1 i3blocks
+  ;;
+mute | 3)
+  ponymix toggle >/dev/null 2>&1
+  pkill -RTMIN+1 i3blocks
+  ;;
 esac
-sleep 0.1
-pkill -RTMIN+1 i3blocks
+
+vol="$(ponymix get-volume)"
+
+if (($vol <= 20)); then
+  icon=""
+elif (($vol <= 35)); then
+  icon=""
+elif (($vol <= 50)); then
+  icon=""
+else
+  icon=""
+fi
+
+echo "$icon $vol%"
+echo "$vol"
+ponymix is-muted && exit 33 || exit 0
