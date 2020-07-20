@@ -53,12 +53,17 @@ android* | studio*)
   jexec=studio
   ;;
 *)
-  chooseide=$(
+  ideslist="$(
     cd "$jfolder"
-    find "." -mindepth 5 -maxdepth 5 -type f -regex '.*/[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' | grep -v 'inspect.sh\|format.sh' | sort | fzf
-  )
-  [ -z "$chooseide" ] && exit 1
-  jshfile="$jfolder/$chooseide"
+    find "." -mindepth 5 -maxdepth 5 -type f -regex '.*/[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' | grep -v 'inspect.sh\|format.sh' | sort
+  )"
+  [ -n "${PRINT_ONLY}" ] && {
+    echo "$ideslist"
+    exit
+  }
+  [ -n "${CHOSEN_IDE}" ] || CHOSEN_IDE="$(echo "$ideslist" | fzf)"
+  [ -z "${CHOSEN_IDE}" ] && exit 1
+  jshfile="$jfolder/${CHOSEN_IDE}"
   ;;
 esac
 

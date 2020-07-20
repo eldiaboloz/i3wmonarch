@@ -1,27 +1,8 @@
 #!/bin/bash
 case $BLOCK_BUTTON in
-        # 1-2-3 left-middle-right mouse button
-        1) ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set +1;;
-        2) ~/dev/i3wmonarch/scripts/i3wm/toggle_xmodmap;;
-	3) ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set -1;;
+  1) ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set +1;;
+  3) ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set -1;;
 esac
-current=`xmodmap -pke | grep "keycode   9 = Escape"`
-if [ $? -ne 0 ]; then
-	current="esc"
-else
-	current="def"
-fi
-extcurrent=$(xmodmap -pke | grep "keycode  44 = Left")
-if [ $? -eq 0 ]; then
-	current="$current/vi"
-fi
-kb=`~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state print %s;echo "/$current"`
+kb="$(~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state print %s)"
 echo $kb
 echo $kb
-if [ "$current" == "def" ]; then
-	echo "#FFFFFF"
-elif [ "$current" == "def/vi" ]; then
-	echo "#FFFFFF"
-else
-	echo "#24DDAA"	
-fi
