@@ -20,7 +20,7 @@ fi
 ~/dev/i3wmonarch/github.com/nonpop/xkblayout-state/xkblayout-state set 0
 
 # kill all i3block instances while the pc is locked
-killall i3blocks
+#killall i3blocks
 
 # turn off monitor(s)
 sleep 1; xset dpms force off

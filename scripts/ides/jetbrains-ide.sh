@@ -24,7 +24,7 @@ idea-u*)
   ;;
 phpstorm*)
   # prefer EAP builds for phpstorm ( installed on ch-1 )
-  #        jch=1
+#  jch=1
   jfolder="${jfolder}/PhpStorm"
   jexec=phpstorm
   ;;
@@ -101,7 +101,7 @@ fi
 vmopts="$(echo "$jshfile" | rev | cut -d '/' -f3- | rev).vmoptions"
 
 if ! { [ -f "$vmopts" ] &&
-  [ "156e11c397ed8b5406dd45861cecadb1a3b29b6d" == "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; }; then
+  [ "be5abad60333767b9fec74f0e2188f9ae288c6a9" == "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; }; then
   # customize settings - set country/language and give more RAM
   cat >"$vmopts" <<EOF
 -Xms128m
@@ -111,16 +111,22 @@ if ! { [ -f "$vmopts" ] &&
 -XX:SoftRefLRUPolicyMSPerMB=50
 -ea
 -Dsun.io.useCanonCaches=false
+-Dsun.io.useCanonPrefixCache=false
 -Djava.net.preferIPv4Stack=true
 -Djdk.http.auth.tunneling.disabledSchemes=""
 -XX:+HeapDumpOnOutOfMemoryError
 -XX:-OmitStackTraceInFastThrow
+-Djdk.attach.allowAttachSelf=true
+-Dkotlinx.coroutines.debug=off
+-XX:MaxJavaStackTraceDepth=10000
+-XX:CICompilerCount=8
+-Djdk.module.illegalAccess.silent=true
+-Dsun.tools.attach.tmp.only=true
+-Dide.no.platform.update=true
 -Dawt.useSystemAAFontSettings=lcd
 -Dsun.java2d.renderer=sun.java2d.marlin.MarlinRenderingEngine
--Dide.no.platform.update=true
 -Duser.country=BG
 -Duser.language=bg
--XX:MaxJavaStackTraceDepth=10000
 EOF
 fi
 
@@ -134,4 +140,4 @@ fi
 nohup "$jshfile" "$@" >/dev/null 2>&1 &
 
 # focus IDE
-~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "jetbrains-${jexec}" "stacked" "4"
+~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "jetbrains-${jexec}" "stacked" "10"

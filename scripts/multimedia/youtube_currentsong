@@ -7,16 +7,18 @@ thesong=$(echo "$songdata" | grep "file:" | cut -d ' ' -f2-)
 regex="\-([A-Za-z0-9_-]{11})((\.[a-zA-Z0-9]+)?)\.mp3"
 curmode=$(echo "$songdata" | grep "state:" | cut -d ' ' -f2-)
 if [ "$curmode" = "play" ]; then
-    mpc pause
+  mpc pause
 fi
 if [[ $thesong =~ $regex ]]; then
-    # there is song id
-    songcurrent=$(echo "$songdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
-    chromium "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent" > /dev/null 2>&1 &
+  # there is song id
+  songcurrent=$(echo "$songdata" | grep "elapsed:" | cut -d ' ' -f2- | cut -d '.' -f1)
+  chromium "https://www.youtube.com/watch?v=${BASH_REMATCH[1]}&t=$songcurrent" >/dev/null 2>&1 &
 else
-    # there is no song id so try our luck
-    chromium "http://www.google.com/search?btnI=Search&q=youtube+$(mpc -f '%file%' | sed -n 1p | tr ' ' '+')" > /dev/null 2>&1 &
+  # there is no song id so try our luck
+  chromium "http://www.google.com/search?btnI=Search&q=youtube+$(
+    echo "$thesong" | php -r "echo rawurlencode(file_get_contents(\"php://stdin\"));"
+  )" >/dev/null 2>&1 &
 fi
 
 # go to chrome window
-~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "Chromium"
+#~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "Chromium"

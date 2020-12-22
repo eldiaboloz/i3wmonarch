@@ -55,8 +55,15 @@ command_not_found_handler() {
 alias systemctl='systemctl --user'
 alias journalctl='journalctl --user'
 alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
+alias node-docker='mkdir -pv /work/node/home && docker container run -i -t -u node -w /app -v /work/node/home:/home/node -v $PWD:/app node bash'
 
 alias digs='dig +short'
+
+alias ssht='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
+gitcrypt-export='git-crypt export-key -- - | base64 -w 0 | xclip -selection clipboard'
+gitcrypt-decrypt='xclip -out -selection clipboard | base64 -d | git-crypt unlock -'
+
 
 # fix KP_Enter
 bindkey -s "^[OM" "^M"

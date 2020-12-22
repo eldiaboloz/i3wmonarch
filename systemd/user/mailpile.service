@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Restart=on-failure
-ExecStart=/work/dev/mailpile/mp-virtualenv/bin/python /work/dev/mailpile/mp --www=0.0.0.0:30000/ --wait
+ExecStart=/work/dev/mailpile/mp-virtualenv/bin/python /work/dev/mailpile/mp --www=127.0.0.1:54321/ --wait
 Environment=MAILPILE_IGNORE_BINARIES=Tor
 WorkingDirectory=/work/dev/mailpile
 
