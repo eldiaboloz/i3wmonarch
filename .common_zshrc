@@ -61,8 +61,8 @@ alias digs='dig +short'
 
 alias ssht='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
-gitcrypt-export='git-crypt export-key -- - | base64 -w 0 | xclip -selection clipboard'
-gitcrypt-decrypt='xclip -out -selection clipboard | base64 -d | git-crypt unlock -'
+alias gitcrypt-export='git-crypt export-key -- - | base64 -w 0 | xclip -selection clipboard'
+alias gitcrypt-decrypt='xclip -out -selection clipboard | base64 -d | git-crypt unlock -'
 
 
 # fix KP_Enter
