@@ -4,4 +4,4 @@ set -e
 
 TARGET_DIR=${TARGET_DIR:-"$HOME/Music/Music"}
 
-youtube-dl --extract-audio --audio-format mp3 -o "${TARGET_DIR}/%(title)s-%(id)s.%(ext)s" --verbose "$@"
+youtube-dl --extract-audio --audio-format m4a -o "${TARGET_DIR}/%(title)s-%(id)s.%(ext)s" --verbose "$@"

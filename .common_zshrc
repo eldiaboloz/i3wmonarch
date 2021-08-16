@@ -64,6 +64,7 @@ alias ssht='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 alias gitcrypt-export='git-crypt export-key -- - | base64 -w 0 | xclip -selection clipboard'
 alias gitcrypt-decrypt='xclip -out -selection clipboard | base64 -d | git-crypt unlock -'
 
+alias rsyncv='rsync -av --stats --progress' 
 
 # fix KP_Enter
 bindkey -s "^[OM" "^M"
