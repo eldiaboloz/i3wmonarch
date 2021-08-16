@@ -36,7 +36,7 @@ ssh pi-entry << EOF
         while read -r line; do
             gputemp="\$(echo -n "\$line" | cut -d ';' -f1 )"
             gpufan="\$(echo -n "\$line" | cut -d ';' -f2 )"
-#            echo -n " \$gputemp-\$gpufan"
+            echo -n " \$gputemp-\$gpufan"
         done < <(echo "\$MULTILINE")
     else
     # ethminer version >= 0.15.0rc2
@@ -44,7 +44,7 @@ ssh pi-entry << EOF
             gputemp="\$line"
             read -r line
             gpufan="\$line"
-#            echo -n " \$gputemp-\$gpufan"
+            echo -n " \$gputemp-\$gpufan"
         done < <(echo "\$MULTILINE" | tr ';' '\n' | head -c -1)
     fi
     # flush long output

@@ -1,15 +1,30 @@
 #!/bin/bash
-cputemp=$(($(cat /sys/class/hwmon/hwmon2/temp1_input)/1000))
 
-echo "CPU: $cputemp °C"
-echo "CPU: $cputemp °C"
+hasRedAlert=""
+hasYellowAlert=""
 
-if [ $cputemp -gt 70 ]; then
-	echo "#FF0000"
-elif [ $cputemp -gt 60 ]; then
-       echo "#FFFF00"
+output="GPU:"
+while read -r sensorpath; do
+  if [ "$(cat "${sensorpath}/name")" = "amdgpu" ]; then
+    gputemp=($(($(cat "${sensorpath}/temp1_input") / 1000)))
+    if [ $gputemp -gt 70 ]; then
+      hasRedAlert="yes"
+    elif [ $gputemp -gt 60 ]; then
+      hasYellowAlert="yes"
+    fi
+    output+=" ${gputemp}"
+  fi
+done < <(find /sys/class/hwmon -type l)
+output+=" °C"
+
+echo "${output}"
+echo "${output}"
+
+if [ -n "${hasRedAlert}" ]; then
+  echo "#FF0000"
+elif [ -n "${hasYellowAlert}" ]; then
+  echo "#FFFF00"
 else
-	echo "#00FF00"
+  echo "#00FF00"
 fi
-
 exit 0
