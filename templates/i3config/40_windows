@@ -26,6 +26,8 @@ for_window [class="^Webview$" instance="^webview$"] floating enable sticky enabl
 for_window [class="^Webview$" instance="^webview$"] resize set 800 600
 for_window [class="^Webview$" instance="^webview$"] move absolute position 2980px 100px
 
+for_window [class="^jetbrains-datagrip$" instance="^jetbrains-datagrip$" title="^Modify Table$"] resize set 1280 720
+
 # colors
 
 client.focused #96a900 #859900 #fdf6e3 #859900
