@@ -51,7 +51,7 @@ for (( i=0; i<$lcnt; i+=2 )); do
   target="${links[$i+1]}"
   if [ -e "$source" ]; then
     if [ ! -e "$target" ]; then
-      ln -v -s "$source" "$target"
+      ln -n -f -v -s "$source" "$target"
     fi
   else
     echo "$source does not exist"
