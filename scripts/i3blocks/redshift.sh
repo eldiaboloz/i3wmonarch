@@ -18,22 +18,22 @@ case ${1:-$BLOCK_BUTTON} in
 inc | 4)
   COLOR_TEMP=$(validate_min_max "$((COLOR_TEMP + step))")
   redshift -P -O "${COLOR_TEMP}"
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 dec | 5)
   COLOR_TEMP=$(validate_min_max "$((COLOR_TEMP - step))")
   redshift -P -O "${COLOR_TEMP}"
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 max | 3)
   # set to 6000K with right click
   redshift -P -O "6000"
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 min | 1)
   # set to min 1200K with left click
   redshift -P -O "1200"
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 toggle | 2)
   # toggle between 1200 and 6000 with middle click
@@ -42,7 +42,7 @@ toggle | 2)
   else
     redshift -P -O "1200"
   fi
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 esac
 

@@ -2,22 +2,48 @@
 
 step=${BLOCK_INSTANCE:-5}
 
+my_file="/tmp/audiocontrol_no_limiter"
+my_limiter() {
+  if [ -f "${my_file}" ]; then
+    my_min=15
+    my_max=75
+    my_extra=" L"
+  else
+    my_min=20
+    my_max=50
+    my_extra=""
+  fi
+}
+
+my_limiter
+
 case ${1:-$BLOCK_BUTTON} in
 inc | 4)
-  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -ge 50 ] && exit
+  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -ge "${my_max}" ] && exit
   ponymix increase $step >/dev/null 2>&1
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 dec | 5)
-  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -le 20 ] && exit
+  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -le "${my_min}" ] && exit
   ponymix decrease $step >/dev/null 2>&1
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
   ;;
 mute | 3)
   ponymix toggle >/dev/null 2>&1
-  pkill -RTMIN+1 i3blocks
+  pkill -RTMIN+10 i3blocks
+  ;;
+limiter | 1)
+  # left click - disable/enable volume limiter for headphones controls
+  if [ -f "${my_file}" ]; then
+    rm "${my_file}"
+  else
+    touch ${my_file}
+  fi
+  pkill -RTMIN+10 i3blocks
   ;;
 esac
+
+my_limiter
 
 vol="$(ponymix get-volume)"
 
@@ -31,6 +57,6 @@ else
   icon=""
 fi
 
-echo "$icon $vol%"
-echo "$vol"
+echo "$icon ${vol}%${my_extra}"
+echo "${vol}${my_extra}"
 ponymix is-muted && exit 33 || exit 0
