@@ -11,5 +11,6 @@
     "files.autoGuessEncoding": false,
     "explorer.confirmDelete": false,
     "editor.renderWhitespace": "all",
-    "window.zoomLevel": 0
+    "window.zoomLevel": 0,
+    "editor.unicodeHighlight.nonBasicASCII": false
 }

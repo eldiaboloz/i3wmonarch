@@ -1,3 +1,3 @@
-I3WM_LEFT_OUT=DP-4
-I3WM_RIGHT_OUT=DP-4
+I3WM_LEFT_OUT=HDMI-0
+I3WM_RIGHT_OUT=HDMI-0
 I3WM_CONFIGS="00_header 40_windows 50_workspaces 60_hotkeys 60_hotkeys_audio 60_hotkeys_windows 60_hotkeys_workspaces 96_ryzen_bar"

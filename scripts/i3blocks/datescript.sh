@@ -4,13 +4,27 @@ thestr=" `date '+ %a %d %b %Y %H:%M:%S'`"
 full="$thestr"
 short="$thestr"
 color="#FFFFFF"
-status=0
 
 case $BLOCK_BUTTON in
-	# 1-2-3 left-middle-right mouse button
-	1) gsimplecal >/dev/null ;;
+  1)
+    if ! pgrep gsimplecal 1>/dev/null 2>/dev/null; then
+      nohup gsimplecal 1>/dev/null 2>/dev/null &
+    fi
+  ;;
+  3)
+    killall gsimplecal 1>/dev/null 2>/dev/null
+  ;;
+  4)
+    if pgrep gsimplecal 1>/dev/null 2>/dev/null; then
+      gsimplecal next_month
+    fi
+  ;;
+  5)
+    if pgrep gsimplecal 1>/dev/null 2>/dev/null; then
+      gsimplecal prev_month
+    fi
+  ;;
 esac
 echo $full
 echo $short
 echo $color
-exit $status
