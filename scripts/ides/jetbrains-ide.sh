@@ -101,12 +101,12 @@ fi
 vmopts="$(echo "$jshfile" | rev | cut -d '/' -f3- | rev).vmoptions"
 
 if ! { [ -f "$vmopts" ] &&
-  [ "be5abad60333767b9fec74f0e2188f9ae288c6a9" == "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; }; then
+  [ "f265d49c4758d52d2d401beb35319e608efc0564" == "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; }; then
   # customize settings - set country/language and give more RAM
   cat >"$vmopts" <<EOF
 -Xms128m
 -Xmx2048m
--XX:ReservedCodeCacheSize=240m
+-XX:ReservedCodeCacheSize=512m
 -XX:+UseConcMarkSweepGC
 -XX:SoftRefLRUPolicyMSPerMB=50
 -ea
