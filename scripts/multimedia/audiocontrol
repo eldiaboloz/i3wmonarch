@@ -43,6 +43,8 @@ limiter | 1)
   ;;
 esac
 
+[ -z "$DISPLAY" ] && exit
+
 my_limiter
 
 vol="$(ponymix get-volume)"

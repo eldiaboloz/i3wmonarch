@@ -2,9 +2,9 @@
 
 # bash setup
 if [ -n "$BASH_VERSION" ]; then
-    if [ -f "$HOME/.bashrc" ]; then
-	. "$HOME/.bashrc"
-    fi
+  if [ -f "$HOME/.bashrc" ]; then
+    . "$HOME/.bashrc"
+  fi
 fi
 
 # PATH setup
@@ -13,7 +13,7 @@ PATH="$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$HOME/
 
 # load host specific init script
 if [ -f "$HOME/dev/i3wmonarch/.hosts/$HOST/init" ]; then
-	source "$HOME/dev/i3wmonarch/.hosts/$HOST/init"
+  source "$HOME/dev/i3wmonarch/.hosts/$HOST/init"
 fi
 
 # current terminal to use

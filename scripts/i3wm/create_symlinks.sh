@@ -30,6 +30,7 @@ links=(\
     "/.zlogout" "$HOME/.zlogout" \
     "/.Xresources" "$HOME/.Xresources" \
     "/.common_zshrc" "$HOME/.zshrc" \
+    "/.common_bashrc" "$HOME/.bashrc" \
     "/.common_profile" "$HOME/.profile" \
     "/.ncmpcpp_config" "$HOME/.ncmpcpp/config" \
     "/github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" \
