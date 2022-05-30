@@ -17,6 +17,7 @@ class TPLinkKasaCli
     protected $_startKey = 171;
     protected $_tcpPort = 9999;
 
+
     public function __construct( $target = '', $label = '' )
     {
         $this->_target = $target;
@@ -77,10 +78,9 @@ class TPLinkKasaCli
         return $return;
     }
 
-    public function i3blockPrint()
+    public function i3blockPrint($minWAT = 700,$maxWAT = 850)
     {
-        $minWAT = 700;
-        $maxWAT = 850;
+        $minWAT=(float)$minWAT;$maxWAT=(float)$maxWAT;
         $current = json_decode( $this->power(), true );
         if ( !( isset( $current['emeter']['get_realtime']['err_code'] ) && $current['emeter']['get_realtime']['err_code'] === 0 ) )
         {
@@ -137,5 +137,5 @@ class TPLinkKasaCli
 }
 
 $myObj = new TPLinkKasaCli( $argv[1], $argv[2] );
-echo $myObj->{$argv[3]}();
+echo $myObj->{$argv[3]}(array_slice($argv,4));
 
