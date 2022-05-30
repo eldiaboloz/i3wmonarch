@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+cols=$(( COLUMNS / 3 ))
+sep='{::}'
+
+dbpath=${1:-"$HOME/.config/chromium/Default/History"}
+histpath="/tmp/fzf_chrome_history_$(echo "${dbpath}" | md5sum | cut -d ' ' -f1 )"
+if [ ! -f "${histpath}" ]; then
+  cp -f "$dbpath" "$histpath"
+fi
+
+urls="$(
+  sqlite3 -separator "$sep" "$histpath" \
+    "select title, url from urls order by last_visit_time desc" |
+  awk -F $sep '{printf "%-'$cols's  \x1b[36m%s\x1b[m\n", $1, $2}' |
+  fzf --ansi --multi | sed 's#.*\(https*://\)#\1#'
+)"
+
+[ -z "$urls" ] && exit 1
+echo "$urls" | xargs -n1 -I{} chromium "{}" > /dev/null 2>/dev/null &
+
+i3-msg "workspace 5 🦊" >/dev/null 2>/dev/null
