@@ -1,6 +1,7 @@
 #!/bin/bash
-# get the highest temp from it87 sensor
-cputemp=$(($(cat /sys/devices/platform/nct6775.656/hwmon/hwmon*/temp*_input | sort -r | sed -n 1p)/1000))
+
+# hwmon seems to change between reboots
+cputemp=$(($(cat /sys/devices/platform/nct6775.656/hwmon/hwmon*/temp2_input)/1000))
 
 echo "CPU: $cputemp °C"
 echo "CPU: $cputemp °C"

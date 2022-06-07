@@ -2,7 +2,7 @@
 # vim ft=bash
 
 # use favs playlist or whole library
-[[ "$(basename "$0")" == *_favourite* ]] && wsong="playlist Favorites" || wsong="listall"
+[[ "$(basename "$0")" == *_favourite* ]] && wsong="playlist Favorites.m3u" || wsong="listall"
 
 # choose song from whole specifed location
 songs=$(mpc -f '(%time%) %file%' $wsong | fzf --multi --reverse --border --preview="$HOME/dev/i3wmonarch/scripts/multimedia/get_song_info {}" | cut -d ' ' -f2-)
