@@ -1,9 +1,12 @@
 #!/bin/bash
 
-step=${BLOCK_INSTANCE:-5}
+set -euf -o pipefail
+
+step="${BLOCK_STEP:-5}"
 
 my_file="/tmp/audiocontrol_no_limiter"
-my_limiter() {
+my_init() {
+  # check if limiter is enabled
   if [ -f "${my_file}" ]; then
     my_min=15
     my_max=75
@@ -13,23 +16,75 @@ my_limiter() {
     my_max=50
     my_extra=""
   fi
+  # get default sink data
+  currentSink="$(pactl get-default-sink)"
+  currentSinkData="$(pactl -f pactl -f json list sinks | jq -r '.[] | select(.name=="'"${currentSink}"'")')"
+  # could not get sink data
+  [ -z "${currentSinkData}" ] && exit
+  currentSinkDriver="$(echo "${currentSinkData}" | jq -r '.driver')"
+  # this is not a BT device so stop here
+  [ "${currentSinkDriver}" != "module-bluez5-device.c" ] && return
+
+  currentBtProfile="$(echo "${currentSinkData}" | jq -r '.properties."bluetooth.protocol"')"
+  currentBtMac="$(echo "${currentSinkData}" | jq -r '.properties."device.string"')"
+
+  if [ "${currentBtProfile}" == "handsfree_head_unit" ]; then
+    my_extra="${my_extra} HFP"
+  elif [ "${currentBtProfile}" == "a2dp_sink" ]; then
+    my_extra="${my_extra} A2DP"
+  fi
+
+  # normalize volume in percents
+  currentVolume="$(((($(echo "${currentSinkData}" | jq -r '[.volume[].value] | add/length' | cut -d '.' -f1) + 99) * 100) / 65536))"
 }
 
-my_limiter
-
-case ${1:-$BLOCK_BUTTON} in
-inc | 4)
-  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -ge "${my_max}" ] && exit
-  ponymix increase $step >/dev/null 2>&1
+my_change_volume() {
+  if [ "$1" == "inc" ]; then
+    if [ "${currentVolume}" -gt "$((my_max - step))" ]; then
+      newVolume="${my_max}"
+    else
+      newVolume="$((currentVolume + step))"
+    fi
+  else
+    if [ "${currentVolume}" -lt "$((my_min + step))" ]; then
+      newVolume="${my_min}"
+    else
+      newVolume="$((currentVolume - step))"
+    fi
+  fi
+  pactl set-sink-volume "${currentSink}" "$(((newVolume * 65536 + 99) / 100))"
   pkill -RTMIN+10 i3blocks
+}
+
+my_init
+
+case "${1:-${BLOCK_BUTTON:-}}" in
+2)
+  [ "${currentSinkDriver}" != "module-bluez5-device.c" ] && continue
+  newBtProfile=""
+  if [ "${currentBtProfile}" == "handsfree_head_unit" ]; then
+    newBtProfile="a2dp_sink"
+  elif [ "${currentBtProfile}" == "a2dp_sink" ]; then
+    newBtProfile="handsfree_head_unit"
+  fi
+  if [ ! -z "${newBtProfile}" ]; then
+    # get current BT device data
+    currentBtData="$(pactl -f json list cards | jq -r '.[] | select(.properties."device.string"=="'"${currentBtMac}"'")')"
+    currentBtProfiles=($(echo "${currentBtData}" | jq -r '.profiles|keys[]' | grep -v '^off$' | tr '\n' ' '))
+    if [[ "${currentBtProfiles[*]}" =~ "${newBtProfile}" ]]; then
+      pacmd set-card-profile "$(echo "${currentBtData}" | jq -r '.name')" "${newBtProfile}"
+      pkill -RTMIN+10 i3blocks
+    fi
+  fi
+  ;;
+inc | 4)
+  my_change_volume "inc"
   ;;
 dec | 5)
-  [ ! -z "$2" ] && [ "$(ponymix get-volume)" -le "${my_min}" ] && exit
-  ponymix decrease $step >/dev/null 2>&1
-  pkill -RTMIN+10 i3blocks
+  my_change_volume "dec"
   ;;
 mute | 3)
-  ponymix toggle >/dev/null 2>&1
+  pactl set-sink-mute "${currentSink}" toggle
   pkill -RTMIN+10 i3blocks
   ;;
 limiter | 1)
@@ -45,20 +100,19 @@ esac
 
 [ -z "$DISPLAY" ] && exit
 
-my_limiter
+# there was some action - read data again
+[ -z "${1:-${BLOCK_BUTTON:-}}" ] || my_init
 
-vol="$(ponymix get-volume)"
-
-if (($vol <= 20)); then
+if ((${currentVolume} <= 20)); then
   icon=""
-elif (($vol <= 35)); then
+elif ((${currentVolume} <= 35)); then
   icon=""
-elif (($vol <= 50)); then
+elif ((${currentVolume} <= 50)); then
   icon=""
 else
   icon=""
 fi
 
-echo "$icon ${vol}%${my_extra}"
-echo "${vol}${my_extra}"
-ponymix is-muted && exit 33 || exit 0
+echo "$icon ${currentVolume}%${my_extra}"
+echo "${currentVolume}${my_extra}"
+[ "$(pactl get-sink-mute "${currentSink}")" == "Mute: yes" ] && exit 33 || exit 0
