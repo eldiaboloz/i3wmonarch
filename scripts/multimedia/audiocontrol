@@ -29,13 +29,17 @@ my_init() {
   currentBtMac="$(echo "${currentSinkData}" | jq -r '.properties."device.string"')"
 
   if [ "${currentBtProfile}" == "handsfree_head_unit" ]; then
-    my_extra="${my_extra} HFP"
+    my_extra+=" HFP"
   elif [ "${currentBtProfile}" == "a2dp_sink" ]; then
-    my_extra="${my_extra} A2DP"
+    my_extra+=" A2DP"
   fi
+  btBatteryLevel="$(bluetoothctl info "${currentBtMac}" | grep 'Battery Percentage: ' | cut -d '(' -f2 | head -c -2)"
+  [ ! -z "${btBatteryLevel}" ] &&
+    my_extra+=" 🔋${btBatteryLevel}%"
 
   # normalize volume in percents
   currentVolume="$(((($(echo "${currentSinkData}" | jq -r '[.volume[].value] | add/length' | cut -d '.' -f1) + 99) * 100) / 65536))"
+
 }
 
 my_change_volume() {
