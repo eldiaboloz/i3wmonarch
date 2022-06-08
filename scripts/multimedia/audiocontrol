@@ -21,6 +21,10 @@ my_init() {
   currentSinkData="$(pactl -f pactl -f json list sinks | jq -r '.[] | select(.name=="'"${currentSink}"'")')"
   # could not get sink data
   [ -z "${currentSinkData}" ] && exit
+
+  # normalize volume in percents
+  currentVolume="$(((($(echo "${currentSinkData}" | jq -r '[.volume[].value] | add/length' | cut -d '.' -f1) + 99) * 100) / 65536))"
+
   currentSinkDriver="$(echo "${currentSinkData}" | jq -r '.driver')"
   # this is not a BT device so stop here
   [ "${currentSinkDriver}" != "module-bluez5-device.c" ] && return
@@ -36,9 +40,6 @@ my_init() {
   btBatteryLevel="$(bluetoothctl info "${currentBtMac}" | grep 'Battery Percentage: ' | cut -d '(' -f2 | head -c -2)"
   [ ! -z "${btBatteryLevel}" ] &&
     my_extra+=" 🔋${btBatteryLevel}%"
-
-  # normalize volume in percents
-  currentVolume="$(((($(echo "${currentSinkData}" | jq -r '[.volume[].value] | add/length' | cut -d '.' -f1) + 99) * 100) / 65536))"
 
 }
 

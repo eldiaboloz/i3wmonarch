@@ -1,15 +1,6 @@
 #!/bin/bash
 set -e
 
-mpdi3dir="$HOME/dev/i3wmonarch/.mpd/store/playlists"
-favsfile="${mpdi3dir}/Favorites.m3u"
-
-# create playlist symlink if it does not exist
-if [ ! -f "$favsfile" ]; then
-    mkdir -pv "${mpdi3dir}"
-    ln -s -v "$HOME/Dropbox/mpd/Favorites.m3u" "${favsfile}"
-fi
-
 # start mpd service
 systemctl --user start mpd.service
 
