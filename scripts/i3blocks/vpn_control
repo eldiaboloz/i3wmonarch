@@ -1,60 +1,60 @@
 #!/bin/bash
 vpnname=${2:-"$BLOCK_INSTANCE"}
 vpnname=${vpnname:-"work"}
-state=$(systemctl status openvpn-client@$vpnname.service | grep running > /dev/null)
+state=$(systemctl status openvpn-client@$vpnname.service | grep running >/dev/null)
 state=$?
 action=${1:-"watch"}
 case $BLOCK_BUTTON in
-	1) action="toggle";;
-	3) action="toggle";;
+1) action="toggle" ;;
+3) action="toggle" ;;
 esac
 
 print_state() {
-	if [ ! -z "$DISPLAY" ]; then
-		state=${1:-"$state"}
-		if [ $state -eq 0 ]; then
-			echo "$vpnname: "
-			echo "$vpnname: "
-			echo "#00FF00"
-			elif [ $state -eq -1 ]; then
-			echo "$vpnname: "
-			echo "$vpnname: "
-			echo "#FFFF00"
-		else
-			echo "$vpnname: "
-			echo "$vpnname: "
-			echo "#FF0000"
-		fi
-	else
-		echo "VPN: $vpnname is in state $state"
-	fi
-	exit 0
+  if [ ! -z "$DISPLAY" ]; then
+    state=${1:-"$state"}
+    if [ $state -eq 0 ]; then
+      echo "$vpnname: "
+      echo "$vpnname: "
+      echo "#00FF00"
+    elif [ $state -eq -1 ]; then
+      echo "$vpnname: "
+      echo "$vpnname: "
+      echo "#FFFF00"
+    else
+      echo "$vpnname: "
+      echo "$vpnname: "
+      echo "#FF0000"
+    fi
+  else
+    echo "VPN: $vpnname is in state $state"
+  fi
+  exit 0
 }
 
 start_vpn() {
-	if [ $state -ne 0 ]; then
-		sudo systemctl start openvpn-client@$vpnname.service
-		print_state -1
-	fi
+  if [ $state -ne 0 ]; then
+    sudo systemctl start openvpn-client@$vpnname.service >/dev/null 2>/dev/null &
+    print_state -1
+  fi
 }
 
 stop_vpn() {
-	if [ $state -eq 0 ]; then
-		sudo systemctl stop openvpn-client@$vpnname.service
-		print_state -1
-	fi
+  if [ $state -eq 0 ]; then
+    sudo systemctl stop openvpn-client@$vpnname.service >/dev/null 2>/dev/null &
+    print_state -1
+  fi
 }
 
 case $action in
-	start) start_vpn $vpnname;;
-	stop) stop_vpn $vpnname;;
-	toggle)
-		if [ $state -ne 0 ]; then
-			start_vpn 
-		else
-			stop_vpn
-		fi
-	;;
-	watch) print_state $state ;;
+start) start_vpn $vpnname ;;
+stop) stop_vpn $vpnname ;;
+toggle)
+  if [ $state -ne 0 ]; then
+    start_vpn
+  else
+    stop_vpn
+  fi
+  ;;
+watch) print_state $state ;;
 esac
 exit 0

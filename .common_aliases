@@ -19,6 +19,8 @@ alias ctop='([ -z "$(docker container ps -a -q -f "name=ctop\$")" ] && docker co
 alias ctopi='([ -z "$(docker container ps -a -q -f "name=ctopi\$")" ] && docker container run -it --name ctopi -v /etc/localtime:/etc/localtime:ro -v /var/run/docker.sock:/var/run/docker.sock quay.io/vektorlab/ctop:latest -i ) || (docker container start ctopi && docker container attach ctopi)'
 alias dce='docker container exec -i -t'
 alias dcr='docker container run -i -t'
+alias dci='docker container inspect'
+alias dcin="dcin(){docker container inspect "\$1" | jq -r '.[].NetworkSettings.Networks.bridge.IPAddress'; unset -f dcin;};dcin"
 
 alias gl='git log --stat'
 alias glp='git log -p'

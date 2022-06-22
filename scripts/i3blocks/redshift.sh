@@ -10,39 +10,35 @@ validate_min_max() {
   (("$newval" < "$minval")) && newval="$minval"
   echo $newval
 }
+set_color_temp() {
+  COLOR_TEMP="$1"
+  redshift -P -O "${COLOR_TEMP}"
+  pkill -RTMIN+10 i3blocks
+}
 
 COLOR_TEMP="$(cat /tmp/redshift_last_color_temp | tr -dc '0-9')"
 [ -z "${COLOR_TEMP}" ] && COLOR_TEMP=6000
 
 case ${1:-$BLOCK_BUTTON} in
 inc | 4)
-  COLOR_TEMP=$(validate_min_max "$((COLOR_TEMP + step))")
-  redshift -P -O "${COLOR_TEMP}"
-  pkill -RTMIN+10 i3blocks
+  set_color_temp "$(validate_min_max "$((COLOR_TEMP + step))")"
   ;;
 dec | 5)
-  COLOR_TEMP=$(validate_min_max "$((COLOR_TEMP - step))")
-  redshift -P -O "${COLOR_TEMP}"
-  pkill -RTMIN+10 i3blocks
+  set_color_temp "$(validate_min_max "$((COLOR_TEMP - step))")"
   ;;
 max | 3)
-  # set to 6000K with right click
-  redshift -P -O "6000"
-  pkill -RTMIN+10 i3blocks
+  set_color_temp "6000"
   ;;
 min | 1)
-  # set to min 1200K with left click
-  redshift -P -O "1200"
-  pkill -RTMIN+10 i3blocks
+  set_color_temp "1200"
   ;;
 toggle | 2)
   # toggle between 1200 and 6000 with middle click
   if (("${COLOR_TEMP}" <= "3000")); then
-    redshift -P -O "6000"
+    set_color_temp "6000"
   else
-    redshift -P -O "1200"
+    set_color_temp "1200"
   fi
-  pkill -RTMIN+10 i3blocks
   ;;
 esac
 

@@ -14,9 +14,9 @@ gaps outer 0
 
 for_window [class="^Gsimplecal$"] floating enable move left 100px,move down 50px
 
-for_window [class="^mpv$"] floating enable sticky enable
-for_window [class="^mpv$"] resize set 400 300
-for_window [class="^mpv$"] move absolute position 3400px 200px
+for_window [class="^mpv$" instance="^gl$"] floating enable sticky enable
+for_window [class="^mpv$" instance="^gl$"] resize set 400 300
+for_window [class="^mpv$" instance="^gl$"] move absolute position 3400px 200px
 
 for_window [window_role="top_right_info"] floating enable sticky enable
 for_window [window_role="top_right_info"] resize set 640 240
