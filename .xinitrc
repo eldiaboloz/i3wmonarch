@@ -33,6 +33,7 @@ fi
 
 # init all displays
 xrandr --auto
+
 # load setup script when starting X server based on hostname
 if [ -f "$HOME/dev/i3wmonarch/.hosts/$(hostname)/xinit" ]; then
     source "$HOME/dev/i3wmonarch/.hosts/$(hostname)/xinit"
@@ -41,35 +42,17 @@ fi
 # disable beep
 xset -b
 
-case $VM in
-    ie8|ie9|ie10|ie11)
-        # dual monitor is too buggy
-        xrandr --output DisplayPort-0 --off
-        VirtualBox -startvm "$(tr '[:lower:]' '[:upper:]' <<<$VM) - Win7" -fullscreen
-        exit
-        ;;
-    win7)
-        VirtualBox -startvm "win7_x86_for_linux" -fullscreen
-        exit
-        ;;
-esac    
 # extra bindings
-xbindkeys
-
-# seafile client
-command -v seafile-applet  > /dev/null 2>&1 && seafile-applet &
-
-# dropbox daemon
-command -v dropbox.py > /dev/null 2>&1 && dropbox.py start
+xbindkeys &> /dev/null &
 
 # fix for .zlogin/.zlogout
-ssh-agent -k
+ssh-agent -k &> /dev/null &
 
 # start clipboard manager
-parcellite &
+parcellite  &> /dev/null &
 
 # bluetooth applet
-blueman-applet 1>/dev/null 2>&1 &
+blueman-applet &> /dev/null &
 
 # start ssh-agent on login
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)

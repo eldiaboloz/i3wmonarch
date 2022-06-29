@@ -6,33 +6,13 @@ set tabstop=2
 set shiftwidth=2
 set softtabstop=2
 set expandtab
-" set list
-"set list
-"set listchars=tab:>-
-"set lcs+=space:·
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+set hlsearch
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'vim-airline/vim-airline' 
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'L9'
-Plugin 'git://git.wincent.com/command-t.git'
-Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-Plugin 'mhinz/vim-signify'
-Plugin 'altercation/vim-colors-solarized'
-
-call vundle#end()            " required
 filetype plugin indent on    " required
 
 syntax on
-" show line numbers
 set number
-" show relative line numbers
-"set relativenumber
 set laststatus=2
 set encoding=utf-8
 set t_Co=256

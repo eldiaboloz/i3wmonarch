@@ -25,6 +25,9 @@ bindsym $mod+Shift+0 move container to workspace $ws10
 bindsym $mod+Control+Left workspace prev
 bindsym $mod+Control+Right workspace next
 
+bindsym $mod+Shift+Tab workspace prev
+bindsym $mod+Tab workspace next
+
 bindsym $mod+Shift+Control+Left move workspace prev;workspace prev
 bindsym $mod+Shift+Control+Right move workspace next;workspace next
 
