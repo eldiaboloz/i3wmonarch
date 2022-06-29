@@ -1,6 +1,3 @@
-[submodule "github.com/powerline/fonts"]
-	path = github.com/powerline/fonts
-	url = https://github.com/powerline/fonts.git
 [submodule "github.com/nonpop/xkblayout-state"]
 	path = github.com/nonpop/xkblayout-state
 	url = https://github.com/nonpop/xkblayout-state.git
