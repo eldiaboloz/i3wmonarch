@@ -4,9 +4,6 @@
 [submodule "github.com/nonpop/xkblayout-state"]
 	path = github.com/nonpop/xkblayout-state
 	url = https://github.com/nonpop/xkblayout-state.git
-[submodule "github.com/VundleVim/Vundle.vim"]
-	path = github.com/VundleVim/Vundle.vim
-	url = https://github.com/VundleVim/Vundle.vim.git
 [submodule "github.com/robbyrussell/oh-my-zsh"]
 	path = github.com/robbyrussell/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
