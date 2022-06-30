@@ -58,7 +58,6 @@ my_change_volume() {
     fi
   fi
   pactl set-sink-volume "${currentSink}" "$(((newVolume * 65536 + 99) / 100))"
-  pkill -RTMIN+10 i3blocks
 }
 
 my_init
@@ -78,7 +77,6 @@ case "${1:-${BLOCK_BUTTON:-}}" in
     currentBtProfiles=($(echo "${currentBtData}" | jq -r '.profiles|keys[]' | grep -v '^off$' | tr '\n' ' '))
     if [[ "${currentBtProfiles[*]}" =~ "${newBtProfile}" ]]; then
       pacmd set-card-profile "$(echo "${currentBtData}" | jq -r '.name')" "${newBtProfile}"
-      pkill -RTMIN+10 i3blocks
     fi
   fi
   ;;
@@ -90,7 +88,6 @@ dec | 5)
   ;;
 mute | 3)
   pactl set-sink-mute "${currentSink}" toggle
-  pkill -RTMIN+10 i3blocks
   ;;
 limiter | 1)
   # left click - disable/enable volume limiter for headphones controls
@@ -99,7 +96,6 @@ limiter | 1)
   else
     touch ${my_file}
   fi
-  pkill -RTMIN+10 i3blocks
   ;;
 esac
 

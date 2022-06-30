@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+set -euf -o pipefail
+
+while read -r EVENT; do
+  echo "${EVENT}"
+  pkill -RTMIN+30 i3blocks
+done < <(pactl subscribe | grep --line-buffered "^Event 'change' on sink")
+
+

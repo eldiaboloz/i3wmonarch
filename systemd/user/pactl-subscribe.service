@@ -1,0 +1,9 @@
+[Unit]
+Description=pactl subcribe Service
+
+[Service]
+Restart=on-failure
+ExecStart=%h/dev/i3wmonarch/scripts/multimedia/pactl-subscribe
+
+[Install]
+WantedBy=default.target

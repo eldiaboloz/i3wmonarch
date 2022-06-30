@@ -9,6 +9,8 @@ set expandtab
 
 set hlsearch
 
+set updatetime=1000
+
 filetype plugin indent on    " required
 
 syntax on
@@ -17,6 +19,8 @@ set laststatus=2
 set encoding=utf-8
 set t_Co=256
 set cul
+
+" airline
 if !exists('g:airline_symbols')
 	let g:airline_symbols = {}
 endif
@@ -29,9 +33,10 @@ let g:airline#extensions#tabline#fnamemod = ':t:r'
 let g:airline_theme="solarized"
 let g:airline_solarized_bg="dark"
 
-"colorscheme solarized
+" gitgutter
+let g:gitgutter_map_keys = 0
+
 set background=light
-"set clipboard=unnamedplus
 set ignorecase
 set smartcase
 
