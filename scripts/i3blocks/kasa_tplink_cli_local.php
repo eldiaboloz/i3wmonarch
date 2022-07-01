@@ -103,7 +103,7 @@ class TPLinkKasaCli
             // long
             $this->_label . ': ' . $power . ' W' . PHP_EOL .
             // short
-            $power . PHP_EOL .
+            $this->_label . ': ' . $power . ' W' . PHP_EOL .
             // color
             $color . PHP_EOL
         );

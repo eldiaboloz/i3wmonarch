@@ -33,7 +33,6 @@ links=(\
     "/.common_bashrc" "$HOME/.bashrc" \
     "/.common_profile" "$HOME/.profile" \
     "/.ncmpcpp_config" "$HOME/.ncmpcpp/config" \
-    "/github.com/VundleVim/Vundle.vim" "$HOME/.vim/bundle/Vundle.vim" \
     "/github.com/robbyrussell/oh-my-zsh" "$HOME/.oh-my-zsh" \
     "/rofi/config/" "$HOME/.config/rofi" \
     "/rofi/themes/" "$HOME/.local/share/rofi/themes" \

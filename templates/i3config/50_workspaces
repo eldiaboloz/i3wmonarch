@@ -32,6 +32,7 @@ assign [class="^skypeforlinux$"] $ws3
 assign [class="^discord$"] $ws3
 # Thunderbird
 assign [class="^Thunderbird$"] $ws3
+assign [class="^thunderbird-beta$"] $ws3
 # Sylpheed
 assign [class="^Sylpheed$"] $ws3
 # viber
