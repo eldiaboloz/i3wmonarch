@@ -49,6 +49,8 @@ case "$(xdpyinfo | awk '/dimensions/{print $2}' |cut -d 'x' -f1)" in
 esac
 maxlen="$((maxlen-${#songtimes}))"
 curslen=${#cursong}
+curslen2="$(echo "${shortst}${cursong}" |wc -L)"
+(( curslen2>curslen )) && curslen="${curslen2}"
 
 if [ "$curslen" -gt "$maxlen" ]; then
  delta=$((($(date +%-S))%($curslen-$maxlen+1)))
