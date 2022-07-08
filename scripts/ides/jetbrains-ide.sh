@@ -22,11 +22,19 @@ idea-u*)
   jfolder="${jfolder}/IDEA-U"
   jexec=idea
   ;;
+idea-c*)
+  jfolder="${jfolder}/IDEA-C"
+  jexec=idea
+  ;;
 phpstorm*)
   # prefer EAP builds for phpstorm ( installed on ch-1 )
-#  jch=1
+  #  jch=1
   jfolder="${jfolder}/PhpStorm"
   jexec=phpstorm
+  ;;
+pycharm-c)
+  jfolder="${jfolder}/PyCharm-C"
+  jexec=pycharm
   ;;
 pycharm*)
   jfolder="${jfolder}/PyCharm-P"
@@ -55,7 +63,8 @@ android* | studio*)
 *)
   ideslist="$(
     cd "$jfolder"
-    find "." -mindepth 5 -maxdepth 5 -type f -regex '.*/[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' | grep -v 'inspect.sh\|format.sh' | sort
+    find -L "." -mindepth 5 -maxdepth 5 -type f -regex '.*[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' |
+      grep -v 'inspect.sh\|format.sh\|ltedit.sh\|remote-dev-server.sh' | sort
   )"
   [ -n "${PRINT_ONLY}" ] && {
     echo "$ideslist"
@@ -97,13 +106,9 @@ if [ -z "$jshfile" ]; then
   exit 1
 fi
 
-# vm options file
-vmopts="$(echo "$jshfile" | rev | cut -d '/' -f3- | rev).vmoptions"
-
-if ! { [ -f "$vmopts" ] &&
-  [ "e2d70289940d8c3d4fe85ed13d579278a21f42c9" == "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; }; then
-  # customize settings - set country/language and give more RAM
-  cat >"$vmopts" <<EOF
+# customize settings - set country/language and give more RAM
+desired_vmopts_content="$(
+  cat <<'EOF'
 -Xms128m
 -Xmx1536m
 -XX:ReservedCodeCacheSize=512m
@@ -126,8 +131,14 @@ if ! { [ -f "$vmopts" ] &&
 -Dawt.useSystemAAFontSettings=lcd
 -Dsun.java2d.renderer=sun.java2d.marlin.MarlinRenderingEngine
 -Duser.country=BG
--Duser.language=bg
+-Duser.language=bg\n
 EOF
+)"
+
+# vm options file
+vmopts="$(echo "$jshfile" | rev | cut -d '/' -f3- | rev).vmoptions"
+if [ ! -f "${vmopts}" ] || [ "$(echo -ne "${desired_vmopts_content}" | sha1sum - | cut -d ' ' -f1 | tr -d '\n')" != "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; then
+  echo -ne "${desired_vmopts_content}" >"$vmopts"
 fi
 
 if [ "$#" -ge 2 ] && [ "$1" != "--line" ]; then

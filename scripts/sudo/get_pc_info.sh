@@ -7,18 +7,19 @@ trim() {
     var="${var%"${var##*[![:space:]]}"}"   
     echo -n "$var"
 }
-mobo=$(trim $(dmidecode -t 2 | grep -e 'Product Name:.*' | cut -d ':' -f2))
-cpu=$(trim $(dmidecode -t 4 | grep -e 'Version:.*' | cut -d ':' -f2))
-ram=$(trim $(dmidecode -t 17 | grep -e 'Size: ' | grep -v -- 'No Module Installed' | cut -d ':' -f2 | sort | uniq -c))
-ramtype=$(trim $(dmidecode -t 17 | grep -e 'Type: ' | grep -v -- 'Unknown' | cut -d ':' -f2 | sort | uniq))
-maxram=$(trim $(dmidecode -t 16 | grep 'Maximum Capacity:' | cut -d ':' -f2))
+mobo=$(trim $(dmidecode -t 2 | grep -e '^\sProduct Name:.*' | cut -d ':' -f2))
+cpu=$(trim $(dmidecode -t 4 | grep -e '^\sVersion:.*' | cut -d ':' -f2))
+ram=$(trim $(dmidecode -t 17 | grep -e '^\sSize: ' | cut -d ':' -f2 | sort | uniq -c))
+ramtype=$(trim $(dmidecode -t 17 | grep -e '^\sType: ' | grep -v -- 'Unknown' | cut -d ':' -f2 | sort | uniq))
+maxram=$(trim $(dmidecode -t 16 | grep '^\sMaximum Capacity:' | cut -d ':' -f2))
+
 
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 NC='\033[0m'
 
-# check fro both AMD and ATI
+# check for both AMD and ATI
 lspci | grep -P 'VGA compatible controller:.*(AMD|ATI)' 1>/dev/null 2>&1 && gpured=Y || gpured=N
 # check for both VGA and 3D (no video output) for nvidia
 lspci | grep -P '(3D controller:|VGA compatible controller:).*NVIDIA' 1>/dev/null 2>&1 && gpugreen=Y || gpugreen=N
