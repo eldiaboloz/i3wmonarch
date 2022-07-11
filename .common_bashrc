@@ -60,6 +60,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-source "~/.ssh/secrets/shells/.bashrc"
-source "~/dev/i3wmonarch/.common_aliases"
-source "~/.ssh/secrets/shells/.aliases"
+source "$HOME/.ssh/secrets/shells/.bashrc"
+source "$HOME/dev/i3wmonarch/.common_aliases"
+source "$HOME/.ssh/secrets/shells/.aliases"
