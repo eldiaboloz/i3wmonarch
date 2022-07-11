@@ -33,7 +33,6 @@ links=(
   "/.common_bashrc" "$HOME/.bashrc" ""
   "/.common_profile" "$HOME/.profile" ""
   "/.ncmpcpp_config" "$HOME/.ncmpcpp/config" ""
-  "/github.com/robbyrussell/oh-my-zsh" "$HOME/.oh-my-zsh" ""
   "/rofi/config/" "$HOME/.config/rofi" "y"
   "/rofi/themes/" "$HOME/.local/share/rofi/themes" "y"
   "/systemd" "$HOME/.config/systemd" "y"

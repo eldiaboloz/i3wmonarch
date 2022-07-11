@@ -19,7 +19,7 @@ bindsym $mod+Shift+q kill
 bindsym $mod+d exec --no-startup-id rofi -show run 
 bindsym $mod+Shift+d exec --no-startup-id rofi -show window
 bindsym $mod+Shift+s exec --no-startup-id rofi -show ssh
-bindsym $mod+Shift+t exec --no-startup-id rofi -show totp -modi totp:$HOME/dev/i3wmonarch/totp/totp_rofi.sh
+bindsym $mod+Shift+t exec --no-startup-id rofi -show totp -modi totp:$HOME/dev/i3wmonarch/lib/totp-cli/totp_rofi.sh
 bindsym $mod+Shift+j exec --no-startup-id rofi -show jb-ide -modi jb-ide:$HOME/dev/i3wmonarch/rofi/scripts/jb-ide.sh
 
 bindsym $mod+Mod1+P exec --no-startup-id xfce4-terminal -e "$HOME/dev/i3wmonarch/scripts/scm/git_pull_svn_rebase_work_float.sh" --role="floatme"

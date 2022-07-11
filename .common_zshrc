@@ -1,5 +1,5 @@
 # vim: set filetype=sh
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/dev/i3wmonarch/lib/ohmyzsh
 export ZSH_CUSTOM=$HOME/dev/i3wmonarch/oh-my-zsh/custom
 ZSH_THEME="agnoster-light"
 
