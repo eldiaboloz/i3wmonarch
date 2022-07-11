@@ -1,0 +1,10 @@
+[Unit]
+Description=VNC Server Service
+
+[Service]
+Restart=on-failure
+Environment="DISPLAY=:0"
+ExecStart=/usr/bin/x0vncserver -rfbauth %h/.vnc/passwd -rfbport 5910 -localhost
+
+[Install]
+WantedBy=default.target
