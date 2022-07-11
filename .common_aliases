@@ -2,9 +2,9 @@
 alias cdi3='cd $HOME/dev/i3wmonarch'
 alias lsal="ls --color=never -al"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
-alias systemctl='systemctl --user'
-alias journalctl='journalctl --user'
-alias fix_kbd='setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll";xmodmap ~/.Xmodmap'
+[ "$EUID" -ne 0 ] && alias systemctl='systemctl --user'
+[ "$EUID" -ne 0 ] && alias journalctl='journalctl --user'
+[ "$EUID" -ne 0 ] && alias fix_kbd='setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll";xmodmap ~/.Xmodmap'
 
 alias gpgc='gpg --cipher-algo AES256 --armor -c'
 alias gpgd='gpg --decrypt'
@@ -27,16 +27,16 @@ alias glp='git log -p'
 alias gitdc="git diff --cached"
 alias gitd="git diff"
 alias gitco="git checkout"
-alias gitcrypt-export='git-crypt export-key -- - | base64 -w 0 | xclip -selection clipboard'
-alias gitcrypt-decrypt='xclip -out -selection clipboard | base64 -d | git-crypt unlock -'
+[ "$EUID" -ne 0 ] && alias gitcrypt-export='git-crypt export-key -- - | base64 -w 0 | xclip -selection clipboard'
+[ "$EUID" -ne 0 ] && alias gitcrypt-decrypt='xclip -out -selection clipboard | base64 -d | git-crypt unlock -'
 alias prjup="$HOME/dev/i3wmonarch/scripts/scm/git_push_svn_rebase_work.sh"
 
-alias upgrade-drone='sh -c "set -e;export GO111MODULE=on; go install -v github.com/drone/drone/cmd/drone-agent; go install -v github.com/drone/drone/cmd/drone-controller; go install -v github.com/drone/drone/cmd/drone-server;export GO111MODULE=off; go install -v ~/go/src/github.com/drone/drone-cli/drone"'
+[ "$EUID" -ne 0 ] && alias upgrade-drone='sh -c "set -e;export GO111MODULE=on; go install -v github.com/drone/drone/cmd/drone-agent; go install -v github.com/drone/drone/cmd/drone-controller; go install -v github.com/drone/drone/cmd/drone-server;export GO111MODULE=off; go install -v ~/go/src/github.com/drone/drone-cli/drone"'
 
 alias clean-docker="docker system prune && docker volume prune"
-alias clean-datagrip='find $HOME/.config/JetBrains/DataGrip* -type f -path "*/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'
-alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
-alias node-docker='mkdir -pv /work/node/home && docker container run -i -t -u node -w /app -v /work/node/home:/home/node -v $PWD:/app node bash'
+[ "$EUID" -ne 0 ] && alias clean-datagrip='find $HOME/.config/JetBrains/DataGrip* -type f -path "*/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'
+[ "$EUID" -ne 0 ] && alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
+[ "$EUID" -ne 0 ] && alias node-docker='mkdir -pv /work/node/home && docker container run -i -t -u node -w /app -v /work/node/home:/home/node -v $PWD:/app node bash'
 
 alias rsyncv='rsync -av --stats --progress'
 

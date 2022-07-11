@@ -9,7 +9,8 @@ fi
 
 # PATH setup
 
-PATH="$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$HOME/dev/i3wmonarch/bin:/work/dev/bin:$HOME/bin:$HOME/.local/bin:$PATH"
+PATH="$HOME/dev/i3wmonarch/bin:$HOME/bin:$HOME/.local/bin:$PATH"
+[ "$EUID" -ne 0 ] && PATH="/work/dev/bin:$HOME/dev/i3wmonarch/scripts/ides:$HOME/dev/i3wmonarch/scripts/guis:$PATH"
 
 # load host specific init script
 if [ -f "$HOME/dev/i3wmonarch/.hosts/$HOST/init" ]; then
