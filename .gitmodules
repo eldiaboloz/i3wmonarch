@@ -1,9 +1,9 @@
 [submodule "github.com/nonpop/xkblayout-state"]
-	path = github.com/nonpop/xkblayout-state
+	path = lib/xkblayout-state
 	url = https://github.com/nonpop/xkblayout-state.git
 [submodule "github.com/robbyrussell/oh-my-zsh"]
-	path = github.com/robbyrussell/oh-my-zsh
+	path = lib/oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule "totp"]
-	path = totp
+	path = lib/totp-cli
 	url = ../totp-cli.git
