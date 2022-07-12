@@ -11,6 +11,7 @@ dirs=(
   "$HOME/.ncmpcpp" ""
   "$HOME/.vim/bundle" ""
   "$HOME/.local/share/rofi" "y"
+  "$HOME/.config/xfce4" "y"
 )
 
 links=(
