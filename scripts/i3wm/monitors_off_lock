@@ -4,7 +4,7 @@
 keepmusic=${1:-"0"}
 
 # take screenshot and use it as background
-icon="$HOME/.xlock/icon.png"
+icon="/usr/share/icons/Adwaita/96x96/status/system-lock-screen-symbolic.symbolic.png"
 tmpbg='/tmp/screen.png'
 scrot -o "$tmpbg"
 convert "$tmpbg" -scale 20% -scale 500% "$tmpbg"
