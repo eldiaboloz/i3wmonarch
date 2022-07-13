@@ -38,6 +38,7 @@ links=(
   "/rofi/themes/" "$HOME/.local/share/rofi/themes" "y"
   "/systemd" "$HOME/.config/systemd" "y"
   "/.chromium-flags.conf" "$HOME/.config/chromium-flags.conf" "y"
+  "/.pcmanfm" "$HOME/.config/pcmanfm" "y"
 )
 
 [ -n "${2:-}" ] && dotFilesOnlyFlag="y" || dotFilesOnlyFlag=""
