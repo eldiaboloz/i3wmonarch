@@ -18,7 +18,7 @@ my_init() {
   fi
   # get default sink data
   currentSink="$(pactl get-default-sink)"
-  currentSinkData="$(pactl -f pactl -f json list sinks | jq -r '.[] | select(.name=="'"${currentSink}"'")')"
+  currentSinkData="$(pactl -f json list sinks | jq -r '.[] | select(.name=="'"${currentSink}"'")')"
   # could not get sink data
   [ -z "${currentSinkData}" ] && exit
 
