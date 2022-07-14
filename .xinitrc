@@ -55,7 +55,7 @@ unset mycmd; unset mycmds
 ssh-agent -k &> /dev/null &
 
 # start ssh-agent on login
-which /usr/bin/gnome-keyring-daemon &> /dev/nul && {
+which /usr/bin/gnome-keyring-daemon &> /dev/null && {
   eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
   export SSH_AUTH_SOCK
 }
