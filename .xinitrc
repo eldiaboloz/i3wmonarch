@@ -41,23 +41,29 @@ fi
 
 # disable beep
 xset -b
-
-# extra bindings
-xbindkeys &> /dev/null &
+mycmds=(
+  "xbindkeys"
+  "parcellite"
+  "blueman-applet"
+)
+for mycmd in "${mycmds[@]}"; do
+  command -v "${mycmd}" &> /dev/null && "${mycmd}" &> /dev/null &
+done
+unset mycmd; unset mycmds
 
 # fix for .zlogin/.zlogout
 ssh-agent -k &> /dev/null &
 
-# start clipboard manager
-parcellite  &> /dev/null &
-
-# bluetooth applet
-blueman-applet &> /dev/null &
-
 # start ssh-agent on login
-eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+which /usr/bin/gnome-keyring-daemon &> /dev/nul && {
+  eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+  export SSH_AUTH_SOCK
+}
 
-$HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.sh
+if [[ -x "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx" ]]; then
+  exec "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx"
+else
+  $HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.sh
+  exec i3 --config $HOME/.config/i3/config
+fi
 
-exec i3 --config $HOME/.config/i3/config
