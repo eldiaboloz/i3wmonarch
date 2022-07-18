@@ -5,6 +5,8 @@ set -e
 # mount encrypted folder
 #mountpoint -q /encIliyan || sudo mount /encIliyan
 
+xinput disable 'Microsoft Microsoft® Nano Transceiver v2.0 Mouse' &> /dev/null || true
+
 # setup workspaces
 i3-msg "workspace 3; append_layout $HOME/dev/i3wmonarch/.i3layouts/iliyan-arch-work/3.json" &> /dev/null
 

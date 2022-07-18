@@ -39,6 +39,8 @@ links=(
   "/systemd" "$HOME/.config/systemd" "y"
   "/.chromium-flags.conf" "$HOME/.config/chromium-flags.conf" "y"
   "/.pcmanfm" "$HOME/.config/pcmanfm" "y"
+  "/.powerline" "$HOME/.config/powerline" ""
+  "/.mimeapps.list" "$HOME/.config/mimeapps.list" "y"
 )
 
 [ -n "${2:-}" ] && dotFilesOnlyFlag="y" || dotFilesOnlyFlag=""

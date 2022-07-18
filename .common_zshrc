@@ -1,7 +1,10 @@
 # vim: set filetype=sh
 export ZSH=$HOME/dev/i3wmonarch/lib/ohmyzsh
 export ZSH_CUSTOM=$HOME/dev/i3wmonarch/oh-my-zsh/custom
-ZSH_THEME="agnoster-light"
+
+#ZSH_THEME="agnoster-light"
+powerline-daemon -q
+. /usr/share/powerline/bindings/zsh/powerline.zsh
 
 plugins=()
 fpath=($HOME/dev/i3wmonarch/.zsh-completions $fpath)

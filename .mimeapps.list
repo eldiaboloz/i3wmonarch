@@ -1,0 +1,14 @@
+[Default Applications]
+x-scheme-handler/jetbrains=jetbrains-toolbox.desktop
+x-scheme-handler/mailto=userapp-Thunderbird-GMF9O1.desktop
+message/rfc822=userapp-Thunderbird-GMF9O1.desktop
+x-scheme-handler/mid=userapp-Thunderbird-GMF9O1.desktop
+x-scheme-handler/jetbrains-gateway=jetbrains-gateway.desktop
+application/json=code-oss.desktop
+image/png=geeqie.desktop
+
+[Added Associations]
+x-scheme-handler/mailto=userapp-Thunderbird-GMF9O1.desktop;
+x-scheme-handler/mid=userapp-Thunderbird-GMF9O1.desktop;
+application/json=code-oss.desktop;
+image/png=geeqie.desktop;
