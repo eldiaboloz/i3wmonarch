@@ -33,6 +33,16 @@ let g:airline#extensions#tabline#fnamemod = ':t:r'
 let g:airline_theme="solarized"
 let g:airline_solarized_bg="dark"
 
+function! AirlineInit()
+  if expand('$UID') == 0
+    let g:airline_section_a = 'SU@'.hostname() .' '. g:airline_section_a
+  else
+    let g:airline_section_a = hostname() .' '. g:airline_section_a
+  endif
+endfunction
+autocmd User AirlineAfterInit call AirlineInit()
+
+
 " gitgutter
 let g:gitgutter_map_keys = 0
 
