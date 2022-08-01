@@ -60,7 +60,7 @@ which /usr/bin/gnome-keyring-daemon &> /dev/null && {
   export SSH_AUTH_SOCK
 }
 
-if [[ -x "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx" ]]; then
+if [[ -e "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx" ]]; then
   exec "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx"
 else
   $HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.sh
