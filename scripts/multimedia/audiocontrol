@@ -37,7 +37,7 @@ my_init() {
   elif [ "${currentBtProfile}" == "a2dp_sink" ]; then
     my_extra+=" A2DP"
   fi
-  btBatteryLevel="$(bluetoothctl info "${currentBtMac}" | (grep 'Battery Percentage: ' || true) | cut -d '(' -f2 | head -c -2)"
+  btBatteryLevel="$((bluetoothctl info "${currentBtMac}" || true) | (grep 'Battery Percentage: ' || true) | cut -d '(' -f2 | head -c -2)"
   [ ! -z "${btBatteryLevel}" ] &&
     my_extra+=" 🔋${btBatteryLevel}%" || true
 
