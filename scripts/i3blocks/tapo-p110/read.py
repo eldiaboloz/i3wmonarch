@@ -42,13 +42,18 @@ p110 = MyP110(
 )
 
 current = int(p110.getEnergyUsage()["result"]["current_power"] / 1000)
+deviceState = p110.getDeviceInfo()["result"]["device_on"]
+if deviceState == True:
+  symbol=" "
+else:
+  symbol=""
 
 label = str(sys.argv[2])
 minWAT = int(sys.argv[3])
 maxWAT = int(sys.argv[4])
 
-print(label + ": " + str(current) + " W")
-print(label + ": " + str(current) + " W")
+print(label + ": " + str(current) + " W"+symbol)
+print(label + ": " + str(current) + " W"+symbol)
 
 if current <= minWAT:
     color = "#FFFF00"

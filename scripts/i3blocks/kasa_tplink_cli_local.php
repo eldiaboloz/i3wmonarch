@@ -99,11 +99,12 @@ class TPLinkKasaCli
         {
             $color = '#00FF00';
         }
+        $relayState = json_decode($this->query(),true)['system']['get_sysinfo']['relay_state'];
         return (
             // long
-            $this->_label . ': ' . $power . ' W' . PHP_EOL .
+            $this->_label . ': ' . $power . ' W' . ($relayState ? ' ' : '') . PHP_EOL .
             // short
-            $this->_label . ': ' . $power . ' W' . PHP_EOL .
+            $this->_label . ': ' . $power . ' W' . ($relayState ? ' ' : '') . PHP_EOL .
             // color
             $color . PHP_EOL
         );
