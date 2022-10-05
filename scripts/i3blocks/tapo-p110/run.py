@@ -33,6 +33,27 @@ class MyP110(PyP110.P110):
         else:
             self.createKeyPair()
 
+def i3blockPrint(p110: MyP110,input: list[str]):
+  current = int(p110.getEnergyUsage()["result"]["current_power"] / 1000)
+  deviceState = p110.getDeviceInfo()["result"]["device_on"]
+  if deviceState == True:
+    symbol=" "
+  else:
+    symbol=""
+  label = str(input[3])
+  minWAT = int(input[4])
+  maxWAT = int(input[5])
+  print(label + ": " + str(current) + " W"+symbol)
+  print(label + ": " + str(current) + " W"+symbol)
+
+  if current <= minWAT:
+      color = "#FFFF00"
+  elif current >= maxWAT:
+      color = "#FF0000"
+  else:
+      color = "#00FF00"
+  print(color)
+
 
 p110 = MyP110(
     ipAddress=tapoP110Secrets["plugs"][sys.argv[1]],
@@ -41,24 +62,11 @@ p110 = MyP110(
     config=json.loads(Path('/tmp/tapo-p110.' + sys.argv[1] + '.json').read_text(encoding="UTF-8"))
 )
 
-current = int(p110.getEnergyUsage()["result"]["current_power"] / 1000)
-deviceState = p110.getDeviceInfo()["result"]["device_on"]
-if deviceState == True:
-  symbol=" "
+what=str(sys.argv[2])
+
+if what == "i3blockPrint":
+  i3blockPrint(p110,sys.argv)
 else:
-  symbol=""
-
-label = str(sys.argv[2])
-minWAT = int(sys.argv[3])
-maxWAT = int(sys.argv[4])
-
-print(label + ": " + str(current) + " W"+symbol)
-print(label + ": " + str(current) + " W"+symbol)
-
-if current <= minWAT:
-    color = "#FFFF00"
-elif current >= maxWAT:
-    color = "#FF0000"
-else:
-    color = "#00FF00"
-print(color)
+  print(sys.argv)
+  print(json.dumps(p110.getDeviceInfo()))
+  #print(json.dumps(p110.getEnergyUsage()))

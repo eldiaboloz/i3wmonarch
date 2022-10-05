@@ -4,7 +4,7 @@ set $ws2 "2"
 set $ws3 "3"
 set $ws4 "4🦊"
 set $ws5 "5 🦊"
-set $ws6 "6"
+set $ws6 "6VM"
 set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
@@ -45,7 +45,7 @@ assign [class="^firefox-default$"] $ws4
 assign [class="^firefox-socks$"] $ws4
 assign [class="^firefox-squid-vps2$"] $ws4
 # firefox - main profile
-assign [class="^firefox-main$"] $ws4
+assign [class="^firefox-main$"] $ws5
 # chromium
 assign [class="^Chromium$"] $ws5
 # audioplayer in terminal
@@ -62,6 +62,8 @@ for_window [class="^Gcolor2$"] sticky enable
 for_window [window_role="floatme"] floating enable
 for_window [window_role="floatme"] resize set 1280 640
 for_window [window_role="floatme"] move position center
+# virt-manager
+for_window [class="^Virt-manager$"] $ws6
 #
 # END programs on workspaces
 

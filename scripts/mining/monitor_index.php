@@ -36,7 +36,7 @@ $color = $response['color'];
 
 handle_mouse_button($params['info'], $params['api']);
 
-if ($notifyMessage) {
+if (false && $notifyMessage) {
     $tempFile = '/tmp/rigmon_' . $response['hash'] . '.last';
     if (!is_file($tempFile) || (filemtime($tempFile) < (time() - 1200))) {
         file_put_contents($tempFile, time() . PHP_EOL);
