@@ -45,7 +45,7 @@ fi
 # default value
 maxlen=35
 case "$(xdpyinfo | awk '/dimensions/{print $2}' |cut -d 'x' -f1)" in
-"1920")maxlen=65;;
+"1920")maxlen=55;;
 esac
 maxlen="$((maxlen-${#songtimes}))"
 curslen="$(echo "${shortst}${cursong}" |wc -L)"
