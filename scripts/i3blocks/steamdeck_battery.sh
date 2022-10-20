@@ -7,18 +7,19 @@ status=0
 curPercent="$(ssh "deck@$1" cat /sys/class/power_supply/BAT1/capacity)"
 curStatus="$(ssh "deck@$1" cat /sys/class/power_supply/BAT1/status)"
 
-if [ "${curStatus}" == "Charging" ]; then
-  extra=" "
+if [ "${curStatus}" == "Charging" ] || [ "${curStatus}" == "Full" ]; then
+  extra=""
   color="#00FF00"
 elif [ "${curStatus}" == "Discharging" ]; then
   if [ "${curPercent}" -le 25 ]; then
-    extra=" "
+    extra=""
     color="#FF0000"
   else
-    extra=" "
+    extra=""
     color="#FFFF00"
   fi
 else
+  extra=""
   color="#FF0000"
   status=33
 fi

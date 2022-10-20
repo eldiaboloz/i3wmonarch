@@ -43,8 +43,8 @@ def i3blockPrint(p110: MyP110,input: list[str]):
   label = str(input[3])
   minWAT = int(input[4])
   maxWAT = int(input[5])
-  print(label + ": " + str(current) + " W"+symbol)
-  print(label + ": " + str(current) + " W"+symbol)
+  print(label + ": " + str(current) + "W"+symbol)
+  print(label + ": " + str(current) + "W"+symbol)
 
   if current <= minWAT:
       color = "#FFFF00"
