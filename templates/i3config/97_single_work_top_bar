@@ -3,7 +3,7 @@ bar {
 	bindsym button5 nop
 	strip_workspace_numbers yes
 	separator_symbol "  "
-	status_command i3blocks -c ~/dev/i3wmonarch/i3blocks/q520.conf
+	status_command i3blocks -c ~/dev/i3wmonarch/i3blocks/top_work.conf
 	position          top
 	font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
 
@@ -16,4 +16,3 @@ bar {
 		active_workspace #96a900 #266E9E #fdf6e3
 	}
 }
-

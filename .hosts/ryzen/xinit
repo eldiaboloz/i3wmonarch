@@ -1,8 +1,0 @@
-xrandr --output DP-4 --dpi 96
-if (( "$(date "+%-H")" >= 22 || "$(date "+%-H")" <= 6 )); then
-  redshift -P -O 1400
-elif (( "$(date "+%-H")" >= 23 || "$(date "+%-H")" <= 5 )); then
-  redshift -P -O 1200
-elif (( "$(date "+%-H")" >= 20 || "$(date "+%-H")" <= 8 )); then
-  redshift -P -O 4000
-fi

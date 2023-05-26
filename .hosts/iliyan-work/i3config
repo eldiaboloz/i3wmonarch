@@ -1,4 +1,0 @@
-I3WM_LEFT_OUT=HDMI2
-I3WM_RIGHT_OUT=VGA1
-I3WM_CONFIGS="00_header 40_windows 50_workspaces 60_hotkeys 60_hotkeys_audio 60_hotkeys_windows 60_hotkeys_workspaces 98_dual_top_bars 99_crypto_bars_bottom"
-I3WM_CONFIGS="00_header 40_windows 50_workspaces 60_hotkeys 60_hotkeys_audio 60_hotkeys_windows 60_hotkeys_workspaces 98_dual_top_bars"

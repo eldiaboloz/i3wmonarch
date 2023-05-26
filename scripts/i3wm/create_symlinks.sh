@@ -12,6 +12,7 @@ dirs=(
   "$HOME/.vim/bundle" ""
   "$HOME/.local/share/rofi" "y"
   "$HOME/.config/xfce4" "y"
+  "$HOME/.config/qalculate" ""
 )
 
 links=(
@@ -20,7 +21,7 @@ links=(
   "/.vimrc" "$HOME/.vimrc" ""
   "/.xinitrc" "$HOME/.xinitrc" "y"
   "/.xfce4-terminal" "$HOME/.config/xfce4/terminal" "y"
-  "/.parcelliterc" "$HOME/.config/parcellite/parcelliterc" "y"
+    "/.parcelliterc" "$HOME/.config/parcellite/parcelliterc" "y"
   "/.gsimplecal_config" "$HOME/.config/gsimplecal/config" "y"
   "/.xbindkeysrc" "$HOME/.xbindkeysrc" "y"
   "/.htoprc" "$HOME/.config/htop/htoprc" ""
@@ -41,6 +42,8 @@ links=(
   "/.pcmanfm" "$HOME/.config/pcmanfm" "y"
   "/.powerline" "$HOME/.config/powerline" ""
   "/.mimeapps.list" "$HOME/.config/mimeapps.list" "y"
+  "/.kitty" "$HOME/.config/kitty" "y"
+  "/.qalculate.cfg" "$HOME/.config/qalculate/qalc.cfg" ""
 )
 
 [ -n "${2:-}" ] && dotFilesOnlyFlag="y" || dotFilesOnlyFlag=""

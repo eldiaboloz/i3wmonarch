@@ -3,7 +3,7 @@ bar {
 	bindsym button5 nop
 	strip_workspace_numbers yes
 	separator_symbol "  "
-	status_command i3blocks -c ~/dev/i3wmonarch/i3blocks/x300_top.conf
+	status_command i3blocks -c ~/dev/i3wmonarch/i3blocks/top_common.conf
 	position          top
 	font pango:DejaVu Sans Mono for Powerline, Icons 14, FontAwesome 14
 

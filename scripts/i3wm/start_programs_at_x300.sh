@@ -15,6 +15,7 @@ sleep 1
 
 nohup solaar &> /dev/null &
 nohup phpstorm &> /dev/null &
+nohup datagrip &> /dev/null &
 nohup code &> /dev/null &
 nohup skypeforlinux &> /dev/null &
 #nohup viber &> /dev/null &

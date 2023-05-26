@@ -4,7 +4,7 @@ alias lsal="ls --color=never -al"
 alias myip="dig +short myip.opendns.com @resolver1.opendns.com"
 [ "$EUID" -ne 0 ] && alias systemctl='systemctl --user'
 [ "$EUID" -ne 0 ] && alias journalctl='journalctl --user'
-[ "$EUID" -ne 0 ] && alias fix_kbd='setxkbmap -layout "us,bg" -model "pc104" -variant "euro,phonetic" -option "grp:shifts_toggle,grp_led:scroll";xmodmap ~/.Xmodmap'
+[ "$EUID" -ne 0 ] && alias fix_kbd='$HOME/dev/i3wmonarch/scripts/i3wm/fix_keyboard.sh'
 
 alias gpgc='gpg --cipher-algo AES256 --armor -c'
 alias gpgd='gpg --decrypt'
@@ -35,8 +35,10 @@ alias prjup="$HOME/dev/i3wmonarch/scripts/scm/git_push_svn_rebase_work.sh"
 
 alias clean-docker="docker system prune && docker volume prune"
 [ "$EUID" -ne 0 ] && alias clean-datagrip='find $HOME/.config/JetBrains/DataGrip* -type f -path "*/consoles/db/*" -name "*.sql" | grep -v "keep" | xargs -I{} rm -v "{}"'
-[ "$EUID" -ne 0 ] && alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
+#[ "$EUID" -ne 0 ] && alias bw='node /work/dev/github.com/bitwarden/cli/build/bw.js'
 [ "$EUID" -ne 0 ] && alias node-docker='mkdir -pv /work/node/home && docker container run -i -t -u node -w /app -v /work/node/home:/home/node -v $PWD:/app node bash'
+
+alias mpv-current='(pgrep mpv | xargs -I{} realpath /proc/{}/fd/6) | tee "$HOME/Desktop/current_mpv_files.txt"'
 
 alias rsyncv='rsync -av --stats --progress'
 
@@ -45,3 +47,4 @@ alias digs='dig +short'
 alias ssht='ssh -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
 
 alias curliv='curl -I -v'
+

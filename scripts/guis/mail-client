@@ -2,6 +2,12 @@
 
 export LANG=bg_BG.UTF-8
 
-my_client=${MY_MAIL_CLIENT:-/usr/bin/thunderbird}
+if command -v /usr/bin/thunderbird-beta &>/dev/null; then
+  MY_MAIL_CLIENT_DEF="/usr/bin/thunderbird-beta"
+else
+  MY_MAIL_CLIENT_DEF="/usr/bin/thunderbird"
+fi
+
+my_client=${MY_MAIL_CLIENT:-${MY_MAIL_CLIENT_DEF}}
 
 exec -- ${my_client} "$@"
