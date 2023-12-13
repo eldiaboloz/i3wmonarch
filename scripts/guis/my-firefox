@@ -5,10 +5,11 @@ set -euf -o pipefail
 # profile name
 if [[ "$(basename "$0")" == "firefox-"* ]]; then
   pname=$(basename "$0" | sed -e 's/^firefox-//')
+elif [[ "$(basename "$(dirname "$0")")" == "firefox" ]]; then
+  pname="$(basename "$0")"
 else
   pname="default"
 fi
-
 # full path to profile folder
 ppath="$HOME/.mozilla/firefox/prof.${pname}"
 

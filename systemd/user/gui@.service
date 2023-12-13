@@ -1,0 +1,9 @@
+[Unit]
+Description=Simple Service for GUI cmd %I
+
+[Service]
+Restart=on-failure
+ExecStart=%h/dev/i3wmonarch/scripts/%I
+
+[Install]
+WantedBy=default.target

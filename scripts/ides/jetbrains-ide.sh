@@ -8,6 +8,7 @@ jfolder="$HOME/.local/share/JetBrains/Toolbox/apps"
 jname=$(basename "$0")
 # default channel to use
 jch=0
+ws="1"
 
 case "$jname" in
 clion*)
@@ -55,16 +56,21 @@ webstorm*)
 datagrip*)
   jfolder="${jfolder}/datagrip"
   jexec=datagrip
+  ws="2"
   ;;
 android* | studio*)
   jfolder="${jfolder}/AndroidStudio"
   jexec=studio
   ;;
+jb-gateway|jet-brains-gateway)
+  jfolder="${jfolder}/JetBrainsGateway"
+  jexec=gateway
+  ;;
 *)
   ideslist="$(
     cd "$jfolder"
     find -L "." -mindepth 5 -maxdepth 5 -type f -regex '.*[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' |
-      grep -v 'inspect.sh\|format.sh\|ltedit.sh\|remote-dev-server.sh' | sort
+      grep -v 'inspect.sh\|format.sh\|ltedit.sh\|remote-dev-server.sh\|game-tools.sh\|profiler.sh' | sort
   )"
   [ -n "${PRINT_ONLY}" ] && {
     echo "$ideslist"
@@ -109,8 +115,8 @@ fi
 # customize settings - set country/language and give more RAM
 desired_vmopts_content="$(
   cat <<'EOF'
--Xms128m
--Xmx1536m
+-Xms256m
+-Xmx2048m
 -XX:ReservedCodeCacheSize=512m
 -XX:+UseConcMarkSweepGC
 -XX:SoftRefLRUPolicyMSPerMB=50
@@ -147,8 +153,16 @@ if [ "$#" -ge 2 ] && [ "$1" != "--line" ]; then
   exit
 fi
 
+# prepare workspace
+#i3-msg "workspace ${ws}"
+#xfce4-terminal -e 'sleep 3'
+#sleep 0.001
+#i3-msg "layout stacked"
+
 # start IDE
-nohup "$jshfile" "$@" >/dev/null 2>&1 &
+#nohup "$jshfile" "$@" &>/dev/null &
+"$jshfile" "$@"
+
 
 # focus IDE
-~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "jetbrains-${jexec}" "stacked" "10"
+#~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "jetbrains-${jexec}" "stacked" "10"

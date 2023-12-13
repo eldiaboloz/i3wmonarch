@@ -8,32 +8,30 @@ startdir="$(pwd)"
 
 reposroot=${REPOS_ROOT:-"/www"}
 
-byebye () {
-    cd "$startdir"
-    [ ! -z "$SHOW_PROMPT_ON_EXIT" ] && read -n1 -r -p "Press any key..." key
-    exit ${1-:"0"}
+byebye() {
+  cd "$startdir"
+  [ ! -z "$SHOW_PROMPT_ON_EXIT" ] && read -n1 -r -p "Press any key..." key
+  exit ${1-:"0"}
 }
 
-# if we are not in a git repo ask for a git repo
 if [ ! -d "$PWD/.git" ]; then
-#    cd "$reposroot/$(find "$reposroot" -type l -printf '%P\n' | fzf)"
- #   if [ ! -d "$PWD/.git" ]; then
-        cd "$startdir"
-        echo "not in a git repo!" 1>&2
-        byebye 1
-  #  fi  
+  cd "$startdir"
+  echo "not in a git repo!" 1>&2
+  byebye 1
+
 fi
 
-if ! git remote | grep origin >/dev/null 2>/dev/null ; then
-    echo "remote origin not set" 1>&2
-    byebye 1
+if ! git remote | grep origin >/dev/null 2>/dev/null; then
+  echo "remote origin not set" 1>&2
+  byebye 1
 fi
 
+currentBranch="$(git symbolic-ref --short HEAD 2>/dev/null)"
 
 # if we are not on master branch exit
-if [ "$(git symbolic-ref --short HEAD)" "!=" "master" ]; then
-    echo "not on master branch" 1>&2
-    byebye 1
+if [ "${currentBranch}" "!=" "master" ] && [ "${currentBranch}" "!=" "main" ]; then
+  echo "not on master/main branch" 1>&2
+  byebye 1
 fi
 
 # get initial git status
@@ -41,30 +39,24 @@ inist="$(git status --porcelain)"
 
 # clean working copy
 if [ -z "$inist" ]; then
-    echo "no changes from HEAD" 1>&2
-    byebye 1
+  echo "no changes from HEAD" 1>&2
+  byebye 1
 fi
 
 # if there are no staged changes ask what to stage
-echo "$inist" | grep -v "^[? ]" >/dev/null || \
-    git add --interactive 2>/dev/null
+echo "$inist" | grep -v "^[? ]" >/dev/null ||
+  git add --interactive 2>/dev/null
 
 # if there are still no staged changes exit
-git status --porcelain | grep -v "^[? ]" >/dev/null || \
-    ( echo "no staged changes" 1>&2; byebye 1 )
+git status --porcelain | grep -v "^[? ]" >/dev/null ||
+  (
+    echo "no staged changes" 1>&2
+    byebye 1
+  )
 
 # commit and push
 git commit
-
-if [ -f "$PWD/.git/svn/.metadata" ]; then
-    git stash -u
-    git svn dcommit
-    git svn rebase
-    git push origin master
-    git stash pop
-else
-    git push origin master
-fi
+git push origin "${currentBranch}"
 git status
 
 byebye 0

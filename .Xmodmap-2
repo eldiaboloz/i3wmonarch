@@ -1,0 +1,10 @@
+keycode   9 = Escape asciitilde Escape Cyrillic_CHE
+keycode  49 = grave asciitilde Cyrillic_che Cyrillic_CHE
+
+clear Lock
+keycode 66 = F10 Caps_Lock F10
+
+keycode 112 = Home NoSymbol Home
+keycode 110 = Prior NoSymbol Prior
+keycode 117 = End NoSymbol End
+keycode 115 = Next NoSymbol Next

@@ -9,7 +9,7 @@ my_init() {
   # check if limiter is enabled
   if [ -f "${my_file}" ]; then
     my_min=15
-    my_max=75
+    my_max=100
     my_extra=" L"
   else
     my_min=20

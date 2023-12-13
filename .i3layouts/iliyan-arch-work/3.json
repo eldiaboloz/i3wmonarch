@@ -71,8 +71,8 @@
             "percent": 0.5,
             "swallows": [
                {
-                "class": "^ViberPC$",
-                "instance": "^viber$"
+                "class": "^[Vv]iberPC$",
+                "instance": "^[Vv]iber$"
                }
             ],
             "type": "con"

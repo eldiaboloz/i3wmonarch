@@ -35,6 +35,7 @@ cursong="$(echo "$mpcdata" | grep -E "^Artist:" | cut -d ' ' -f2- | tr -d '\n')"
 cursong="${cursong} - $(echo "$mpcdata" | grep -E "^Title:" | cut -d ' ' -f2- | tr -d '\n')";
 cursong="${cursong} ( $(echo "$mpcdata" | grep -E "^Album:" | cut -d ' ' -f2- | tr -d '\n')";
 cursong="${cursong} | $(echo "$mpcdata" | grep -E "^Date:" | cut -d ' ' -f2- | tr -d '\n') )";
+#cursong="${cursong} | $(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2- | tr -d '\n') )";
 
 [[ "$cursong" == " -  (  |  )" ]] && cursong=$(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2-)
 
@@ -46,6 +47,7 @@ fi
 maxlen=35
 case "$(xdpyinfo | awk '/dimensions/{print $2}' |cut -d 'x' -f1)" in
 "1920")maxlen=55;;
+"3640"|"2560")maxlen=120;;
 esac
 maxlen="$((maxlen-${#songtimes}))"
 curslen="$(echo "${shortst}${cursong}" |wc -L)"

@@ -1,0 +1,9 @@
+[Unit]
+Description=Phpstorm service
+
+[Service]
+Restart=on-failure
+ExecStart=%h/dev/i3wmonarch/scripts/ides/phpstorm
+
+[Install]
+WantedBy=default.target

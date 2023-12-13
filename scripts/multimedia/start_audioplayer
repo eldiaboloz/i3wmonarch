@@ -5,7 +5,7 @@ set -e
 systemctl --user start mpd.service
 
 get_con_id() {
-    i3-msg -t get_tree | jq '..|.?|select(.nodes)|select(.window_properties.window_role)|select(.window_properties.window_role=="termaudioplayer")|.id'|head -n1
+    i3-msg -t get_tree | jq '.. |.nodes? | select(. != null) | .[] | select(.window_properties.window_role=="termaudioplayer") | .id' |head -n1
 }
 # start screen in terminal window or in current shell
 if [ ! -z "$DISPLAY" ]; then

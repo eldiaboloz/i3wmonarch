@@ -1,0 +1,116 @@
+
+{
+    "border": "normal",
+    "floating": "auto_off",
+    "layout": "splith",
+    "marks": [],
+    "percent": null,
+    "type": "con",
+    "nodes": [
+        {
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "stacked",
+            "marks": [],
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 978,
+                       "width": 1280,
+                       "x": 0,
+                       "y": 73
+                    },
+                    "marks": [],
+                    "name": "chromium",
+                    "percent": 0.5,
+                    "swallows": [
+                       {
+                        "class": "^Chromium$",
+                        "instance": "^chromium$"
+                       }
+                    ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 978,
+                       "width": 1280,
+                       "x": 1290,
+                       "y": 83
+                    },
+                    "marks": [],
+                    "name": "chromium",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                         "class": "^Chromium$",
+                         "instance": "^chromium$"
+                        }
+                     ],
+                    "type": "con"
+                }
+            ]
+        },
+        {
+            "border": "normal",
+            "floating": "auto_off",
+            "layout": "stacked",
+            "marks": [],
+            "percent": 0.5,
+            "type": "con",
+            "nodes": [
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 956,
+                       "width": 1280,
+                       "x": 1280,
+                       "y": 95
+                    },
+                    "marks": [],
+                    "name": "chromium",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                         "class": "^Chromium$",
+                         "instance": "^chromium$"
+                        }
+                     ],
+                    "type": "con"
+                },
+                {
+                    "border": "pixel",
+                    "current_border_width": 0,
+                    "floating": "auto_off",
+                    "geometry": {
+                       "height": 956,
+                       "width": 1280,
+                       "x": 1280,
+                       "y": 95
+                    },
+                    "marks": [],
+                    "name": "chromium",
+                    "percent": 0.5,
+                    "swallows": [
+                        {
+                         "class": "^Chromium$",
+                         "instance": "^chromium$"
+                        }
+                     ],
+                    "type": "con"
+                }
+            ]
+        }
+    ]
+}
+

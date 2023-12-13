@@ -3,7 +3,6 @@
 set -e
 
 # check for tools
-command -v scrot > /dev/null 2>&1 || { echo "need scrot!" 1>&2; exit 1; }
 command -v maim > /dev/null 2>&1 || { echo "need maim!" 1>&2; exit 1; }
 
 # @TODO: maybe use $XDG_CONFIG_HOME
@@ -13,15 +12,20 @@ command -v maim > /dev/null 2>&1 || { echo "need maim!" 1>&2; exit 1; }
 TARGET_DIR=${TARGET_DIR:-$HOME/Pictures/Screenshots}
 
 # filename generation command - not the safest way
-filename=$(${NAME_CMD:-date +%Y_%m_%d_%H_%M_%S_%N})
+filename="$(${NAME_CMD:-date +%Y_%m_%d_%H_%M_%S_%N})"
 
-if [ -z "$1" ]; then
-	scrot "${TARGET_DIR}/${filename}.png"
-	mode="full"
-else
-	maim -s -p 0 -c 0.96,0.5,0.09 "${TARGET_DIR}/${filename}.png"
+cmd=maim
+mode=full
+
+if [ ! -z "$1" ]; then
+  cmd="maim -s -p 0 -c 0.96,0.5,0.09"
 	mode="partial"
 fi
+
+# create screenshot
+$cmd "${TARGET_DIR}/${filename}.png"
+# load it into clipboard
+cat "${TARGET_DIR}/${filename}.png" | xclip -in -selection clipboard -t image/png
 
 if [ ! -z "$2" ]; then
     if [ ! -z "$UPLOAD_CMD" ]; then

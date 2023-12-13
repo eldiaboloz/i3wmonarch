@@ -1,0 +1,10 @@
+[Unit]
+Description=firefox-alt Service
+
+[Service]
+Restart=on-failure
+ExecStart=%h/dev/i3wmonarch/scripts/guis/firefox-alt
+
+[Install]
+WantedBy=default.target
+``

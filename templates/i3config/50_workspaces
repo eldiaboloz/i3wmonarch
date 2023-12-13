@@ -39,7 +39,7 @@ assign [class="^Sylpheed$"] $ws3
 assign [class="^ViberPC$"] $ws3
 # firefox - alt profiles 
 assign [class="^firefox$"] $ws4
-assign [class="^firefox-dev$"] $ws4
+assign [class="^firefox-dev$"] $ws1
 assign [class="^firefox-alt$"] $ws4
 assign [class="^firefox-default$"] $ws4
 assign [class="^firefox-socks$"] $ws4
