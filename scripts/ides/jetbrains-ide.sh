@@ -3,114 +3,102 @@
 set -e
 
 # jetbrains toolbox IDEs path
-jfolder="$HOME/.local/share/JetBrains/Toolbox/apps"
-# current symlink name
-jname=$(basename "$0")
-# default channel to use
-jch=0
+jFolder="$HOME/.JBIDEs"
+# workspace for IDE
 ws="1"
 
-case "$jname" in
-clion*)
-  jfolder="${jfolder}/CLion"
-  jexec=clion
+case "$(basename "$0")" in
+  phpstorm)
+    jFolder="${jFolder}"/phpstorm
+    jexec=bin/phpstorm.sh
   ;;
-goland*)
-  jfolder="${jfolder}/Goland"
-  jexec=goland
+  phpstorm-stable)
+    jFolder="${jFolder}"/phpstorm-stable
+    jexec=bin/phpstorm.sh
   ;;
-idea-u*)
-  jfolder="${jfolder}/IDEA-U"
-  jexec=idea
+  phpstorm-eap)
+    jFolder="${jFolder}"/phpstorm-eap
+    jexec=bin/phpstorm.sh
   ;;
-idea-c*)
-  jfolder="${jfolder}/IDEA-C"
-  jexec=idea
+  clion)
+    jFolder="${jFolder}"/CLion
+    jexec=bin/clion.sh
   ;;
-phpstorm*)
-  # prefer EAP builds for phpstorm ( installed on ch-1 )
-  #  jch=1
-  jfolder="${jfolder}/PhpStorm"
-  jexec=phpstorm
+  goland)
+    jFolder="${jFolder}"/Goland
+    jexec=bin/goland.sh
   ;;
-pycharm-c)
-  jfolder="${jfolder}/PyCharm-C"
-  jexec=pycharm
+  idea-u)
+    jFolder="${jFolder}"/IDEA-U
+    jexec=bin/idea.sh
   ;;
-pycharm*)
-  jfolder="${jfolder}/PyCharm-P"
-  jexec=pycharm
+  pycharm)
+    jFolder="${jFolder}"/PyCharm-P
+    jexec=bin/pycharm.sh
   ;;
-rider*)
-  jfolder="${jfolder}/Rider"
-  jexec=rider
+  rider)
+    jFolder="${jFolder}"/Rider
+    jexec=bin/rider.sh
   ;;
-rubymine*)
-  jfolder="${jfolder}/RubyMine"
-  jexec=rubymine
+  rubymine)
+    jFolder="${jFolder}"/RubyMine
+    jexec=bin/rubymine.sh
   ;;
-webstorm*)
-  jfolder="${jfolder}/WebStorm"
-  jexec=webstorm
+  webstorm)
+    jFolder="${jFolder}"/WebStorm
+    jexec=bin/webstorm.sh
   ;;
-datagrip*)
-  jfolder="${jfolder}/datagrip"
-  jexec=datagrip
-  ws="2"
+  datagrip)
+    ws="2"
+    jFolder="${jFolder}"/datagrip
+    jexec=bin/datagrip.sh
   ;;
-android* | studio*)
-  jfolder="${jfolder}/AndroidStudio"
-  jexec=studio
+  android|android-studio)
+    jFolder="${jFolder}"/android-studio
+    jexec=bin/studio.sh
   ;;
-jb-gateway|jet-brains-gateway)
-  jfolder="${jfolder}/JetBrainsGateway"
-  jexec=gateway
+  aqua)
+    jFolder="${jFolder}"/aqua
+    jexec=bin/aqua.sh
   ;;
-*)
-  ideslist="$(
-    cd "$jfolder"
-    find -L "." -mindepth 5 -maxdepth 5 -type f -regex '.*[0-9]+\.[0-9]+\(\.[0-9]+\)?/bin/.*.sh$' |
-      grep -v 'inspect.sh\|format.sh\|ltedit.sh\|remote-dev-server.sh\|game-tools.sh\|profiler.sh' | sort
-  )"
-  [ -n "${PRINT_ONLY}" ] && {
-    echo "$ideslist"
-    exit
-  }
-  [ -n "${CHOSEN_IDE}" ] || CHOSEN_IDE="$(echo "$ideslist" | fzf)"
-  [ -z "${CHOSEN_IDE}" ] && exit 1
-  jshfile="$jfolder/${CHOSEN_IDE}"
+  dataspell)
+    jFolder="${jFolder}"/dataspell
+    jexec=bin/dataspell.sh
   ;;
+  fleet)
+    jFolder="${jFolder}"/fleet
+    jexec=bin/Fleet
+  ;;
+  gateway)
+    jFolder="${jFolder}"/gateway
+    jexec=bin/gateway.sh
+  ;;
+  idea-c|intellij-idea-community-edition)
+    jFolder="${jFolder}"/intellij-idea-community-edition
+    jexec=bin/idea.sh
+  ;;
+  mps)
+    jFolder="${jFolder}"/mps
+    jexec=bin/mps.sh
+  ;;
+  pycharm-c|pycharm-community)
+    jFolder="${jFolder}"/pycharm-community
+    jexec=bin/pycharm.sh
+  ;;
+  rustrover)
+    jFolder="${jFolder}"/rustrover
+    jexec=bin/rustrover.sh
+  ;;
+  space|space-desktop)
+    jFolder="${jFolder}"/space-desktop
+    jexec=space
+  ;;
+  writerside)
+    jFolder="${jFolder}"/writerside
+    jexec=bin/writerside.sh
+  ;;
+  *) exit ;;
 esac
-
-if [ -z "$jshfile" ]; then
-  # force channel to use
-  [[ "$jname" == *_ch0* ]] && jch="0"
-  [[ "$jname" == *_ch1* ]] && jch="1"
-  [[ "$jname" == *_ch2* ]] && jch="2"
-  # folder where IDE is installed
-  jfolder="${jfolder}/ch-${jch}"
-
-  # check if channel exists
-  [ ! -d "$jfolder" ] && {
-    echo "no such channel!" 1>&2
-    exit 1
-  }
-
-  # by default select latest version from channel
-  [[ "$jname" == *_r ]] && jord="" || jord="-r"
-
-  # find the installed version
-  jver=$(find "${jfolder}" -mindepth 1 -maxdepth 1 -type d | xargs -I{} basename "{}" | grep -v '.plugins' | sort $jord | sed -n 1p)
-
-  # locate IDE sh file first
-  jshfile=$(realpath "$jfolder/$jver/bin/$jexec.sh")
-fi
-
-# .sh file was not found
-if [ -z "$jshfile" ]; then
-  echo "$jshfile was not found" 1>&2
-  exit 1
-fi
 
 # customize settings - set country/language and give more RAM
 desired_vmopts_content="$(
@@ -141,28 +129,23 @@ desired_vmopts_content="$(
 EOF
 )"
 
+ideFolder="$(find "${jFolder}" -mindepth 1 -maxdepth 1 -type d -o -type l | sort -h | tail -n 1 | tr -d '\n')"
+if [ -z "${ideFolder}" ]; then
+  echo "folder '${jFolder}' was empty" 1>&2
+  exit
+fi
+
 # vm options file
-vmopts="$(echo "$jshfile" | rev | cut -d '/' -f3- | rev).vmoptions"
+vmopts="${ideFolder}.vmoption"
 if [ ! -f "${vmopts}" ] || [ "$(echo -ne "${desired_vmopts_content}" | sha1sum - | cut -d ' ' -f1 | tr -d '\n')" != "$(sha1sum "$vmopts" | cut -d ' ' -f1 | tr -d '\n')" ]; then
   echo -ne "${desired_vmopts_content}" >"$vmopts"
 fi
 
 if [ "$#" -ge 2 ] && [ "$1" != "--line" ]; then
   # pass all args run command and exit
-  "$jshfile" "$@"
+  "${ideFolder}/${jexec}" "$@"
   exit
 fi
 
-# prepare workspace
-#i3-msg "workspace ${ws}"
-#xfce4-terminal -e 'sleep 3'
-#sleep 0.001
-#i3-msg "layout stacked"
 
-# start IDE
-#nohup "$jshfile" "$@" &>/dev/null &
-"$jshfile" "$@"
-
-
-# focus IDE
-#~/dev/i3wmonarch/scripts/i3wm/activate_window.sh "jetbrains-${jexec}" "stacked" "10"
+"${ideFolder}/${jexec}" "$@"
