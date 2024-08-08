@@ -45,6 +45,7 @@ mycmds=(
   "xbindkeys"
   "parcellite"
   "blueman-applet"
+#  "jetbrains-toolbox"
 )
 for mycmd in "${mycmds[@]}"; do
   command -v "${mycmd}" &> /dev/null && "${mycmd}" &> /dev/null &
@@ -54,11 +55,10 @@ unset mycmd; unset mycmds
 # fix for .zlogin/.zlogout
 ssh-agent -k &> /dev/null &
 
-# start ssh-agent on login
-which /usr/bin/gnome-keyring-daemon &> /dev/null && {
-  eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-  export SSH_AUTH_SOCK
-}
+# start gnome-keyring-daemon on login
+which /usr/bin/gnome-keyring-daemon &> /dev/null && /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets
+# set SSH_AUTH_SOCK
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 
 if [[ -x "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx" ]]; then
   exec "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx"
