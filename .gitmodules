@@ -1,6 +1,3 @@
-[submodule "lib/xkblayout-state"]
-	path = lib/xkblayout-state
-	url = ../xkblayout-state
 [submodule "lib/powerline-fonts"]
 	path = lib/powerline-fonts
 	url = ../powerline-fonts
