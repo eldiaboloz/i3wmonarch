@@ -1,9 +1,6 @@
 [submodule "lib/totp-cli"]
 	path = lib/totp-cli
 	url = ../totp-cli.git
-[submodule "lib/ohmyzsh"]
-	path = lib/ohmyzsh
-	url = ../ohmyzsh
 [submodule "lib/xkblayout-state"]
 	path = lib/xkblayout-state
 	url = ../xkblayout-state
