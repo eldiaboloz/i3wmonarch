@@ -1,0 +1,24 @@
+{
+    "name": "htop",
+    "percent": 0.3,
+    "swallows": [
+       {
+        "class": "^Xfce4\\-terminal$",
+        "window_role": "^the_htop$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "name": "ctop",
+    "percent": 0.7,
+    "swallows": [
+       {
+        "class": "^Xfce4\\-terminal$",
+        "window_role": "^the_ctop$"
+       }
+    ],
+    "type": "con"
+}
+
