@@ -11,10 +11,10 @@ set -e
     I3WM_I3BLOCKS_SINGLE=$HOME/dev/i3wmonarch/i3blocks/single.conf
 
 [ -z "$I3WM_LEFT_OUT" ] && \
-    I3WM_LEFT_OUT=$(xrandr --query | grep connected | grep -v disconnected | cut -d ' ' -f1)
+    I3WM_LEFT_OUT=$(xrandr --query | grep connected | grep -v disconnected | cut -d ' ' -f1 | head -n 1 | tr -d '\n')
 
 [ -z "$I3WM_RIGHT_OUT" ] && \
-    I3WM_LEFT_OUT=$(xrandr --query | grep connected | grep -v disconnected | cut -d ' ' -f1)
+    I3WM_RIGHT_OUT=$(xrandr --query | grep connected | grep -v disconnected | cut -d ' ' -f1 | head -n 1 | tr -d '\n')
 
 mkdir -pv "$HOME/.config/i3"
 

@@ -1,0 +1,28 @@
+{
+    "swallows": [
+       {
+        "class": "^Chromium-p-63f519aadcc03e9319ce1de6714ea841339ff7da$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "swallows": [
+       {
+        "class": "^Chromium-p-b09409d36f13a70d175cbc3aaf506b691f9620b5$"
+       }
+    ],
+    "type": "con"
+}
+
+{
+    "swallows": [
+       {
+        "class": "^jetbrains-phpstorm$",
+        "title": "^Debug - .*.php$"
+       }
+    ],
+    "type": "con"
+}
+

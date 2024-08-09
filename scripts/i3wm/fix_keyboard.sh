@@ -2,6 +2,8 @@
 
 set -e
 
+rm -f ~/.fixkbd.lock
+
 export DISPLAY=:0
 export XAUTHORITY=$HOME/.Xauthority
 

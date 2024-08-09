@@ -1,4 +1,4 @@
-bar {
+$rightoutbar {
 	bindsym button4 nop
 	bindsym button5 nop
 	workspace_buttons no

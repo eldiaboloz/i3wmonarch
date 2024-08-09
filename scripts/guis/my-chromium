@@ -3,8 +3,13 @@
 set -e
 
 pname="$(echo "$(basename "$0")" | sha1sum | cut -d ' ' -f1)"
-echo "$pname"
 myroot="/work/temp/chromium-homes/$pname"
+mydatadir="${myroot}/.config/chromium/Default"
 mkdir -pv "$myroot"
 export HOME="$myroot"
-exec chromium
+extra=""
+case "${pname}" in
+  b09409d36f13a70d175cbc3aaf506b691f9620b5) set -- --proxy-server="socks5://10.40.30.6:1080" "$@";; #gmail
+esac
+set -- --class="Chromium-p-$pname" --datadir="${mydatadir}" "$@"
+exec chromium "$@"

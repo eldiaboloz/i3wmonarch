@@ -4,8 +4,10 @@ set -euf -o pipefail
 
 status=0
 
-curPercent="$(ssh "deck@$1" cat /sys/class/power_supply/BAT1/capacity)"
-curStatus="$(ssh "deck@$1" cat /sys/class/power_supply/BAT1/status)"
+stInfo="$(ssh -o ConnectTimeout=1 "deck@$1" "cat /sys/class/power_supply/BAT1/capacity; cat /sys/class/power_supply/BAT1/status" || true)"
+
+curPercent="$(echo "${stInfo}" | sed '1q;d')"
+curStatus="$(echo "${stInfo}" | sed '2q;d')"
 
 if [ "${curStatus}" == "Charging" ] || [ "${curStatus}" == "Full" ]; then
   extra=""
@@ -19,9 +21,10 @@ elif [ "${curStatus}" == "Discharging" ]; then
     color="#FFFF00"
   fi
 else
-  extra=""
-  color="#FF0000"
-  status=33
+  curPercent="  X"
+  extra="❌"
+  color="#FFFF00"
+  status=0
 fi
 
 echo "${BLOCK_INSTANCE}: ${curPercent}% ${extra}"

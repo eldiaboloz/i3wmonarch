@@ -1,5 +1,5 @@
 #!/bin/bash
-songdata="$(echo -ne "status\ncurrentsong\nclose\n" | nc localhost 6600)"
+songdata="$(echo -ne "status\ncurrentsong\nclose\n" | ncat -n -w 1 "$(dig +short mpd-host | tr -d '\n')" 8600 2>/dev/null))"
 if [[ $? != 0 ]]; then
   exit
 fi

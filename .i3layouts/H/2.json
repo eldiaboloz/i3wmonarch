@@ -1,0 +1,23 @@
+{
+    "layout": "stacked",
+    "type": "con",
+    "nodes": [
+        {
+            "name": "project",
+            "swallows": [
+               {
+                "class": "^jetbrains-datagrip$"
+               }
+            ]
+        },
+        {
+            "name": "project",
+            "swallows": [
+               {
+                "class": "^jetbrains-datagrip$"
+               }
+            ]
+        }
+    ]
+}
+

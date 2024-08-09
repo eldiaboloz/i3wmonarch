@@ -163,3 +163,8 @@ UXTerm*color12:                 S_base0
 UXTerm*color13:                 S_violet
 UXTerm*color14:                 S_base1
 UXTerm*color15:                 S_base3
+
+
+! new stuff
+Xcursor.theme: Adwaita
+Xcursor.size: 32

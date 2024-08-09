@@ -28,6 +28,9 @@ for_window [class="^Webview$" instance="^webview$"] move absolute position 2980p
 
 for_window [class="^jetbrains-datagrip$" instance="^jetbrains-datagrip$" title="^Modify Table$"] resize set 1280 720
 
+for_window [class="^[Tt]hunderbird(-beta)?$" instance="^Alert$" window_role="^alert$"] floating enable sticky enable
+no_focus [class="^[Tt]hunderbird(-beta)?$" instance="^Alert$" window_role="^alert$"]
+
 # colors
 
 client.focused #96a900 #859900 #fdf6e3 #859900

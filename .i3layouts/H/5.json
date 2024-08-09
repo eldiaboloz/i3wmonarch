@@ -1,0 +1,27 @@
+// vim:ts=4:sw=4:et
+{
+    "layout": "stacked",
+    "type": "con",
+    "nodes": [
+        {
+            "name": "chromium",
+            "swallows": [
+               {
+                "class": "^Chromium$",
+                "window_role": "^browser$"
+               }
+            ]
+        },
+        {
+            "name": "Mozilla Firefox",
+            "swallows": [
+               {
+                "class": "^firefox-main$",
+                "instance": "^Navigator$",
+                "window_role": "^browser$"
+               }
+            ]
+        }
+    ]
+}
+

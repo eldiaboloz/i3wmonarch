@@ -1,9 +1,7 @@
+#xrandr --output HDMI-A-0 --auto --primary --output DisplayPort-0 --auto --rotate right --right-of HDMI-A-0
 
-# DP on 1920x1080 HDMI on 2560x1080
-#xrandr --output DisplayPort-0 --auto --output HDMI-A-0 --right-of DisplayPort-0 --rotate right
-# HDMI on 1920x1080 DP on 2560x1080
+#xrandr --output HDMI-A-0 --auto --output DisplayPort-0 --auto --primary --rotate right --right-of HDMI-A-0
 
-#xrandr --output HDMI-A-0 --auto --output DisplayPort-0 --right-of HDMI-A-0 --rotate right
-
-xrandr --output HDMI-A-0 --auto --output DisplayPort-0 --off
+# new setup
+xrandr --output DisplayPort-0 --auto --primary --output HDMI-A-0 --auto --right-of DisplayPort-0 --rotate right
 

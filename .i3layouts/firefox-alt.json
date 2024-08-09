@@ -1,0 +1,81 @@
+// vim:ts=4:sw=4:et
+{
+    "layout": "splitv",
+    "type": "con",
+    "nodes": [
+        {
+            "layout": "stacked",
+            "type": "con",
+            "nodes": [
+                {
+                    "name": "firefox-alt",
+                    "swallows": [
+                       {
+                        "class": "^firefox\\-alt$",
+                        "instance": "^Navigator$",
+                        "window_role": "^browser$"
+                       }
+                    ]
+                },
+                {
+                    "name": "firefox-alt",
+                    "swallows": [
+                       {
+                        "class": "^firefox\\-alt$",
+                        "instance": "^Navigator$",
+                        "window_role": "^browser$"
+                       }
+                    ]
+                },
+                {
+                    "name": "firefox-alt",
+                    "swallows": [
+                       {
+                        "class": "^firefox\\-alt$",
+                        "instance": "^Navigator$",
+                        "window_role": "^browser$"
+                       }
+                    ]
+                },
+                {
+                    "name": "firefox-alt",
+                    "swallows": [
+                       {
+                        "class": "^firefox\\-alt$",
+                        "instance": "^Navigator$",
+                        "window_role": "^browser$"
+                       }
+                    ]
+                },
+                {
+                    "layout": "splith",
+                    "marks": [],
+                    "type": "con",
+                    "nodes": [
+                        {
+                            "name": "firefox-alt",
+                            "swallows": [
+                               {
+                                "class": "^firefox\\-alt$",
+                                "instance": "^Navigator$",
+                                "window_role": "^browser$"
+                               }
+                            ]
+                        },
+                        {
+                            "name": "firefox-alt",
+                            "swallows": [
+                               {
+                                "class": "^firefox\\-alt$",
+                                "instance": "^Navigator$",
+                                "window_role": "^browser$"
+                               }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
+

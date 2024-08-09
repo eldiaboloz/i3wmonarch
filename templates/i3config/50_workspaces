@@ -9,6 +9,11 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+set $ws11 "11"
+set $ws12 "12"
+set $ws13 "13"
+set $ws14 "14"
+set $ws15 "15"
 
 # @TODO: there is(was) a bug with gaps and workspace to output rules:
 # new workspace is always on active output
@@ -22,17 +27,18 @@ set $ws10 "10"
 
 # BEGIN programs on workspaces
 #
+# PhpStorm Debug
+assign [class="^jetbrains-phpstorm$" title="^Debug - .*\.php$"] $ws11
 # DB IDEs on $ws2
 assign [class="^jetbrains-datagrip$"] $ws2
 # JB IDEs
 assign [class="^jetbrains-(phpstorm|pycharm|goland|webstorm|rider|clion|idea|rubymine|pycharm-ce|idea-ce|studio)$"] $ws1
 # skype
-assign [class="^skypeforlinux$"] $ws3
+assign [class="^Skype$" window_role="^browser-window$" instance="^skype$"] $ws3
 # discord
 assign [class="^discord$"] $ws3
 # Thunderbird
-assign [class="^Thunderbird$"] $ws3
-assign [class="^thunderbird-beta$"] $ws3
+assign [class="^[Tt]hunderbird(-beta)?$"] $ws3
 # Sylpheed
 assign [class="^Sylpheed$"] $ws3
 # viber
@@ -54,6 +60,7 @@ assign [window_role="termaudioplayer"] $ws3
 assign [window_role="tmuxwww"] $ws10
 # visual studio code oss
 assign [class="^code-oss$" window_role="^browser-window$"] $ws7
+assign [window_role="code-term"] $ws10
 # qalc
 for_window [window_role="calculator"] floating enable
 # gcolor2
@@ -64,17 +71,28 @@ for_window [window_role="floatme"] resize set 1280 640
 for_window [window_role="floatme"] move position center
 # virt-manager
 for_window [class="^Virt-manager$"] $ws6
-#
+# chrome instances on $ws11
+# xdebug
+assign [class="^Chromium-p-63f519aadcc03e9319ce1de6714ea841339ff7da$"] $ws11
+# gmail
+assign [class="^Chromium-p-b09409d36f13a70d175cbc3aaf506b691f9620b5$"] $ws11
 # END programs on workspaces
 
 # BEGIN workspaces
 workspace $ws1 output $leftout
 workspace $ws2 output $leftout
 workspace $ws3 output $leftout
-workspace $ws4 output $rightout
-workspace $ws5 output $rightout
-workspace $ws6 output $rightout
-workspace $ws7 output $rightout
-workspace $ws8 output $rightout
-workspace $ws9 output $rightout
-workspace $ws10 output $rightout
+workspace $ws4 output $leftout
+workspace $ws5 output $leftout
+workspace $ws6 output $leftout
+workspace $ws7 output $leftout
+workspace $ws8 output $leftout
+workspace $ws9 output $leftout
+workspace $ws10 output $leftout
+
+# only 5 workspaces on second output
+workspace $ws11 output $rightout
+workspace $ws12 output $rightout
+workspace $ws13 output $rightout
+workspace $ws14 output $rightout
+workspace $ws15 output $rightout

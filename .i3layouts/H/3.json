@@ -1,0 +1,54 @@
+{
+    "layout": "stacked",
+    "percent": 0.5,
+    "type": "con",
+    "nodes": [
+        {
+            "name": "Skype",
+            "swallows": [
+               {
+                "class": "^Skype$",
+                "instance": "^skype$",
+                "window_role": "^browser\\-window$"
+               }
+            ]
+        },
+        {
+            "name": "ncmpcpp",
+            "swallows": [
+               {
+                "class": "^Xfce4\\-terminal$",
+                "instance": "^xfce4\\-terminal$",
+                "window_role": "^termaudioplayer$"
+               }
+            ]
+        }
+    ]
+}
+
+{
+    "layout": "stacked",
+    "type": "con",
+    "nodes": [
+        {
+            "name": "Viber",
+            "swallows": [
+               {
+                "class": "^[Vv]iberPC$",
+                "instance": "^[Vv]iber$"
+               }
+            ]
+        },
+        {
+            "name": "Mozilla Thunderbird",
+            "swallows": [
+               {
+                "class": "^[Tt]hunderbird(-beta)?$",
+                "instance": "^Mail$",
+                "window_role": "^3pane$"
+               }
+            ]
+        }
+    ]
+}
+

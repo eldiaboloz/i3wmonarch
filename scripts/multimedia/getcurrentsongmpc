@@ -1,7 +1,6 @@
 #!/bin/bash
-# temp fix for stuck ncat
-#pkill -f '^ncat -n -w 1 127.0.0.1 6600$'
-mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | ncat -n -w 1 127.0.0.1 6600 2>/dev/null)
+
+mpcdata=$(echo -ne "status\ncurrentsong\nclose\n" | ncat -n -w 1 172.16.0.1 8600 2>/dev/null)
 if [[ $? != 0 ]]; then
     exit
 fi
@@ -37,7 +36,7 @@ cursong="${cursong} ( $(echo "$mpcdata" | grep -E "^Album:" | cut -d ' ' -f2- | 
 cursong="${cursong} | $(echo "$mpcdata" | grep -E "^Date:" | cut -d ' ' -f2- | tr -d '\n') )";
 #cursong="${cursong} | $(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2- | tr -d '\n') )";
 
-[[ "$cursong" == " -  (  |  )" ]] && cursong=$(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2-)
+[[ "$cursong" == " -  (  |  )" ]] && cursong="$(echo "$mpcdata" | grep -E "^file:" | cut -d ' ' -f2-)"
 
 if [ ! -z "$songtotal" ]; then
     songtimes=$(printf '%02d:%02d / %02d:%02d' $(($songcurrent/60)) $(($songcurrent%60)) $(($songtotal/60)) $(($songtotal%60)))
@@ -46,8 +45,8 @@ fi
 # default value
 maxlen=35
 case "$(xdpyinfo | awk '/dimensions/{print $2}' |cut -d 'x' -f1)" in
-"1920")maxlen=55;;
-"3640"|"2560")maxlen=120;;
+1920|3000)maxlen=55;;
+3640|2560)maxlen=120;;
 esac
 maxlen="$((maxlen-${#songtimes}))"
 curslen="$(echo "${shortst}${cursong}" |wc -L)"
