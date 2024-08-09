@@ -1,6 +1,3 @@
-[submodule "lib/totp-cli"]
-	path = lib/totp-cli
-	url = ../totp-cli.git
 [submodule "lib/xkblayout-state"]
 	path = lib/xkblayout-state
 	url = ../xkblayout-state
