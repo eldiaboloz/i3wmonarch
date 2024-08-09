@@ -17,7 +17,7 @@ if [ "$keepmusic" -eq 0 ]; then
     ~/dev/i3wmonarch/scripts/multimedia/audioplayer_control pause
 fi
 # reset keyboard layout
-~/dev/i3wmonarch/lib/xkblayout-state/xkblayout-state set 0
+xkblayout-state set 0
 
 # kill all i3block instances while the pc is locked
 #killall i3blocks
