@@ -1,0 +1,10 @@
+[Unit]
+Description=gotify-listen Service
+
+[Service]
+Restart=on-failure
+ExecStart=%h/dev/i3wmonarch/scripts/i3wm/gotify_listen.sh
+EnvironmentFile=%h/.ssh/secrets/gotify.env
+
+[Install]
+WantedBy=default.target

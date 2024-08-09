@@ -7,4 +7,3 @@ ExecStart=%h/dev/i3wmonarch/scripts/guis/firefox-alt
 
 [Install]
 WantedBy=default.target
-``

@@ -12,5 +12,7 @@
     "explorer.confirmDelete": false,
     "editor.renderWhitespace": "all",
     "window.zoomLevel": 0,
-    "editor.unicodeHighlight.nonBasicASCII": false
+    "editor.unicodeHighlight.nonBasicASCII": false,
+    "workbench.editor.empty.hint": "hidden",
+    "git.openRepositoryInParentFolders": "never"
 }

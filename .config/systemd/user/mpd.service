@@ -3,7 +3,7 @@ Description=mpd Service
 
 [Service]
 Restart=on-failure
-ExecStart=sh -c 'exec /usr/bin/mpd --no-daemon $HOME/dev/i3wmonarch/.mpd/mpd.conf'
+ExecStart=sh -c 'exec /usr/bin/mpd --no-daemon $HOME/.config/mpd/mpd.conf'
 RestartSec=10
 
 [Install]
