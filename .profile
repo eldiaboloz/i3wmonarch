@@ -6,7 +6,7 @@ binPaths=(
   "$HOME/dev/i3wmonarch/scripts/guis"
   "$HOME/dev/i3wmonarch/bin"
 )
-PATH="$(printf "%s:" "${binPaths[@]}")${PATH}"
+export PATH="$(printf "%s:" "${binPaths[@]}")${PATH}"
 unset binPaths
 
 # load host specific init script
