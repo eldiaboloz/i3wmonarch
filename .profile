@@ -1,5 +1,13 @@
 # PATH setup
-PATH="/work/dev/bin:$PATH"
+
+binPaths=(
+  "/work/dev/bin"
+  "$HOME/dev/i3wmonarch/scripts/ides"
+  "$HOME/dev/i3wmonarch/scripts/guis"
+  "$HOME/dev/i3wmonarch/bin"
+)
+PATH="$(printf "%s:" "${binPaths[@]}")${PATH}"
+unset binPaths
 
 # load host specific init script
 if [ -f "$HOME/dev/i3wmonarch/.hosts/$HOST/init" ]; then
@@ -8,14 +16,5 @@ fi
 
 # current terminal to use
 export TERMINAL=xfce4-terminal
-
-# setup go ...
-GOCACHE="$HOME/.cache/go-build"
-GOPATH="$HOME/go"
-PATH="$GOPATH/bin:$PATH"
-export EDITOR=vim
-
 export MPD_HOST=172.16.0.1
 export MPD_PORT=8600
-
-

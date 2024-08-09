@@ -29,7 +29,7 @@ nohup /work/dev/bin/iliyan87.ivanov@gmail.com &> /dev/null &
 
 systemctl --user start gui@ides-phpstorm
 systemctl --user start gui@ides-datagrip
-systemctl --user start gui@links-viber
+#systemctl --user start gui@links-viber
 systemctl --user start gui@links-skype
 systemctl --user start gui@guis-firefox-alt
 

@@ -2,7 +2,6 @@
 # where is project cloned
 reporoot="$HOME/dev/i3wmonarch"
 links=(
-  "/.profile" "$HOME/.profile"
   "/.Xmodmap" "$HOME/.Xmodmap"
   "/.xinitrc" "$HOME/.xinitrc"
   "/.xbindkeysrc" "$HOME/.xbindkeysrc"
