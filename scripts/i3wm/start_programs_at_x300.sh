@@ -2,8 +2,6 @@
 
 set -e
 
-xinput disable 'Microsoft Microsoft® Nano Transceiver v2.0 Mouse' &> /dev/null || true
-
 # setup workspaces
 i3-msg 'workspace 12; append_layout ~/dev/i3wmonarch/.i3layouts/H/12.json'
 i3-msg 'workspace 11; append_layout ~/dev/i3wmonarch/.i3layouts/H/11.json'
@@ -38,4 +36,4 @@ systemctl --user start gui@links-chromium
 systemctl --user start gui@guis-firefox-main
 
 # start mpd and pause just in case it was playing on shutdown
-systemctl --user start mpd.service; sleep 0.1; mpc pause
+systemctl --user start mpd.service

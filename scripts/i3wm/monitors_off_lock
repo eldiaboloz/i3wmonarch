@@ -26,7 +26,7 @@ xkblayout-state set 0
 sleep 1; xset dpms force off
 
 # lock macbook
-[ "$HOSTNAME" == "iliyan-work" ] \
+[ "$(hostname)" == "iliyan-work" ] \
   &&  /work/dev/bin/mac-lock.sh lock & 
 
 # lock the screen

@@ -3,7 +3,8 @@ Description=mpd Service
 
 [Service]
 Restart=on-failure
-ExecStart=sh -c 'exec /usr/bin/mpd --no-daemon $HOME/.config/mpd/mpd.conf'
+ExecStartPre=/usr/bin/sed -i 's/^state: .*$/state: pause/' %h/.config/mpd/store/state
+ExecStart=/usr/bin/mpd --no-daemon %h/.config/mpd/mpd.conf
 RestartSec=10
 
 [Install]
