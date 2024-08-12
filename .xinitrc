@@ -34,23 +34,11 @@ fi
 # init all displays
 xrandr --auto
 
-# load setup script when starting X server based on hostname
-if [ -f "$HOME/dev/i3wmonarch/.hosts/$(hostname)/xinit" ]; then
-    source "$HOME/dev/i3wmonarch/.hosts/$(hostname)/xinit"
-fi
+# apply xinit commands
+cat ~/dev/i3wmonarch/hosts.yaml | yq '.hosts.'$(hostname)'.xinit' | jq --raw-output0 '.[]' | xargs -0 -I{} sh -c '{}'
 
 # disable beep
 xset -b
-mycmds=(
-  "xbindkeys"
-  "parcellite"
-  "blueman-applet"
-#  "jetbrains-toolbox"
-)
-for mycmd in "${mycmds[@]}"; do
-  command -v "${mycmd}" &> /dev/null && "${mycmd}" &> /dev/null &
-done
-unset mycmd; unset mycmds
 
 # fix for .zlogin/.zlogout
 ssh-agent -k &> /dev/null &
@@ -63,7 +51,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 if [[ -x "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx" ]]; then
   exec "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx"
 else
-  $HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.sh
+  $HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.php
   exec i3 --config $HOME/.config/i3/config
 fi
 

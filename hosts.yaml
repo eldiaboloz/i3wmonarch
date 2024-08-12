@@ -1,0 +1,159 @@
+---
+defaults:
+  workspaces:
+    base:
+      workspaces: &base-workspaces
+        "1":
+          file: H/1.json
+          windows:
+            - class: "^jetbrains-(phpstorm|pycharm|goland|webstorm|rider|clion|idea|rubymine|pycharm-ce|idea-ce|studio)$"
+            - class: "^firefox-dev$"
+        "2":
+          file: H/2.json
+          windows:
+            - class: "^jetbrains-datagrip$"
+        "3":
+          file: H/3.json
+          windows:
+            - class: "^Skype$"
+              window_role: "^browser-window$"
+              instance: "^skype$"
+            - class: "^discord$"
+            - class: "^[Tt]hunderbird(-beta)?$"
+            - class: "^Sylpheed$"
+            - class: "^ViberPC$"
+            - window_role: "^termaudioplayer$"
+        "4🦊":
+          file: firefox-alt.json
+          windows:
+            - class: "^firefox-(alt|default|socks|squid-vps2)$"
+        "5 🦊":
+          file: H/5.json
+          windows:
+            - class: "^firefox-main$"
+            - class: "^Chromium$"
+        '6':
+          windows:
+            - class: "^Virt-manager$"
+        '7':
+          file: H/7.json
+          windows:
+            - class: "^code-oss$"
+              window_role: "^browser-window$"
+            - window_role: "^code-term$"
+        '10':
+          windows:
+            - window_role: "^tmuxwww$"
+    dual:
+      workspaces: &dual-workspaces
+        <<: *base-workspaces
+        '11':
+          file: H/11.json
+          windows:
+            - class: "^jetbrains-phpstorm$"
+              title: "^Debug - .*\\.php$"
+            - class: "^Chromium-p-63f519aadcc03e9319ce1de6714ea841339ff7da$"
+            - class: "^Chromium-p-b09409d36f13a70d175cbc3aaf506b691f9620b5$"
+        '12':
+          file: H/12.json
+          windows:
+            - title: "^the_htop$"
+            - title: "^the_ctop$"
+  services:
+    base:
+      services: &base-services
+        xbindkeys: gui@links-xbindkeys
+        parcellite: gui@links-parcellite
+        blueman-applet: gui@links-bluemanapplet
+        solaar: gui@links-solaar
+        phpstorm: gui@ides-phpstorm
+        skype: gui@links-skype
+#        viber: gui@links-viber
+        mailclient: gui@guis-mailclient
+        chromium: gui@links-chromium
+        mpd: mpd
+        code-term: gui@links-term-code
+        htop-term: gui@links-term-htop
+        ctop-term: gui@links-term-ctop
+    dual:
+      services: &dual-services
+        <<: *base-services
+        datagrip: gui@ides-datagrip
+        pycharm: gui@ides-pycharm
+        firefox-alt: gui@guis-firefox-alt
+        firefox-main: gui@guis-firefox-main
+        chromium-xdebug: gui@links-xdebug
+        chromium-gmail: gui@links-iliyan87.ivanov@gmail.com
+  cmds:
+    base:
+      cmds: &base-cmds
+        code: "nohup code &>/dev/null &"
+    dual:
+      cmds: &dual-cmds
+        <<: *base-cmds
+  i3conf:
+    base:
+      i3conf: &base-i3conf
+        header: "00_header"
+        windows: "40_windows"
+        workspaces: "50_workspaces"
+        hotkeys: "60_hotkeys"
+        hotkeys_audio: "60_hotkeys_audio"
+        hotkeys_windows: "60_hotkeys_windows"
+        hotkeys_workspaces: "60_hotkeys_workspaces"
+        common_bars: "95_common_bars"
+    dual:
+      i3conf: &dual-i3conf
+        <<: *base-i3conf
+        vertical_bars: "96_vertical_bottom_bars"
+hosts:
+  x300:
+    workspaces:
+      <<: *dual-workspaces
+    services:
+      <<: *dual-services
+    cmds:
+      <<: *dual-cmds
+    xinit:
+      - 'xrandr --output DisplayPort-0 --auto --primary --output HDMI-A-0 --auto --right-of DisplayPort-0 --rotate right'
+    outputs:
+      - "DisplayPort-0"
+      - "HDMI-A-0"
+    i3conf:
+      <<: *dual-i3conf
+  um790-pro:
+    workspaces:
+      <<: *dual-workspaces
+    services:
+      <<: *dual-services
+    cmds:
+      <<: *dual-cmds
+    xinit: [ ]
+    outputs:
+      - "HDMI-A-0"
+      - "HDMI-A-1"
+    i3conf:
+      <<: *dual-i3conf
+  xmg-apex-m21:
+    workspaces:
+      <<: *base-workspaces
+    services:
+      <<: *base-services
+    cmds:
+      <<: *base-cmds
+    xinit: [ ]
+    outputs:
+      - "HDMI-A-0"
+    i3conf:
+      <<: *base-i3conf
+  work-vm:
+    workspaces:
+      <<: *base-workspaces
+    services:
+      <<: *base-services
+    cmds:
+      <<: *base-cmds
+    xinit: [ ]
+    outputs: [ ]
+    i3conf:
+      <<: *base-i3conf
