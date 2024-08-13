@@ -19,8 +19,8 @@
             "percent": 0.3,
             "swallows": [
                {
-                "class": "^Xfce4\\-terminal$",
-                "instance": "^xfce4\\-terminal$",
+                "class": "^Code$",
+                "instance": "^code$",
                 "window_role": "^code-term$"
                }
             ],

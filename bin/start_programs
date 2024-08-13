@@ -1,31 +1,4 @@
-#!/usr/bin/env php
-<?php
+#!/usr/bin/env bash
+set -e
 
-$H = getenv("HOME");
-$i3 = $H . '/dev/i3wmonarch';
-require_once $i3 . '/scripts/phplib.php';
-$config = loadHostConfig();
-
-# @TODO: remove this
-$config['workspaces'] = [];
-foreach ($config['workspaces'] as $workspace => $workspaceData) {
-    if (!isset($workspaceData['file'])) {
-        continue;
-    }
-    `i3-msg "workspace \"{$workspace}\" ; append_layout {$i3}/.i3layouts/{$workspaceData['file']}"`;
-}
-
-# @TODO: remove this
-$config['cmds'] = [];
-foreach ($config['cmds'] as $label => $cmd) {
-    `$cmd`;
-}
-
-# @TODO: remove this
-$config['services'] = [];
-foreach ($config['services'] as $label => $service) {
-    `systemctl --user start {$service}`;
-}
-
-var_dump($config);
-exit;
+~/dev/i3wmonarch/scripts/i3wm/i3wm.php startup

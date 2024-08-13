@@ -3,7 +3,7 @@
     "percent": 0.3,
     "swallows": [
        {
-        "class": "^Xfce4\\-terminal$",
+        "class": "^Htop$",
         "window_role": "^the_htop$"
        }
     ],
@@ -15,7 +15,7 @@
     "percent": 0.7,
     "swallows": [
        {
-        "class": "^Xfce4\\-terminal$",
+        "class": "^Ctop$",
         "window_role": "^the_ctop$"
        }
     ],
