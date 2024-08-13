@@ -35,7 +35,7 @@ fi
 xrandr --auto
 
 # apply xinit commands
-cat ~/dev/i3wmonarch/hosts.yaml | yq '.hosts.'$(hostname)'.xinit' | jq --raw-output0 '.[]' | xargs -0 -I{} sh -c '{}'
+$HOME/dev/i3wmonarch/scripts/i3wm/i3wm.php xinit
 
 # disable beep
 xset -b
@@ -51,7 +51,7 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
 if [[ -x "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx" ]]; then
   exec "$HOME/dev/i3wmonarch/.hosts/$(hostname)/startx"
 else
-  $HOME/dev/i3wmonarch/scripts/i3wm/gen_i3config.php
+  $HOME/dev/i3wmonarch/scripts/i3wm/i3wm.php i3conf
   exec i3 --config $HOME/.config/i3/config
 fi
 
