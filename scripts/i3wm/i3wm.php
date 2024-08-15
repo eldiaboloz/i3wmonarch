@@ -88,19 +88,25 @@ class I3WM
     public function startup()
     {
         $config = $this->getHostConfig();
+        $currentWorkspaces=json_decode(shell_exec('i3-msg -t get_workspaces'),true);
+        $currentWorkspacesNames=[];
+        foreach ($currentWorkspaces as $currentWorkspace){
+            $currentWorkspacesNames[$currentWorkspace['name']]=true;
+        }
 
         foreach ($config['workspaces'] as $workspace => $workspaceData) {
-            if (!isset($workspaceData['file'])) {
+            if (!isset($workspaceData['file']) || isset($currentWorkspacesNames[$workspace])) {
+                // if there is no defined layout or workspace exists - skip it
                 continue;
             }
             shell_exec('i3-msg "workspace \"' . $workspace . '\" ; append_layout ' . $this->i3Path . '/.i3layouts/' . $workspaceData['file'] . '"');
         }
 
-
-        foreach ($config['cmds'] as $label => $cmd) {
+        foreach ($config['cmds'] as $cmd) {
+            echo $cmd.PHP_EOL;
             shell_exec($cmd);
         }
-        foreach ($config['services'] as $label => $service) {
+        foreach ($config['services'] as $service) {
             shell_exec('systemctl --user start ' . $service);
         }
     }

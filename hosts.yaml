@@ -87,7 +87,7 @@ defaults:
   cmds:
     base:
       cmds: &base-cmds
-        code: "nohup code &>/dev/null &"
+        code: "nohup code -r &>/dev/null &"
     dual:
       cmds: &dual-cmds
         <<: *base-cmds

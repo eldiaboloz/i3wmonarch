@@ -9,35 +9,41 @@ sensors_temp=(
 )
 sensors_fans=(
   /sys/devices/platform/nct6775.656/hwmon/hwmon*/fan2_input
-  /sys/devices/platform/sch5636/fan1_input 
+  /sys/devices/platform/sch5636/fan1_input
 )
+
+tempPath=""
+fanPath=""
+
+shopt -s extglob
+for x in "${sensors_temp[@]}"; do
+  if [ -f "${x}" ]; then
+    tempPath="${x}"
+    break
+  fi
+done
+for y in "${sensors_fans[@]}"; do
+  if [ -f "${y}" ]; then
+    fanPath="${y}"
+    break
+  fi
+done
+shopt -s extglob
+
 tempval=""
 fanval=""
-shopt -s extglob
-for x in "${sensors_temp[@]}"; do 
-  if [ -f "${x}" ]; then
-    tempval="$(($(cat "${x}")/1000))"
-    break
+
+while :; do
+  [ -n "${tempPath}" ] && tempval="$(($(cat "${x}") / 1000))"
+  [ -n "${fanPath}" ] && fanval="$(cat "${y}")"
+
+  if [ "$tempval" -gt 70 ]; then
+    color="#FF0000"
+  elif [ "$tempval" -gt 60 ]; then
+    color="#FFFF00"
+  else
+    color="#00FF00"
   fi
+  echo "{\"full_text\":\"CPU: ${tempval} °C ${fanval}rpm\",\"short_text\":\"CPU: ${tempval} °C\",\"color\":\"${color}\"}"
+  sleep 5
 done
-for y in "${sensors_fans[@]}"; do 
-  if [ -f "${y}" ]; then
-    fanval="$(cat "${y}")"
-    break
-  fi
-done
-shopt -s extglob
-
-echo "CPU: $tempval °C ${fanval}rpm"
-echo "CPU: $tempval °C"
-
-if [ $tempval -gt 70 ]; then
-	echo "#FF0000"
-elif [ $tempval -gt 60 ]; then
-       echo "#FFFF00"
-else
-	echo "#00FF00"
-fi
-
-exit 0
-

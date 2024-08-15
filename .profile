@@ -1,10 +1,10 @@
 # PATH setup
 
 binPaths=(
-  "/work/dev/bin"
+  "$HOME/.ssh/bin/gui"
   "$HOME/dev/i3wmonarch/scripts/ides"
   "$HOME/dev/i3wmonarch/scripts/guis"
-  "$HOME/dev/i3wmonarch/bin"
+  "$HOME/dev/i3wmonarch/scripts/bin"
 )
 export PATH="$(printf "%s:" "${binPaths[@]}")${PATH}"
 unset binPaths

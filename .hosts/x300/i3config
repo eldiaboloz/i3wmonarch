@@ -1,4 +1,0 @@
-I3WM_LEFT_OUT=DisplayPort-0
-I3WM_RIGHT_OUT=HDMI-A-0
-
-I3WM_CONFIGS="00_header 40_windows 50_workspaces 60_hotkeys 60_hotkeys_audio 60_hotkeys_windows 60_hotkeys_workspaces 95_common_bars 96_vertical_bottom_bars"
