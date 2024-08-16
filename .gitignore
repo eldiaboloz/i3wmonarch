@@ -1,7 +1,1 @@
-# https://linux.dropbox.com/packages/dropbox.py
-/bin/dropbox.py
-/temp
-/.local
 /.idea
-/systemd/user/php-tasker-bridge.service
-/systemd/user/default.target.wants
