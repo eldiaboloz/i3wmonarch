@@ -10,6 +10,7 @@ sensors_temp=(
 sensors_fans=(
   /sys/devices/platform/nct6775.656/hwmon/hwmon*/fan2_input
   /sys/devices/platform/sch5636/fan1_input
+  /sys/devices/platform/thinkpad_hwmon/hwmon/*/fan1_input
 )
 
 tempPath=""
