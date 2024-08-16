@@ -27,6 +27,7 @@ for ((i = 0; i < $lcnt; i += 2)); do
   source="$reporoot${links[$i]}"
   target="${links[$i + 1]}"
   if [ -e "$source" ]; then
+    mkdir -pv "$(dirname "${target}")"
     if [ ! -e "$target" ]; then
       ln -n -f -v -s "$source" "$target"
     else
