@@ -7,4 +7,4 @@ set -euf -o pipefail
     ~/dev/i3wmonarch/scripts/i3blocks/tapo-p110/venv/bin/python -m pip install -e 'git+https://github.com/eldiaboloz/TapoP100.git@dev#egg=PyP100'
 }
 
-~/dev/i3wmonarch/scripts/i3blocks/tapo-p110/venv/bin/python ~/dev/i3wmonarch/scripts/i3blocks/tapo-p110/run.py "${@}"
+exec ~/dev/i3wmonarch/scripts/i3blocks/tapo-p110/venv/bin/python ~/dev/i3wmonarch/scripts/i3blocks/tapo-p110/run.py "${@}"

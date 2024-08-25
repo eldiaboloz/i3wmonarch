@@ -141,9 +141,10 @@ hosts:
       <<: *base-services
     cmds:
       <<: *base-cmds
-    xinit: [ ]
+    xinit:
+      - 'xrandr --output eDP --mode 1920x1080 -r 60'
     outputs:
-      - "HDMI-A-0"
+      - "eDP"
     i3conf:
       <<: *base-i3conf
   work-vm:

@@ -103,7 +103,6 @@ class I3WM
         }
 
         foreach ($config['cmds'] as $cmd) {
-            echo $cmd.PHP_EOL;
             shell_exec($cmd);
         }
         foreach ($config['services'] as $service) {
