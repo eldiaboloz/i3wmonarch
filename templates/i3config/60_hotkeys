@@ -8,6 +8,7 @@ bindsym XF86Calculator exec xfce4-terminal -e qalc --role="calculator"
 
 # open normal term
 bindsym $mod+Return exec --no-startup-id xfce4-terminal
+bindsym $mod+KP_Enter exec --no-startup-id xfce4-terminal
 
 # open floating term
 bindsym $mod+Shift+Return exec --no-startup-id xfce4-terminal --role="floatme"

@@ -42,6 +42,4 @@ if what == "i3blockPrint":
     i3blockPrint(p110,sys.argv)
     time.sleep(5)
 else:
-  print(sys.argv)
-  print(json.dumps(p110.getDeviceInfo()))
-  #print(json.dumps(p110.getEnergyUsage()))
+  print(json.dumps({"args":sys.argv,"info":p110.getDeviceInfo(),"energy":p110.getEnergyUsage()}))

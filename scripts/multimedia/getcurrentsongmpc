@@ -45,7 +45,7 @@ fi
 # default value
 maxlen=35
 case "$(xdpyinfo | awk '/dimensions/{print $2}' |cut -d 'x' -f1)" in
-1920|3000)maxlen=55;;
+1920|3000)maxlen=40;;
 3640|2560)maxlen=120;;
 esac
 maxlen="$((maxlen-${#songtimes}))"

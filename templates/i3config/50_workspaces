@@ -14,6 +14,11 @@ set $ws12 "12"
 set $ws13 "13"
 set $ws14 "14"
 set $ws15 "15"
+set $ws16 "16"
+set $ws17 "17"
+set $ws18 "18"
+set $ws19 "19"
+set $ws20 "20"
 
 # @TODO: there is(was) a bug with gaps and workspace to output rules:
 # new workspace is always on active output
@@ -90,9 +95,14 @@ workspace $ws8 output $leftout
 workspace $ws9 output $leftout
 workspace $ws10 output $leftout
 
-# only 5 workspaces on second output
+# workspaces on second output
 workspace $ws11 output $rightout
 workspace $ws12 output $rightout
 workspace $ws13 output $rightout
 workspace $ws14 output $rightout
 workspace $ws15 output $rightout
+workspace $ws16 output $rightout
+workspace $ws17 output $rightout
+workspace $ws18 output $rightout
+workspace $ws19 output $rightout
+workspace $ws20 output $rightout
